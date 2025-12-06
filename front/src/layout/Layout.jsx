@@ -1,0 +1,56 @@
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { IoHomeOutline } from "react-icons/io5";
+import { LuUser } from "react-icons/lu";
+import { FaRegFolder } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
+import { LuGithub } from "react-icons/lu";
+
+const Layout = () => {
+
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10); 
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+
+  }, []) 
+
+  return (
+    <>
+      <header className={`flex justify-center fixed top-0 left-0 w-full h-[70px] transition-all duration-300 ${isScrolled ? 'bg-[#1E201E]/30 backdrop-blur-md shadow-md' : 'bg-transparent'}`} >
+        <div className='w-[80%] flex justify-between items-center'>
+
+          <div>
+            <h1 className='text-[1.8rem] font-[500] text-[#fff]'>SH.</h1>
+          </div>
+
+          <ul className='flex items-center gap-15 '>
+
+            <li className='font-[300] text-[#fff] text-[1.2rem]'> <Link className='flex items-center gap-1' to={'/'}> <IoHomeOutline /> Home </Link> </li>
+            <li className='font-[300] text-[#fff] text-[1.2rem]'> <Link className='flex items-center gap-1' to={'/about'}> <LuUser /> About </Link> </li>
+            <li className='font-[300] text-[#fff] text-[1.2rem]'> <Link className='flex items-center gap-1' to={'/contact'}> <HiOutlineMail /> Contact </Link> </li>
+            <li className='font-[300] text-[#fff] text-[1.2rem]'> <Link className='flex items-center gap-1' to={'/projects'}> <FaRegFolder /> Projects </Link> </li>
+
+          </ul>
+
+          <div>
+            <Link to={'https://github.com/shota-chikvaidze'} target='_blank'> <LuGithub className=' text-[1.5rem] text-[#fff] ' /> </Link>
+          </div>
+
+        </div>
+      </header>
+
+      <div className='h-[70px]'>
+
+      </div>
+    </>
+  )
+}
+
+export default Layout

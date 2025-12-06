@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+body {
+    background-color: #1c112d;
+}
+
+:root {
+    --main-color: #1E201E;
+    --secondary-color: #3C3D37;
+    --text-color: #fff;
+}
+
+.wave {
+  display: inline-block;
+  animation: wave 1.5s infinite ease-in-out;
+  transform-origin: bottom left; 
+}
+
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  15% { transform: rotate(20deg); }
+  30% { transform: rotate(-15deg); }
+  45% { transform: rotate(20deg); }
+  60% { transform: rotate(-10deg); }
+  75% { transform: rotate(15deg); }
+  100% { transform: rotate(0deg); }
+}
