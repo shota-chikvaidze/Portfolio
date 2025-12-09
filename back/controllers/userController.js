@@ -26,7 +26,18 @@ exports.adminLogin = async (req, res) => {
             expiresIn: '2d'
         })
 
-        res.status(200).json({message: 'user logged in successfully'})
+        res.status(200).json({message: 'user logged in successfully', token})
+
+    }catch(err){
+        res.status(500).json({message: 'server error', error: err.message})
+    }
+}
+
+exports.getAdmin = async (req, res) => {
+    try{
+
+        const admin = await User.findById({user: 'admin'})
+        res.status(200).json({message: 'admin user received successfully', admin})
 
     }catch(err){
         res.status(500).json({message: 'server error', error: err.message})
