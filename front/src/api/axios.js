@@ -4,8 +4,8 @@ const instance = axios.create({
     baseURL: 'http://localhost:5000/api'
 })
 
-instance.interceptors.response.use((config) => {
-    const token = localStorage.getItem('token')
+instance.interceptors.request.use((config) => {
+    const token = localStorage.getItem('admin_token')
     if(token) {
         config.headers.Authorization = `Bearer ${token}`
     }

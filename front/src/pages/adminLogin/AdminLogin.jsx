@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from '../../api/axios'
+import { Login } from '../../api/endpoints/User'
 
 export const AdminLogin = () => {
 
@@ -7,7 +8,6 @@ export const AdminLogin = () => {
         email: '',
         password: ''
     })
-    const [success, setSuccess] = useState('')
 
     const handleChange = (e) => {
         setLoginForm({...loginForm, [e.target.name]: e.target.value})
@@ -18,11 +18,8 @@ export const AdminLogin = () => {
 
         try{
 
-            const res = await axios.post('/user/', loginForm)
-            if(res.status === 200 && res.data.token){
-                localStorage.setItem('admin_token', res.data.token)
-            }
-            setSuccess('yo ')
+            const res = await Login(loginForm)
+            window.location.href = ('/')
 
         }catch(err){
             console.error(err)
@@ -39,8 +36,6 @@ export const AdminLogin = () => {
             <input type='password' placeholder='Enter password' onChange={handleChange} value={loginForm.password} name='password' />
 
             <button type='submit'> Login </button>
-
-            {success}
 
         </form>
 

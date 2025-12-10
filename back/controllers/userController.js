@@ -36,8 +36,17 @@ exports.adminLogin = async (req, res) => {
 exports.getAdmin = async (req, res) => {
     try{
 
-        const admin = await User.findById({user: 'admin'})
-        res.status(200).json({message: 'admin user received successfully', admin})
+        if (!req.admin) {
+            return res.status(401).json({ message: "Unauthorized" });
+        }
+
+        const admin = await User.findById(req.admin.id).select('-password');
+
+        if (!admin) {
+            return res.status(404).json({ message: "Admin not found" });
+        }
+
+        res.status(200).json({ admin });
 
     }catch(err){
         res.status(500).json({message: 'server error', error: err.message})
