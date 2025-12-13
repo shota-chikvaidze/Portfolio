@@ -1,16 +1,20 @@
 import { Routes, Route } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { Home } from './pages/home/Home'
 import { About } from './pages/about/About'
 import { Contact } from './pages/contact/Contact'
 import { AdminLogin } from './pages/adminLogin/AdminLogin'
 import Layout from './layout/Layout'
 
-import { UseCurrentUser } from './hooks/UseCurrentUser'
+import { userAuth } from './store/UserAuth'
+import { useCurrentUser } from './hooks/UseCurrentUser'
 import { AdminContact } from './pages/adminContact/AdminContact'
 
 function App() {
 
-  const { data: user, isLoading } = UseCurrentUser()
+  const isAuthenticated = userAuth(s => s.isAuthenticated)
+
+  const { isLoading } = useCurrentUser()
 
   if(isLoading){
     return <p> Loading... </p>
@@ -19,22 +23,24 @@ function App() {
   return (
     <>
 
-      {!user && (
-<>
-        <Layout />
+      {!isAuthenticated && (
+        <>
+          <Layout />
 
-        <Routes>
-          <Route path='/' element={ <Home /> } />
-          <Route path='/about' element={ <About /> } />
-          <Route path='/contact' element={ <Contact /> } />
-          <Route path='/admin-login' element={ <AdminLogin /> } />
-        </Routes>
+          <Routes>
+            <Route path='/' element={ <Home /> } />
+            <Route path='/about' element={ <About /> } />
+            <Route path='/contact' element={ <Contact /> } />
+            <Route path='/admin-login' element={ <AdminLogin /> } />
+            <Route path='*' element={ <Navigate to={'/'} /> } />
+          </Routes>
         </>
       )}
 
-      {user && (
+      {isAuthenticated && (
         <Routes>
           <Route path='/contact' element={ <AdminContact /> } />
+          <Route path='*' element={ <Navigate to={'/contact'} /> } />
         </Routes>
       )}
 

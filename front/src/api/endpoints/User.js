@@ -1,8 +1,9 @@
 import axios from '../axios'
+import { userAuth } from '../../store/UserAuth'
 
 export const User = async () => {
 
-    const res = await axios.get('/user/get-user')
+    const res = await axios.get('/user/me')
     return res.data.admin
 
 }
@@ -10,10 +11,6 @@ export const User = async () => {
 export const Login = async (loginForm) => {
     
     const res = await axios.post('/user/login', loginForm)
-    if(res.data.token) {
-        localStorage.setItem('admin_token', res.data.token);
-    }
-
     return res.data;
 
 }

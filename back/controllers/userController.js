@@ -26,14 +26,22 @@ exports.adminLogin = async (req, res) => {
             expiresIn: '2d'
         })
 
-        res.status(200).json({message: 'user logged in successfully', token})
+        res.status(200).json({
+          access: token,
+          user: {
+            id: user._id,
+            email: user.email,
+            role: user.role,
+          }
+        })
+
 
     }catch(err){
         res.status(500).json({message: 'server error', error: err.message})
     }
 }
 
-exports.getAdmin = async (req, res) => {
+exports.me = async (req, res) => {
     try{
 
         if (!req.admin) {

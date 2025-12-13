@@ -4,6 +4,6 @@ const adminMiddleware = require('../middleware/adminMiddleware')
 const router = express.Router()
 
 router.post('/login', loginAuth.adminLogin)
-router.get('/get-user', adminMiddleware, loginAuth.getAdmin)
+router.get('/me', adminMiddleware, loginAuth.me)
 
 module.exports = router
