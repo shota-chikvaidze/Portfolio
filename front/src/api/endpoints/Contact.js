@@ -9,7 +9,7 @@ export const postContact = async (postForm) => {
 
 export const getContact = async (postForm) => {
 
-    const res = await adminAxios.get('/contact/get-contact', postForm)
+    const res = await axios.get('/contact/get-contact', postForm)
     return res.data.contact
 
 }
