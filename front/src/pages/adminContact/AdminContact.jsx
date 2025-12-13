@@ -15,16 +15,12 @@ export const AdminContact = () => {
     navigate('/')
   }
 
-  const {  data, isLoading, isError  } = useQuery({
+  const {  data, isError  } = useQuery({
     queryKey: ['get-contact'],
     queryFn: () => getContact()
   })
 
   const contacts = data?.contact || data || []
-
-  if(isLoading) {
-    return <p> Loading... </p>
-  }
 
   if(isError) {
     return <p> Error laoding your contacts </p>

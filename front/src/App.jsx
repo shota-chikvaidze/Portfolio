@@ -10,6 +10,8 @@ import { userAuth } from './store/UserAuth'
 import { useCurrentUser } from './hooks/UseCurrentUser'
 import { AdminContact } from './pages/adminContact/AdminContact'
 
+import Loading from './components/loading/Loading'
+
 function App() {
 
   const isAuthenticated = userAuth(s => s.isAuthenticated)
@@ -17,7 +19,7 @@ function App() {
   const { isLoading } = useCurrentUser()
 
   if(isLoading){
-    return <p> Loading... </p>
+    return <Loading />
   }
 
   return (
