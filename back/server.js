@@ -9,7 +9,12 @@ const projectRoutes = require('./routes/ProjectRoutes')
 
 const app = express()
 
-app.use(cors())
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://portfolio-fawn-five-43.vercel.app"
+  ],
+}));
 app.use(express.json())
 dotenv.config()
 
