@@ -13,3 +13,10 @@ export const getContact = async (postForm) => {
     return res.data.contact
 
 }
+
+export const deleteContact = async (id) => {
+
+    const res = await axios.delete(`/contact/delete-contact/${id}`)
+    return res.data
+
+}

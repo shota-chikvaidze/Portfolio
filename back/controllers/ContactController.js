@@ -32,3 +32,14 @@ exports.getContacts = async (req, res) => {
         res.status(500).json({message: 'Server error', error: err.message})
     }
 }
+
+exports.deleteContacts = async (req, res) => {
+    try{
+
+        const contact = await Contact.findByIdAndDelete(req.params.id)
+        res.status(200).json({message: 'contact deleterd sucessfully', contact})
+
+    }catch(err){
+        res.status(500).json({message: 'Server error', error: err.message})
+    }
+}
