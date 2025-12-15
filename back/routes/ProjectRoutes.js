@@ -5,6 +5,7 @@ const router = express.Router()
 
 router.post('/post-project', adminProtect, projectController.postProject)
 router.delete('/delete-project/:id', adminProtect, projectController.deleteProject)
+router.patch('/update-project/:id', adminProtect, projectController.updateProject)
 router.get('/get-projects', projectController.getProjects)
 
 module.exports = router

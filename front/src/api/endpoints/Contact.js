@@ -7,16 +7,16 @@ export const postContact = async (postForm) => {
 
 }
 
-export const getContact = async (postForm) => {
-
-    const res = await axios.get('/contact/get-contact', postForm)
-    return res.data.contact
-
-}
-
 export const deleteContact = async (id) => {
 
     const res = await axios.delete(`/contact/delete-contact/${id}`)
     return res.data
+
+}
+
+export const getContact = async () => {
+
+    const res = await axios.get('/contact/get-contact')
+    return res.data.contact
 
 }

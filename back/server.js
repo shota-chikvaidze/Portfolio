@@ -15,7 +15,8 @@ app.use(cors({
     "https://portfolio-fawn-five-43.vercel.app"
   ],
 }));
-app.use(express.json())
+app.use(express.json({ limit: '15mb' }))
+app.use(express.urlencoded({ extended: true, limit: '15mb' }))
 dotenv.config()
 
 app.use('/api/contact', contactRoutes)

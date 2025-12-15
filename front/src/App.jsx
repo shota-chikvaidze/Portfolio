@@ -8,6 +8,9 @@ import Layout from './layout/Layout'
 
 import { userAuth } from './store/UserAuth'
 import { useCurrentUser } from './hooks/UseCurrentUser'
+import { Dashboard } from './components/dashboard/Dashboard'
+import PostProject from './components/postProject/PostProject'
+import SidebarWrapper from './components/sidebarWrapper/SidebarWrapper'
 import { AdminContact } from './pages/adminContact/AdminContact'
 
 import { MainLoading } from './components/loading/Loading'
@@ -41,8 +44,15 @@ function App() {
 
       {isAuthenticated && (
         <Routes>
-          <Route path='/contact' element={ <AdminContact /> } />
-          <Route path='*' element={ <Navigate to={'/contact'} /> } />
+          <Route path='/' element={ <SidebarWrapper /> }>
+
+            <Route index element={ <Dashboard /> } />
+            <Route path='dashboard' element={ <Dashboard /> } />
+            <Route path='project' element={ <PostProject /> } />
+
+          </Route>
+
+          <Route path='*' element={ <Navigate to={'/dashboard'} /> } />
         </Routes>
       )}
 
