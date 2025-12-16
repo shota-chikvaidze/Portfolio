@@ -4,6 +4,7 @@ import { Home } from './pages/home/Home'
 import { About } from './pages/about/About'
 import { Contact } from './pages/contact/Contact'
 import { AdminLogin } from './pages/adminLogin/AdminLogin'
+import { Projects } from './pages/projects/Projects'
 import Layout from './layout/Layout'
 
 import { userAuth } from './store/UserAuth'
@@ -11,7 +12,6 @@ import { useCurrentUser } from './hooks/UseCurrentUser'
 import { Dashboard } from './components/dashboard/Dashboard'
 import PostProject from './components/postProject/PostProject'
 import SidebarWrapper from './components/sidebarWrapper/SidebarWrapper'
-import { AdminContact } from './pages/adminContact/AdminContact'
 
 import { MainLoading } from './components/loading/Loading'
 
@@ -37,6 +37,7 @@ function App() {
             <Route path='/about' element={ <About /> } />
             <Route path='/contact' element={ <Contact /> } />
             <Route path='/admin-login' element={ <AdminLogin /> } />
+            <Route path='/projects' element={ <Projects /> } />
             <Route path='*' element={ <Navigate to={'/'} /> } />
           </Routes>
         </>

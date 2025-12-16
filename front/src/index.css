@@ -4,6 +4,32 @@ body {
     background-color: #1c112d;
 }
 
+/* Glass scrollbar styling (opt-in via class). */
+.scrollbar-glass {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) rgba(255, 255, 255, 0.06);
+}
+
+.scrollbar-glass::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.scrollbar-glass::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 9999px;
+}
+
+.scrollbar-glass::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
+  border: 2px solid rgba(255, 255, 255, 0.06);
+}
+
+.scrollbar-glass::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.26);
+}
+
 :root {
     --main-color: #1E201E;
     --secondary-color: #3C3D37;

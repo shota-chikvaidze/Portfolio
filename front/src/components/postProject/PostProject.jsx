@@ -116,6 +116,7 @@ const PostProject = () => {
                                 type='file'
                                 name='image'
                                 accept='image/*'
+                                multiple
                                 onChange={handleFileChange}
                                 className='w-full cursor-pointer rounded-xl border border-white/15 bg-transparent px-4 py-3 text-sm text-white/80 file:mr-3 file:rounded-lg file:border file:border-white/10 file:bg-white/10 file:px-3 file:py-2 file:text-sm file:font-[500] file:text-white/90 hover:file:bg-white/15'
                             />

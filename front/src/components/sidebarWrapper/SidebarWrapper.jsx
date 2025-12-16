@@ -23,9 +23,9 @@ const SidebarWrapper = () => {
     }
 
   return (
-    <div className='flex w-full'>
+    <div className='flex w-full h-full relative'>
 
-        <div className='border-r border-white/5 bg-white/5 backdrop-blur flex flex-col justify-between p-[12px] w-[220px] h-[100vh] '>
+        <div className='border-r border-white/5 bg-white/5 backdrop-blur flex flex-col justify-between p-[12px] w-[220px] fixed top-0 left-0 h-full max-h-[100vh] '>
             <div className='flex flex-col gap-2'>
             
                 <NavLink to="dashboard" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
