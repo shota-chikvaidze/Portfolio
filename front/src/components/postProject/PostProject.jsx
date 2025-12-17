@@ -7,7 +7,9 @@ const PostProject = () => {
     const [projectForm, setProjectForm] = useState({
         title: '',
         description: '',
-        image: []
+        image: [],
+        gitLink: ''
+
     })
     const [successMessage, setSuccessMessage] = useState('')
 
@@ -45,7 +47,7 @@ const PostProject = () => {
         mutationFn: (payload) => PostProjectApi(payload),
         onSuccess: () => {
             setSuccessMessage('Project uploaded successfully.')
-            setProjectForm({ title: '', description: '', image: [] })
+            setProjectForm({ title: '', description: '', image: [], gitLink: '' })
         },
         onError: () => {
             setSuccessMessage('')
@@ -107,6 +109,18 @@ const PostProject = () => {
                                 placeholder='Enter description'
                                 rows={6}
                                 className='w-full resize-y rounded-xl bg-transparent border border-white/15 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:border-white/30 focus-visible:ring-2 focus-visible:ring-white/20'
+                            />
+                        </div>
+
+                        <div className='grid gap-2'>
+                            <label className='text-sm font-[500] text-white/80'>Github link</label>
+                            <input
+                                name='gitLink'
+                                type='text'
+                                onChange={handleChange}
+                                placeholder='Enter Github Link'
+                                value={projectForm.gitLink}
+                                className='w-full rounded-xl bg-transparent border border-white/15 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:border-white/30 focus-visible:ring-2 focus-visible:ring-white/20'
                             />
                         </div>
 

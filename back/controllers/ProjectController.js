@@ -15,13 +15,14 @@ exports.getProjects = async (req, res) => {
 exports.postProject = async (req, res) => {
     try{
         
-        const { title, description, image } = req.body
+        const { title, description, image, gitLink } = req.body
         if(!title || !description || !image) return res.status(400).json({message: 'all fields required'})
 
         const createProject = await Projects.create({
             title,
             description,
-            image
+            image,
+            gitLink
         })
 
         res.status(201).json({message: 'project created successfully', createProject})

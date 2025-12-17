@@ -38,7 +38,7 @@ export const AdminLogin = () => {
   return (
         <section className='w-full flex justify-center px-4 py-14 min-h-[calc(100vh-70px)]'>
             <div className='w-full max-w-[440px]'>
-                <div className='bg-[#1E201E]/30 backdrop-blur-md border border-white/10 rounded-2xl p-7 shadow-md'>
+                <div className='bg-[#1c112d]/30 backdrop-blur-md border border-white/10 rounded-2xl p-7 shadow-md'>
                     <div className='mb-7'>
                         <h2 className='text-[#fff] text-[1.8rem] font-[600] tracking-wide'>Admin Login</h2>
                         <p className='text-white/70 mt-2 text-[0.95rem]'>Sign in to manage contact messages.</p>

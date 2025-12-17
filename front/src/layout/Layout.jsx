@@ -24,7 +24,7 @@ const Layout = () => {
   return (
     <>
       <header className={`flex justify-center fixed top-0 left-0 w-full h-[70px] transition-all duration-300 ${isScrolled ? 'bg-[#1E201E]/30 backdrop-blur-md shadow-md' : 'bg-transparent'}`} >
-        <div className='w-[80%] flex justify-between items-center'>
+        <div className='max-w-7xl w-full flex justify-between items-center'>
 
           <div>
             <h1 className='text-[1.8rem] font-[500] text-[#fff]'>SH.</h1>

@@ -7,7 +7,7 @@ export const Home = () => {
   return (
     <>
       <section className='w-full h-100 flex items-center justify-center min-h-[650px] '>
-        <div className='flex items-center justify-between test w-[80%]'>
+        <div className='flex items-center justify-between w-full max-w-7xl'>
 
           <div>
 
@@ -39,16 +39,16 @@ export const Home = () => {
       </section>
 
       <section className='w-full h-auto flex justify-center'>
-        <div className=' w-[80%] flex flex-col min-h-[400px] gap-4 text-[#fff] '>
+        <div className=' w-full max-w-7xl flex flex-col min-h-[400px] gap-4 text-[#fff] '>
 
           <h4 className='py-5 uppercase text-[2rem] '>Get to Know Me</h4>
 
           <p className='tracking-[2px]'>
-            I’m Shota — a web developer with a strong focus on building fast, clean, and functional applications. I work mainly with <span className='text-[#8E6AFB]'> React and Node.js, </span> and I enjoy turning ideas into real, well-structured products. I care about writing maintainable code, designing clear user experiences, and constantly improving both my skills and the quality of my work.
+            I'm Shota — a web developer with a strong focus on building fast, clean, and functional applications. I work mainly with <span className='text-[#8E6AFB]'> React and Node.js, </span> and I enjoy turning ideas into real, well-structured products. I care about writing maintainable code, designing clear user experiences, and constantly improving both my skills and the quality of my work.
           </p>
 
           <p className='tracking-[2px]'>
-            Programming isn’t something I do casually — it’s what I <span className=' text-[#8E6AFB]'> actively study, practice, and level up in every day. </span> I like creating things that solve real problems, look good, and perform even better. My mindset is simple: build, break, learn, improve.
+            Programming isn't something I do casually — it's what I <span className=' text-[#8E6AFB]'> actively study, practice, and level up in every day. </span> I like creating things that solve real problems, look good, and perform even better. My mindset is simple: build, break, learn, improve.
           </p>
 
           <p className='tracking-[2px]'>

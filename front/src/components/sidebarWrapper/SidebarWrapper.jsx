@@ -23,9 +23,9 @@ const SidebarWrapper = () => {
     }
 
   return (
-    <div className='flex w-full h-full relative'>
+    <div className='flex w-full h-full '>
 
-        <div className='border-r border-white/5 bg-white/5 backdrop-blur flex flex-col justify-between p-[12px] w-[220px] fixed top-0 left-0 h-full max-h-[100vh] '>
+        <div className='relative border-r border-white/5 bg-white/5 backdrop-blur flex flex-col justify-between p-[12px] w-[220px]  '>
             <div className='flex flex-col gap-2'>
             
                 <NavLink to="dashboard" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
@@ -41,7 +41,7 @@ const SidebarWrapper = () => {
             <button
                 type='button'
                 onClick={logoutFunc}
-                className='cursor-pointer rounded-lg border border-white/15 bg-white/5 px-4 py-2 text-sm font-[500] text-white/90 transition hover:bg-white/10'
+                className='sticky bottom-3 cursor-pointer rounded-lg border border-white/15 bg-white/5 px-4 py-2 text-sm font-[500] text-white/90 transition hover:bg-white/10'
             >
                 Logout
             </button>
