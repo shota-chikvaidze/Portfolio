@@ -57,7 +57,7 @@ export const Contact = () => {
                 <input
                   name='email'
                   type='email'
-                  placeholder='you@example.com'
+                  placeholder='Your email'
                   onChange={handleChange}
                   value={postForm.email}
                   className='w-full rounded-xl bg-transparent border border-white/15 px-4 py-3 text-[#fff] placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-[#8E6AFB]/40'

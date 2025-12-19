@@ -1,255 +1,165 @@
-import React, { useState } from 'react'
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { getContact, deleteContact } from '../../api/endpoints/Contact'
-import { GetProjects, DeleteProject } from '../../api/endpoints/Project'
-import { Loading } from '../../components/loading/Loading'
-import { MdDeleteOutline } from "react-icons/md";
+import React from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { GetProjects } from '../../api/endpoints/Project'
+import { getContact } from '../../api/endpoints/Contact'
+import { Loading } from '../loading/Loading'
+import { MdEmail, MdWork, MdVisibility } from "react-icons/md"
 
 export const Dashboard = () => {
-
-  const queryClient = useQueryClient()
-  const [successMessage, setSuccessMessage] = useState('')
-  const [successProjMessage, setSuccessProjMessage] = useState('')
-
-  const { data: contacts = [], isError, isLoading } = useQuery({
-    queryKey: ['get-contact'],
+  
+  const { data: contacts = [], isLoading: contactsLoading, isError: contactsError  } = useQuery({
+    queryKey: ['get-dashContacts'],
     queryFn: () => getContact()
   })
-  const { data: projectData = [], isError: projectError, isLoading: projectLoading } = useQuery({
-    queryKey: ['get-project'],
+
+  const { data: projects = [], isLoading: projectsLoading, isError: projectsError  } = useQuery({
+    queryKey: ['get-dashProjects'],
     queryFn: () => GetProjects()
   })
 
+  const isLoading = contactsLoading || projectsLoading
+  const hasError = contactsError || projectsError
 
-  const deleteMutation = useMutation({
-    mutationKey: ['delete-contact'],
-    mutationFn: (contactId) => deleteContact(contactId),
-    onSuccess: async () => {
-      setSuccessMessage('Contact deleted successfully!')
-      await queryClient.invalidateQueries({ queryKey: ['get-contact'] })
-    }
-  })
-
-  const handleDelete = (contactId) => {
-    deleteMutation.mutate(contactId)
-  }
-
-
-  const deleteProjMutation = useMutation({
-    mutationKey: ['delete-project'],
-    mutationFn: (id) => DeleteProject(id),
-    onSuccess: async () => {
-      setSuccessProjMessage('Project Deleted successfully!')
-      await queryClient.invalidateQueries({ queryKey: ['get-project'] })
-    }
-  })
-
-  const handleProjDelete = (projectId) => {
-    deleteProjMutation.mutate(projectId)
-  }
-
-
-  if (projectError) {
+  if (hasError) {
     return (
       <main className='min-h-screen px-6 py-10 text-white'>
-        <p className='text-white/80'>Error loading your projects.</p>
+        <p className='text-white/80'>Error loading dashboard data.</p>
       </main>
     )
   }
 
-  if (isError) {
+  if (isLoading) {
     return (
-      <main className='min-h-screen px-6 py-10 text-white'>
-        <p className='text-white/80'>Error loading your contacts.</p>
+      <main className='min-h-screen flex items-center justify-center'>
+        <Loading />
       </main>
     )
   }
 
   return (
-    <>
-      <main className='min-h-screen flex flex-col gap-10 justify-between px-6 py-10 text-white'>
-        <div className='mx-auto w-full max-w-6xl'>
-          <div className='mb-6 flex items-center justify-between gap-4'>
-            <div>
-              <h1 className='text-2xl font-[600] tracking-tight'>Contacts</h1>
-              <p className='mt-1 text-sm text-white/70'>Messages sent through your portfolio contact form.</p>
+    <main className='min-h-screen px-6 py-10 text-white'>
+      <div className='mx-auto w-full max-w-7xl'>
+        <div className='mb-8'>
+          <h1 className='text-3xl font-[600] tracking-tight'>Dashboard</h1>
+          <p className='mt-1 text-sm text-white/70'>Welcome back! Here's your portfolio overview.</p>
+        </div>
+
+        <div className='mb-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-2'>
+          <div className='rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-6'>
+            <div className='flex items-center justify-between'>
+              <div>
+                <p className='text-sm text-white/60'>Total Contacts</p>
+                <p className='mt-2 text-3xl font-[600] text-white'>{contacts.length}</p>
+              </div>
+              <div className='rounded-xl bg-white/10 p-3'>
+                <MdEmail className='h-6 w-6 text-white/80' />
+              </div>
             </div>
-
-
           </div>
 
+          <div className='rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-6'>
+            <div className='flex items-center justify-between'>
+              <div>
+                <p className='text-sm text-white/60'>Total Projects</p>
+                <p className='mt-2 text-3xl font-[600] text-white'>{projects.length}</p>
+              </div>
+              <div className='rounded-xl bg-white/10 p-3'>
+                <MdWork className='h-6 w-6 text-white/80' />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Recent Contacts & Projects Side by Side */}
+        <div className='grid gap-6 lg:grid-cols-2'>
+          {/* Recent Contacts */}
           <section className='rounded-2xl border border-white/10 bg-white/5 backdrop-blur'>
             <div className='border-b border-white/10 px-5 py-4'>
-              <div className='flex items-center justify-between gap-3'>
-                <h2 className='text-sm font-[600] text-white/90'>Inbox</h2>
+              <div className='flex items-center justify-between'>
+                <h2 className='text-lg font-[600] text-white/90'>Recent Contacts</h2>
                 <span className='text-xs text-white/60'>{contacts.length} total</span>
               </div>
             </div>
 
-            {successMessage ? (
-              <div className='border-b border-white/10 px-5 py-3 text-sm text-white/80'>
-                {successMessage}
-              </div>
-            ) : null}
-
-            {isLoading ? (
-              <div className='px-5 py-10'>
-                <Loading />
-              </div>
-            ) : contacts.length === 0 ? (
-              <div className='px-5 py-10 text-center text-sm text-white/70'>No contacts yet.</div>
-            ) : (
-              <div className='overflow-x-auto scrollbar-glass  max-h-[370px] overflow-y-auto '>
-                <table className='w-full min-w-[760px] table-auto border-separate border-spacing-0 text-left text-sm'>
-                  <thead>
-                    <tr className='text-xs uppercase tracking-wider text-white/60'>
-                      <th className='whitespace-nowrap px-5 py-4 font-[600]'>Name</th>
-                      <th className='whitespace-nowrap px-5 py-4 font-[600]'>Email</th>
-                      <th className='px-5 py-4 font-[600]'>Message</th>
-                      <th className='whitespace-nowrap px-5 py-4 font-[600]'>Date</th>
-                      <th className='whitespace-nowrap px-5 py-4 font-[600]'>Delete</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {contacts.map((con) => (
-                      <tr
-                        key={con._id ?? `${con.email}-${con.createdAt}`}
-                        className='border-t border-white/10 transition hover:bg-white/5'
-                      >
-                        <td className='px-5 py-4 align-top font-[600] text-white/90'>{con.name}</td>
-                        <td className='px-5 py-4 align-top text-white/80'>
-                          <a className='hover:underline' href={`mailto:${con.email}`}>
-                            {con.email}
-                          </a>
-                        </td>
-                        <td className='px-5 py-4 align-top text-white/80'>
-                          <div className='max-w-[560px] whitespace-pre-wrap break-words'>
-                            {con.message}
-                          </div>
-                        </td>
-                        <td className='px-5 py-4 align-top text-white/70'>
-                          {con.createdAt ? new Date(con.createdAt).toLocaleString() : '—'}
-                        </td>
-                        <td className='px-5 py-4 align-top text-white/70'>
-                          <button
-                            type='button'
-                            className='cursor-pointer rounded-md border border-white/10 p-1 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50'
-                            onClick={() => handleDelete(con._id)}
-                            disabled={deleteMutation.isPending}
-                            aria-label='Delete contact'
-                          >
-                            <MdDeleteOutline className='h-[20px] w-[20px]' />
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </section>
-        </div>
-
-
-        <div className='mx-auto mt-[50px] w-full max-w-6xl'>
-          <div className='mb-6 flex items-center justify-between gap-4'>
-            <div>
-              <h1 className='text-2xl font-[600] tracking-tight'>Projects</h1>
-              <p className='mt-1 text-sm text-white/70'>Projects currently listed on your portfolio.</p>
+            <div className='p-5'>
+              {contacts.length === 0 ? (
+                <p className='py-8 text-center text-sm text-white/60'>No contacts yet.</p>
+              ) : (
+                <div className='space-y-4'>
+                  {contacts.slice(0, 3).map((con) => (
+                    <div
+                      key={con._id}
+                      className='rounded-xl border border-white/10 bg-white/5 p-4 transition hover:bg-white/10'
+                    >
+                      <div className='flex items-start justify-between gap-3'>
+                        <div className='flex-1 min-w-0'>
+                          <p className='font-[600] text-white/90 truncate'>{con.name}</p>
+                          <p className='text-sm text-white/70 truncate'>{con.email}</p>
+                          <p className='mt-2 line-clamp-2 text-sm text-white/80'>{con.message}</p>
+                        </div>
+                      </div>
+                      {con.createdAt && (
+                        <p className='mt-2 text-xs text-white/50'>
+                          {new Date(con.createdAt).toLocaleDateString()}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
-          </div>
+          </section>
 
+          {/* Recent Projects */}
           <section className='rounded-2xl border border-white/10 bg-white/5 backdrop-blur'>
             <div className='border-b border-white/10 px-5 py-4'>
-              <div className='flex items-center justify-between gap-3'>
-                <h2 className='text-sm font-[600] text-white/90'>Inbox</h2>
-                <span className='text-xs text-white/60'>{projectData.length} total</span>
+              <div className='flex items-center justify-between'>
+                <h2 className='text-lg font-[600] text-white/90'>Recent Projects</h2>
+                <span className='text-xs text-white/60'>{projects.length} total</span>
               </div>
             </div>
 
-            {successProjMessage ? (
-              <div className='border-b border-white/10 px-5 py-3 text-sm text-white/80'>
-                {successProjMessage}
-              </div>
-            ) : null}
-
-            {projectLoading ? (
-              <div className='px-5 py-10'>
-                <Loading />
-              </div>
-            ) : projectData.length === 0 ? (
-              <div className='px-5 py-10 text-center text-sm text-white/70'>No projects yet.</div>
-            ) : (
-              <div className='overflow-x-auto scrollbar-glass max-h-[370px] overflow-y-auto'>
-                <table className='w-full min-w-[760px] table-auto border-separate border-spacing-0 text-left text-sm'>
-                  <thead>
-                    <tr className='text-xs uppercase tracking-wider text-white/60'>
-                      <th className='whitespace-nowrap px-5 py-4 font-[600]'>Image</th>
-                      <th className='whitespace-nowrap px-5 py-4 font-[600]'>Name</th>
-                      <th className='px-5 py-4 font-[600]'>Description</th>
-                      <th className='whitespace-nowrap px-5 py-4 font-[600]'>Date</th>
-                      <th className='whitespace-nowrap px-5 py-4 font-[600]'>Delete</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {projectData.map((pro) => (
-                      <tr
-                        key={pro._id ?? `${pro.createdAt}`}
-                        className='border-t border-white/10 transition hover:bg-white/5'
-                      >
-                        <td className='px-5 py-4 align-top font-[600] text-white/90'> 
-
-                          <div>
-                            {pro.image.length === 0 ? (
-                              <div className='inline-flex h-[130px] w-[100px] items-center justify-center rounded-xl border border-white/10 bg-white/5 text-xs text-white/60'>
-                                No image
-                              </div>
-                            ) : (
-                              <div className='flex max-w-[100px] gap-2 overflow-x-auto scrollbar-glass'>
-                                {pro.image.map((img) => (
-                                  <img
-                                    key={img}
-                                    src={img}
-                                    alt='Project images'
-                                    className='h-[130px] w-[100px] flex-none rounded-xl border border-white/10 bg-white/5 object-cover'
-                                    loading='lazy'
-                                  />
-                                ))}
-                              </div>
-                            )}
+            <div className='p-5'>
+              {projects.length === 0 ? (
+                <p className='py-8 text-center text-sm text-white/60'>No projects yet.</p>
+              ) : (
+                <div className='space-y-4'>
+                  {projects.slice(0, 3).map((proj) => (
+                    <div
+                      key={proj._id}
+                      className='rounded-xl border border-white/10 bg-white/5 p-4 transition hover:bg-white/10'
+                    >
+                      <div className='flex gap-4'>
+                        {proj.image && proj.image.length > 0 ? (
+                          <img
+                            src={proj.image[0]}
+                            alt={proj.title}
+                            className='h-16 w-16 flex-none rounded-lg border border-white/10 bg-white/5 object-cover'
+                            loading='lazy'
+                          />
+                        ) : (
+                          <div className='flex h-16 w-16 flex-none items-center justify-center rounded-lg border border-white/10 bg-white/5 text-xs text-white/40'>
+                            No img
                           </div>
-
-                        </td>
-                        <td className='px-5 py-4 align-top font-[600] text-white/90'>{pro.title}</td>
-                        <td className='px-5 py-4 align-top text-white/80'>
-                          <div className='max-w-[560px] whitespace-pre-wrap break-words'>
-                            {pro.description}
-                          </div>
-                        </td>
-                        <td className='px-5 py-4 align-top text-white/70'>
-                          {pro.createdAt ? new Date(pro.createdAt).toLocaleString() : '—'}
-                        </td>
-                        <td className='px-5 py-4 align-top text-white/70'>
-                          <button
-                            type='button'
-                            className='cursor-pointer rounded-md border border-white/10 p-1 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50'
-                            onClick={() => handleProjDelete(pro._id)}
-                            disabled={deleteProjMutation.isPending}
-                            aria-label='Delete contact'
-                          >
-                            <MdDeleteOutline className='h-[20px] w-[20px]' />
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
+                        )}
+                        <div className='flex-1 min-w-0'>
+                          <p className='font-[600] text-white/90 truncate'>{proj.title}</p>
+                          <p className='mt-1 line-clamp-2 text-sm text-white/70'>{proj.description}</p>
+                        </div>
+                      </div>
+                      {proj.createdAt && (
+                        <p className='mt-2 text-xs text-white/50'>
+                          {new Date(proj.createdAt).toLocaleDateString()}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </section>
         </div>
-
-      </main>
-    </>
+      </div>
+    </main>
   )
 }

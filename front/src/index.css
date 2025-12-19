@@ -4,7 +4,6 @@ body {
     background-color: #1c112d;
 }
 
-/* Glass scrollbar styling (opt-in via class). */
 .scrollbar-glass {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.18) rgba(255, 255, 255, 0.06);

@@ -10,6 +10,8 @@ import Layout from './layout/Layout'
 import { userAuth } from './store/UserAuth'
 import { useCurrentUser } from './hooks/UseCurrentUser'
 import { Dashboard } from './components/dashboard/Dashboard'
+import { AdminContact } from './components/adminContact/AdminContact'
+import { AdminProject } from './components/adminProject/AdminProject'
 import PostProject from './components/postProject/PostProject'
 import SidebarWrapper from './components/sidebarWrapper/SidebarWrapper'
 
@@ -49,7 +51,9 @@ function App() {
 
             <Route index element={ <Dashboard /> } />
             <Route path='dashboard' element={ <Dashboard /> } />
-            <Route path='project' element={ <PostProject /> } />
+            <Route path='contacts' element={ <AdminContact /> } />
+            <Route path='projects' element={ <AdminProject /> } />
+            <Route path='add-project' element={ <PostProject /> } />
 
           </Route>
 

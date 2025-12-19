@@ -23,7 +23,7 @@ const SidebarWrapper = () => {
     }
 
   return (
-    <div className='flex w-full h-full '>
+    <div className='flex w-full min-h-[100vh] h-full '>
 
         <div className='relative border-r border-white/5 bg-white/5 backdrop-blur flex flex-col justify-between p-[12px] w-[220px]  '>
             <div className='flex flex-col gap-2'>
@@ -32,7 +32,15 @@ const SidebarWrapper = () => {
                   Dashboard
                 </NavLink>
 
-                <NavLink to="project" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
+                <NavLink to="contacts" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
+                  Contacts
+                </NavLink>
+
+                <NavLink to="projects" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
+                  Projects
+                </NavLink>
+
+                <NavLink to="add-project" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
                   Post project
                 </NavLink>
 

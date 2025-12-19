@@ -14,21 +14,6 @@
 - [ ] Make it visually consistent with Home page styling
 - [ ] Ensure responsive design for mobile/tablet
 
-#### Projects Page (`front/src/pages/projects/Projects.jsx`)
-- [ ] Replace placeholder "Projects" div with full implementation
-- [ ] Fetch projects from API using `GetProjects()` from `front/src/api/endpoints/Project.js`
-- [ ] Display project cards with:
-  - [ ] Project images (handle multiple images per project)
-  - [ ] Project title
-  - [ ] Project description
-  - [ ] Creation date
-- [ ] Add loading state while fetching
-- [ ] Add error handling for API failures
-- [ ] Implement empty state when no projects exist
-- [ ] Add grid layout for project cards
-- [ ] Make cards responsive (1 col mobile, 2 col tablet, 3 col desktop)
-- [ ] Consider adding project links (GitHub, live demo) - requires backend schema update
-
 ### Navigation & Layout
 
 #### Mobile Navigation (`front/src/layout/Layout.jsx`)
@@ -54,10 +39,6 @@
   - [ ] Ensure form is usable on small screens
 
 - [ ] **Dashboard** (`front/src/components/dashboard/Dashboard.jsx`)
-  - [ ] Make tables horizontally scrollable on mobile
-  - [ ] Stack dashboard sections vertically on mobile
-  - [ ] Adjust table font sizes
-  - [ ] Consider card view instead of table on mobile
   - [ ] Test delete buttons on touch devices
 
 - [ ] **Admin Login** (`front/src/pages/adminLogin/AdminLogin.jsx`)
@@ -70,19 +51,13 @@
 - [ ] Add client-side validation:
   - [ ] Validate email format before submission
   - [ ] Require minimum message length (e.g., 10 characters)
-  - [ ] Validate name is not empty
   - [ ] Show validation errors below each field
-- [ ] Disable submit button while submitting
 - [ ] Add success animation or better feedback
-- [ ] Clear error messages on field change
 - [ ] Add character counter for message field (optional)
 
 #### Admin Login (`front/src/pages/adminLogin/AdminLogin.jsx`)
-- [ ] Add client-side validation
-- [ ] Show error message on failed login
-- [ ] Disable login button while submitting
+- [ ] Show specific error message on failed login (currently generic)
 - [ ] Add loading spinner during login
-- [ ] Handle network errors gracefully
 
 #### Post Project Form (`front/src/components/postProject/PostProject.jsx`)
 - [ ] Add validation:
@@ -93,16 +68,13 @@
   - [ ] Limit file sizes (e.g., 5MB per image)
 - [ ] Show image previews before upload
 - [ ] Add ability to remove selected images before upload
-- [ ] Better error messages for failed uploads
 
 ### Admin Dashboard Enhancements
 
-#### Project Management (`front/src/components/dashboard/Dashboard.jsx`)
+#### Project Management
 - [ ] Add "Edit" button next to delete for each project
-- [ ] Show image thumbnails in projects table
 - [ ] Add confirmation dialog before deleting projects
 - [ ] Add confirmation dialog before deleting contacts
-- [ ] Fix "Inbox" label for projects section (should be "Projects")
 
 #### Edit Project Feature (NEW)
 - [ ] Create edit mode in PostProject component OR new EditProject component
@@ -285,7 +257,6 @@
 ### Code Quality
 
 #### General
-- [ ] Remove `back/New folder/` if unused
 - [ ] Review all controllers for code consistency
 - [ ] Add JSDoc comments for functions (optional)
 - [ ] Add input sanitization
@@ -393,12 +364,11 @@
 
 ## 📝 NOTES
 
-- **Empty Folders**: Remove `back/New folder/` - appears unused
 - **Dependencies**: All major dependencies are installed, no additional required for basic completion
-- **Authentication**: Working properly, just needs frontend error handling
+- **Authentication**: Working with auto-logout on 401, token refresh could be added
 - **Database**: Models are well-structured, minor enhancements suggested
-- **Styling**: Consistent design system with Tailwind, just needs completion
-- **Current State**: ~60% complete - backend solid, frontend needs page completion and polish
+- **Styling**: Modern glass-morphism design system fully implemented across admin and public pages
+- **Current State**: ~80% complete - backend solid, frontend has modern designs, needs About page and mobile nav
 
-**Estimated Time to MVP**: 8-12 hours of focused work
-**Estimated Time to Production Polish**: 16-20 hours total
+**Estimated Time to MVP**: 4-6 hours of focused work
+**Estimated Time to Production Polish**: 8-12 hours total
