@@ -1,31 +1,129 @@
 import React, { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { GetProjects, DeleteProject } from '../../api/endpoints/Project'
+import { GetProjects, DeleteProject, GetProjectsId, UpdateProject } from '../../api/endpoints/Project'
 import { Loading } from '../../components/loading/Loading'
-import { MdDeleteOutline } from "react-icons/md";
+import { MdDeleteOutline, MdEdit } from "react-icons/md";
+import { RxCross2 } from "react-icons/rx";
 
 export const AdminProject = () => {
 
   const queryClient = useQueryClient()
   const [successProjMessage, setSuccessProjMessage] = useState('')
+  const [editingId, setEditingId] = useState(null)
+  const [editForm, setEditForm] = useState({
+    title: '',
+    description: '',
+    image: '',
+    gitLink: '',
+  })
+  const [projectPopup, setProjectPopup] = useState(false)
+  
+  const [selectedFiles, setSelectedFiles] = useState([])
+  const [imagePreviews, setImagePreviews] = useState([])
 
   const { data: projectData = [], isError: projectError, isLoading: projectLoading } = useQuery({
     queryKey: ['get-project'],
     queryFn: () => GetProjects()
   })
 
+
   const deleteProjMutation = useMutation({
     mutationKey: ['delete-project'],
     mutationFn: (id) => DeleteProject(id),
     onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['get-project'] })
       setSuccessProjMessage('Project Deleted successfully!')
+    }
+  })
+
+  const updateProjMutation = useMutation({
+    mutationKey: ['update-project'],
+    mutationFn: ({ id, payload }) => UpdateProject({ id, payload }),
+    onSuccess: async () => {
+      setSuccessProjMessage('Project Updated successfully!')
+      setEditingId(null)
       await queryClient.invalidateQueries({ queryKey: ['get-project'] })
     }
   })
 
-
   const handleProjDelete = (projectId) => {
     deleteProjMutation.mutate(projectId)
+  }
+
+  const handleEditClick = (pro) => {
+    setEditingId(pro._id)
+    setProjectPopup(true)
+    setEditForm({
+      title: pro.title,
+      description: pro.description,
+      image: pro.image || [], 
+      gitLink: pro.gitLink || '',
+    })
+
+    setImagePreviews(pro.image || [])
+    setSelectedFiles([]) 
+    setSuccessProjMessage('')
+  }
+
+  const handleCancelEdit = () => {
+    setEditingId(null)
+    setProjectPopup(false)
+    setEditForm({ title: '', description: '', image: '', gitLink: '' })
+    setSelectedFiles([])
+    setImagePreviews([])
+  }
+
+  const handleUpdateSubmit = (projectId) => {
+    const payload = {
+      title: editForm.title,
+      description: editForm.description,
+      image: editForm.image, 
+      gitLink: editForm.gitLink,
+    }
+    updateProjMutation.mutate({ id: projectId, payload })
+  }
+
+  const handleInputChange = (field, value) => {
+    setEditForm(prev => ({ ...prev, [field]: value }))
+  }
+
+  const handleFileSelect = (e) => {
+    const files = Array.from(e.target.files) 
+    setSelectedFiles(files) 
+
+    const fileReaders = files.map(file => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader() 
+        
+        reader.onload = (event) => {
+          resolve(event.target.result)
+        }
+        
+        reader.onerror = (error) => {
+          reject(error)
+        }
+        
+        reader.readAsDataURL(file)
+      })
+    })
+
+    Promise.all(fileReaders)
+      .then(base64Images => {
+        setImagePreviews(base64Images)
+        setEditForm(prev => ({ ...prev, image: base64Images }))
+      })
+      .catch(error => {
+        console.error('Error reading files:', error)
+      })
+  }
+
+  const handleRemoveImage = (indexToRemove) => {
+    const newPreviews = imagePreviews.filter((_, index) => index !== indexToRemove)
+    const newFiles = selectedFiles.filter((_, index) => index !== indexToRemove)
+    
+    setImagePreviews(newPreviews)
+    setSelectedFiles(newFiles)
+    setEditForm(prev => ({ ...prev, image: newPreviews }))
   }
 
 
@@ -38,7 +136,7 @@ export const AdminProject = () => {
   }
 
   return (
-    <main className='mt-[20px] '>
+    <main className='mt-[20px] relative '>
 
       <div className='mx-auto w-full max-w-6xl'>
         <div className='mb-6 flex items-center justify-between gap-4'>
@@ -75,7 +173,7 @@ export const AdminProject = () => {
                     <th className='whitespace-nowrap px-5 py-4 font-[600]'>Name</th>
                     <th className='px-5 py-4 font-[600]'>Description</th>
                     <th className='whitespace-nowrap px-5 py-4 font-[600]'>Date</th>
-                    <th className='whitespace-nowrap px-5 py-4 font-[600]'>Delete</th>
+                    <th className='whitespace-nowrap px-5 py-4 font-[600]'>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -86,26 +184,30 @@ export const AdminProject = () => {
                     >
                       <td className='px-5 py-4 align-top font-[600] text-white/90'> 
                         <div>
-                          {pro.image.length === 0 ? (
-                            <div className='inline-flex h-[130px] w-[100px] items-center justify-center rounded-xl border border-white/10 bg-white/5 text-xs text-white/60'>
-                              No image
-                            </div>
-                          ) : (
-                            <div className='flex max-w-[100px] gap-2 overflow-x-auto scrollbar-glass'>
-                              {pro.image.map((img) => (
-                                <img
-                                  key={img}
-                                  src={img}
-                                  alt='Project images'
-                                  className='h-[130px] w-[100px] flex-none rounded-xl border border-white/10 bg-white/5 object-cover'
-                                  loading='lazy'
-                                />
-                              ))}
-                            </div>
-                          )}
+                          
+                            {pro.image.length === 0 ? (
+                              <div className='inline-flex h-[130px] w-[100px] items-center justify-center rounded-xl border border-white/10 bg-white/5 text-xs text-white/60'>
+                                No image
+                              </div>
+                            ) : (
+                              <div className='flex max-w-[100px] gap-2 overflow-x-auto scrollbar-glass'>
+                                {pro.image.map((img) => (
+                                  <img
+                                    key={img}
+                                    src={img}
+                                    alt='Project images'
+                                    className='h-[130px] w-[100px] flex-none rounded-xl border border-white/10 bg-white/5 object-cover'
+                                    loading='lazy'
+                                  />
+                                ))}
+                              </div>
+                            )}
+                              
                         </div>
                       </td>
-                      <td className='px-5 py-4 align-top font-[600] text-white/90'>{pro.title}</td>
+                      <td className='px-5 py-4 align-top font-[600] text-white/90'>
+                        {pro.title}
+                      </td>
                       <td className='px-5 py-4 align-top text-white/80'>
                         <div className='max-w-[560px] whitespace-pre-wrap break-words'>
                           {pro.description}
@@ -115,15 +217,26 @@ export const AdminProject = () => {
                         {pro.createdAt ? new Date(pro.createdAt).toLocaleString() : '—'}
                       </td>
                       <td className='px-5 py-4 align-top text-white/70'>
-                        <button
-                          type='button'
-                          className='cursor-pointer rounded-md border border-white/10 p-1 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50'
-                          onClick={() => handleProjDelete(pro._id)}
-                          disabled={deleteProjMutation.isPending}
-                          aria-label='Delete contact'
-                        >
-                          <MdDeleteOutline className='h-[20px] w-[20px]' />
-                        </button>
+                        <div className='flex gap-2'>
+                          <button
+                            type='button'
+                            className='cursor-pointer rounded-md border border-white/10 p-1 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50'
+                            onClick={() => handleEditClick(pro)}
+                            disabled={deleteProjMutation.isPending || updateProjMutation.isPending}
+                            aria-label='Edit project'
+                          >
+                            <MdEdit className='h-[20px] w-[20px]' />
+                          </button>
+                          <button
+                            type='button'
+                            className='cursor-pointer rounded-md border border-white/10 p-1 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50'
+                            onClick={() => handleProjDelete(pro._id)}
+                            disabled={deleteProjMutation.isPending || updateProjMutation.isPending}
+                            aria-label='Delete project'
+                          >
+                            <MdDeleteOutline className='h-[20px] w-[20px]' />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -131,9 +244,108 @@ export const AdminProject = () => {
               </table>
             </div>
           )}
-
         </section>
       </div>
+
+
+      {editingId !== null && projectPopup && (
+        <div 
+          onClick={() => setProjectPopup(false)}
+          className='flex items-center justify-center fixed h-full w-full top-0 left-0 bg-black/70 z-50'
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className='bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 w-[500px] max-h-[80vh] overflow-y-auto scrollbar-glass'
+          >
+            <h2 className='text-white text-xl font-[600] mb-6'>Edit Project</h2>
+            
+            <div className='mb-4'>
+              <label className='text-white/70 text-sm mb-2 block'>Title</label>
+              <input
+                type='text'
+                value={editForm.title}
+                onChange={(e) => handleInputChange('title', e.target.value)}
+                className='w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                placeholder='Project title'
+              />
+            </div>
+
+            <div className='mb-4'>
+              <label className='text-white/70 text-sm mb-2 block'>Description</label>
+              <textarea
+                value={editForm.description}
+                onChange={(e) => handleInputChange('description', e.target.value)}
+                className='w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                placeholder='Project description'
+                rows={5}
+              />
+            </div>
+
+            <div className='mb-4'>
+              <label className='text-white/70 text-sm mb-2 block'>Project Images</label>
+              
+              <input
+                type='file'
+                accept='image/*'
+                multiple
+                onChange={handleFileSelect}
+                className='w-full text-white/70 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-white/10 file:text-white/90 file:cursor-pointer hover:file:bg-white/20'
+              />
+              <p className='text-white/50 text-xs mt-1'>Select one or multiple images from your computer</p>
+              
+              {imagePreviews.length > 0 && (
+                <div className='mt-3 flex flex-wrap gap-2'>
+                  {imagePreviews.map((preview, index) => (
+                    <div key={index} className='relative group'>
+                      <img
+                        src={preview}
+                        alt={`Preview ${index + 1}`}
+                        className='h-20 w-20 object-cover rounded-lg border border-white/20'
+                      />
+                      <button
+                        type='button'
+                        onClick={() => handleRemoveImage(index)}
+                        className='cursor-pointer absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity'
+                        aria-label='Remove image'
+                      >
+                        <RxCross2 />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className='mb-6'>
+              <label className='text-white/70 text-sm mb-2 block'>GitHub Link</label>
+              <input
+                type='text'
+                value={editForm.gitLink}
+                onChange={(e) => handleInputChange('gitLink', e.target.value)}
+                className='w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                placeholder='Github link'
+              />
+            </div>
+
+            <div className='flex gap-3'>
+              <button 
+                onClick={() => handleUpdateSubmit(editingId)}
+                disabled={updateProjMutation.isPending}
+                className='flex-1 bg-green-500/20 border border-green-500/50 text-green-300 px-4 py-2 rounded-lg font-[500] transition hover:bg-green-500/30 disabled:opacity-50 disabled:cursor-not-allowed'
+              >
+                {updateProjMutation.isPending ? 'Updating...' : 'Update Project'}
+              </button>
+              
+              <button 
+                onClick={handleCancelEdit}  
+                className='bg-white/10 border border-white/10 text-white/90 px-4 py-2 rounded-lg font-[500] transition hover:bg-white/20'
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </main>
   )

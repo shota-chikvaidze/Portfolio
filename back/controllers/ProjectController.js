@@ -11,6 +11,16 @@ exports.getProjects = async (req, res) => {
     }
 }
 
+exports.getProjectsId = async (req, res) => {
+    try{
+
+        const project = await Projects.findById(rqe.params.id)
+        res.status(200).json({message: 'project received successfully', project})
+
+    }catch(err){
+        res.status(500).json({message: 'server error', error: err.message})
+    }
+}
 
 exports.postProject = async (req, res) => {
     try{
