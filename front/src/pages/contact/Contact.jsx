@@ -48,6 +48,7 @@ export const Contact = () => {
                   placeholder='Your name'
                   onChange={handleChange}
                   value={postForm.name}
+                  required
                   className='w-full rounded-xl bg-transparent border border-white/15 px-4 py-3 text-[#fff] placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-[#8E6AFB]/40'
                 />
               </div>
@@ -59,6 +60,7 @@ export const Contact = () => {
                   type='email'
                   placeholder='Your email'
                   onChange={handleChange}
+                  required
                   value={postForm.email}
                   className='w-full rounded-xl bg-transparent border border-white/15 px-4 py-3 text-[#fff] placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-[#8E6AFB]/40'
                 />
@@ -66,13 +68,24 @@ export const Contact = () => {
             </div>
 
             <div className='flex flex-col gap-2'>
-              <label className='text-white/80 text-[0.95rem]'>Message</label>
+              <div className='flex items-center justify-between'>
+                <label className='text-white/80 text-[0.95rem]'>Message</label>
+                <span className={`text-[0.85rem] transition-colors ${
+                  postForm.message.length >= 500 ? 'text-red-400' : 
+                  postForm.message.length >= 450 ? 'text-yellow-400' :
+                  'text-white/50'
+                }`}>
+                  {postForm.message.length} / 500
+                </span>
+              </div>
               <textarea
                 name='message'
                 onChange={handleChange}
                 placeholder='Write your message...'
                 value={postForm.message}
                 rows={6}
+                minLength={10}
+                maxLength={500}
                 className='w-full rounded-xl bg-transparent border border-white/15 px-4 py-3 text-[#fff] placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-[#8E6AFB]/40 resize-none'
               />
             </div>
