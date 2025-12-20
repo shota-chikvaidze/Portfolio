@@ -6,7 +6,6 @@ const instance = axios.create({
     baseURL: `${import.meta.env.VITE_API_URL}/api`
 })
 
-// REQUEST INTERCEPTOR: Runs BEFORE every request is sent
 instance.interceptors.request.use((config) => {
     const token = userAuth.getState().accessToken
     if(token) {
