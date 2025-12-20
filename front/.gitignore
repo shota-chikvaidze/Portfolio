@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 TODO.md
+TOAST_ERROR_FLOW.md
 
 node_modules
 dist

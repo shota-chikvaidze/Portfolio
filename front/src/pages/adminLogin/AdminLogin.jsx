@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Login } from '../../api/endpoints/User'
 import { useMutation } from '@tanstack/react-query'
 import { userAuth } from '../../store/UserAuth'
+import toast from 'react-hot-toast'
 
 export const AdminLogin = () => {
 
@@ -25,6 +26,18 @@ export const AdminLogin = () => {
                 accessToken: data.access,
                 isAuthenticated: true
             })
+            toast.success('Logged in!')
+        },
+        onError: (error) => {
+            const errorMessage = error?.response?.data?.message
+            if(!error.response){
+                toast.error('Network error. Check your internet connection.')
+            }else if (errorMessage){
+                toast.error(errorMessage)
+            }else{
+                toast.error('Something went wrong. Please try again.')
+            }
+
         }
     })
 

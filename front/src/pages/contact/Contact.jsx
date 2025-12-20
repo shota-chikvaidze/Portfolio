@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { postContact } from '../../api/endpoints/Contact'
+import toast from 'react-hot-toast'
 
 export const Contact = () => {
 
@@ -9,7 +10,6 @@ export const Contact = () => {
     email: '',
     message: ''
   })
-  const [successMes, setSuccessMes] = useState('')
 
   const handleChange = (e) => {
     setPostForm({...postForm, [e.target.name]: e.target.value})
@@ -19,9 +19,19 @@ export const Contact = () => {
     mutationKey: ['post-contact'],
     mutationFn: () => postContact(postForm),
     onSuccess: () => {
-      setSuccessMes('Message sent successfully!')
-      setPostForm({ name: '', email: '', message: '' }) 
-    }  
+      toast.success('Message sent successfully!')
+      setPostForm({ name: '', email: '', message: '' })
+    },
+    onError: (error) => {
+      const errorMessage = error?.response?.data?.message
+      if(!error.response) {
+        toast.error('Network error. Check your internet connection.')
+      }else if (errorMessage) {
+        toast.error(errorMessage)
+      }else {
+        toast.error('Something went wrong. Please try again.')
+      }
+    }
   })
 
   const handleSubmit = (e) => {
@@ -90,25 +100,15 @@ export const Contact = () => {
               />
             </div>
 
-            <div className='flex items-center justify-between gap-4 flex-wrap'>
-              <p className='text-white/70 text-[0.95rem]'>
-                {contactMutate.isPending ? 'Sending…' : successMes}
-              </p>
-
+            <div className='flex items-center justify-end gap-4 flex-wrap'>
               <button
                 type='submit'
                 disabled={contactMutate.isPending}
                 className='rounded-xl px-6 py-3 text-[#fff] text-[1rem] font-[500] bg-[#8E6AFB] hover:opacity-90 transition-opacity disabled:opacity-60'
               >
-                Send message
+                {contactMutate.isPending ? 'Sending…' : 'Send message'}
               </button>
             </div>
-
-            {contactMutate.isError && (
-              <p className='text-white/80 text-[0.95rem]'>
-                {contactMutate.error?.response?.data?.message || 'Something went wrong. Try again.'}
-              </p>
-            )}
           </form>
         </div>
       </div>
