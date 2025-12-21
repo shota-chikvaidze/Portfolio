@@ -3,7 +3,7 @@ import axios from '../axios'
 export const PostProject = async (payload) => {
 
     const res = await axios.post('/project/post-project', payload)
-    return res.data.createProject
+    return res.data
     
 }
 
@@ -24,13 +24,13 @@ export const GetProjects = async () => {
 export const DeleteProject = async (id) => {
     
     const res = await axios.delete(`/project/delete-project/${id}`)
-    return res.data.delProject
+    return res.data
     
 }
 
 export const UpdateProject = async ({ id, payload }) => {
     
     const res = await axios.patch(`/project/update-project/${id}`, payload)
-    return res.data.project
+    return res.data
     
 }

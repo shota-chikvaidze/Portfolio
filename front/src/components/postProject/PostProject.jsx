@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { PostProject as PostProjectApi } from '../../api/endpoints/Project'
+import toast from 'react-hot-toast'
 
 const PostProject = () => {
 
@@ -11,14 +12,8 @@ const PostProject = () => {
         gitLink: ''
 
     })
-    const [successMessage, setSuccessMessage] = useState('')
-
-    const clearSuccess = () => {
-        if (successMessage) setSuccessMessage('')
-    }
 
     const handleChange = (e) => {
-        clearSuccess()
         setProjectForm({...projectForm, [e.target.name]: e.target.value})
     }
 
@@ -31,7 +26,6 @@ const PostProject = () => {
         })
 
     const handleFileChange = async (e) => {
-        clearSuccess()
         const files = Array.from(e.target.files || [])
         if (files.length === 0) {
             setProjectForm((prev) => ({ ...prev, image: [] }))
@@ -45,12 +39,18 @@ const PostProject = () => {
     const postMutation = useMutation({
         mutationKey: ['post-project'],
         mutationFn: (payload) => PostProjectApi(payload),
-        onSuccess: () => {
-            setSuccessMessage('Project uploaded successfully.')
+        onSuccess: (data) => {
+            console.log(data.message)
+            toast.success(data.message || 'Project created successfully!')
             setProjectForm({ title: '', description: '', image: [], gitLink: '' })
         },
-        onError: () => {
-            setSuccessMessage('')
+        onError: (error) => {
+            const errorMessage = error?.response?.data?.message
+            if(errorMessage){
+                toast.error(errorMessage)
+            }else{
+                toast.error('Something went wrong. Please try again.')
+            }
         }
     }) 
 
@@ -73,18 +73,6 @@ const PostProject = () => {
                 <div className='border-b border-white/10 px-5 py-4'>
                     <h2 className='text-sm font-[600] text-white/90'>Project details</h2>
                 </div>
-
-                {successMessage ? (
-                    <div className='border-b border-white/10 px-5 py-3 text-sm text-white/80'>
-                        {successMessage}
-                    </div>
-                ) : null}
-
-                {postMutation.isError ? (
-                    <div className='border-b border-white/10 px-5 py-3 text-sm text-white/80'>
-                        Failed to post project. Please try again.
-                    </div>
-                ) : null}
 
                 <form onSubmit={handleSubmit} className='p-5'>
                     <div className='grid gap-5'>

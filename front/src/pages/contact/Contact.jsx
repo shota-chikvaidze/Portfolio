@@ -18,15 +18,13 @@ export const Contact = () => {
   const contactMutate = useMutation({
     mutationKey: ['post-contact'],
     mutationFn: () => postContact(postForm),
-    onSuccess: () => {
-      toast.success('Message sent successfully!')
+    onSuccess: (data) => {
+      toast.success(data.message)
       setPostForm({ name: '', email: '', message: '' })
     },
     onError: (error) => {
       const errorMessage = error?.response?.data?.message
-      if(!error.response) {
-        toast.error('Network error. Check your internet connection.')
-      }else if (errorMessage) {
+      if(errorMessage) {
         toast.error(errorMessage)
       }else {
         toast.error('Something went wrong. Please try again.')
@@ -70,7 +68,6 @@ export const Contact = () => {
                   type='email'
                   placeholder='Your email'
                   onChange={handleChange}
-                  required
                   value={postForm.email}
                   className='w-full rounded-xl bg-transparent border border-white/15 px-4 py-3 text-[#fff] placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-[#8E6AFB]/40'
                 />
@@ -94,8 +91,6 @@ export const Contact = () => {
                 placeholder='Write your message...'
                 value={postForm.message}
                 rows={6}
-                minLength={10}
-                maxLength={500}
                 className='w-full rounded-xl bg-transparent border border-white/15 px-4 py-3 text-[#fff] placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-[#8E6AFB]/40 resize-none'
               />
             </div>

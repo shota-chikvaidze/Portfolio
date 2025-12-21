@@ -5,25 +5,19 @@ exports.createContact = async (req, res) => {
 
         const { name, email, message } = req.body ?? {}
 
-        // VALIDATION: Check each field individually for specific error messages
-        
-        // Check if all fields exist
         if(!name || !email || !message) {
             return res.status(400).json({message: 'All fields are required'})
         }
 
-        // Validate name length
         if(name.trim().length < 2) {
             return res.status(400).json({message: 'Name must be at least 2 characters'})
         }
 
-        // Validate email format (basic check)
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if(!emailRegex.test(email)) {
             return res.status(400).json({message: 'Invalid email format'})
         }
 
-        // Validate message length
         if(message.trim().length < 10) {
             return res.status(400).json({message: 'Message must be at least 10 characters'})
         }

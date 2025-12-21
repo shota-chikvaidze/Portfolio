@@ -24,22 +24,23 @@ instance.interceptors.response.use(
             return Promise.reject(error)
         }
 
-        if (error.response.status === 401) {
+        const { status } = error.response
+        const url = error.config?.url || ''
+
+        if (status === 401 && !url.includes('/login')) {
             const logout = userAuth.getState().logout
             logout()
-            
             window.location.href = '/admin-login'
-            
             toast.error('Session expired. Please login again.')
             return Promise.reject(error)
         }
 
-        if (error.response.status === 403) {
+        if (status === 403) {
             toast.error('You do not have permission to perform this action.')
             return Promise.reject(error)
         }
 
-        if (error.response.status === 500) {
+        if (status === 500) {
             toast.error('Server error. Please try again later.')
             return Promise.reject(error)
         }

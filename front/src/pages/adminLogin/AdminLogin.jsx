@@ -3,6 +3,7 @@ import { Login } from '../../api/endpoints/User'
 import { useMutation } from '@tanstack/react-query'
 import { userAuth } from '../../store/UserAuth'
 import toast from 'react-hot-toast'
+import { Loading } from '../../components/loading/Loading'
 
 export const AdminLogin = () => {
 
@@ -26,13 +27,12 @@ export const AdminLogin = () => {
                 accessToken: data.access,
                 isAuthenticated: true
             })
-            toast.success('Logged in!')
+            toast.success(data.message)
         },
         onError: (error) => {
+            
             const errorMessage = error?.response?.data?.message
-            if(!error.response){
-                toast.error('Network error. Check your internet connection.')
-            }else if (errorMessage){
+            if(errorMessage){
                 toast.error(errorMessage)
             }else{
                 toast.error('Something went wrong. Please try again.')
@@ -86,7 +86,7 @@ export const AdminLogin = () => {
                             type='submit'
                             className='cursor-pointer mt-2 w-full rounded-xl py-3 text-[#fff] text-[1.05rem] font-[500] bg-[#8E6AFB] hover:opacity-90 transition-opacity disabled:opacity-60'
                         >
-                            Login
+                            {loginMutation.isPending ? <Loading /> : 'Login'}
                         </button>
                     </form>
                 </div>

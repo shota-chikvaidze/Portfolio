@@ -4,6 +4,8 @@ import { GetProjects, DeleteProject, GetProjectsId, UpdateProject } from '../../
 import { Loading } from '../../components/loading/Loading'
 import { MdDeleteOutline, MdEdit } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 export const AdminProject = () => {
 
@@ -16,6 +18,7 @@ export const AdminProject = () => {
     image: '',
     gitLink: '',
   })
+  const navigate = useNavigate()
   const [projectPopup, setProjectPopup] = useState(false)
   
   const [selectedFiles, setSelectedFiles] = useState([])
@@ -30,19 +33,38 @@ export const AdminProject = () => {
   const deleteProjMutation = useMutation({
     mutationKey: ['delete-project'],
     mutationFn: (id) => DeleteProject(id),
-    onSuccess: async () => {
+    onSuccess: async (data) => {
       await queryClient.invalidateQueries({ queryKey: ['get-project'] })
-      setSuccessProjMessage('Project Deleted successfully!')
+      toast.success(data.message)
+    },
+    onError: (error) => {
+
+      const errorMessage = error?.response?.data?.message
+      if(errorMessage){
+          toast.error(errorMessage)
+      }else{
+          toast.error('Something went wrong. Please try again.')
+      }
+
     }
   })
 
   const updateProjMutation = useMutation({
     mutationKey: ['update-project'],
     mutationFn: ({ id, payload }) => UpdateProject({ id, payload }),
-    onSuccess: async () => {
-      setSuccessProjMessage('Project Updated successfully!')
-      setEditingId(null)
+    onSuccess: async (data) => {
       await queryClient.invalidateQueries({ queryKey: ['get-project'] })
+      setEditingId(null)
+      navigate('/dashboard')
+      toast.success(data.message)
+    },
+    onError: (error) => {
+      const errorMessage = error?.response?.data?.message
+      if(errorMessage){
+        toast.error(errorMessage)
+      }else{
+        toast.error('Something went wrong. Please try again.')
+      }
     }
   })
 
@@ -153,11 +175,6 @@ export const AdminProject = () => {
               <span className='text-xs text-white/60'>{projectData.length} total</span>
             </div>
           </div>
-          {successProjMessage ? (
-            <div className='border-b border-white/10 px-5 py-3 text-sm text-white/80'>
-              {successProjMessage}
-            </div>
-          ) : null}
           {projectLoading ? (
             <div className='px-5 py-10'>
               <Loading />

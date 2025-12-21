@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getContact, deleteContact } from '../../api/endpoints/Contact'
 import { Loading } from '../../components/loading/Loading'
 import { MdDeleteOutline } from "react-icons/md";
+import toast from 'react-hot-toast';
 
 export const AdminContact = () => {
 
@@ -21,6 +22,14 @@ export const AdminContact = () => {
       onSuccess: async () => {
         setSuccessMessage('Contact deleted successfully!')
         await queryClient.invalidateQueries({ queryKey: ['get-contact'] })
+      },
+      onError: (error) => {
+        const errorMessage = error?.response?.data?.message
+        if(errorMessage){
+          toast.error(errorMessage)
+        }else{
+          toast.error('Something went wrong. Please try again.')
+        }
       }
     })
 

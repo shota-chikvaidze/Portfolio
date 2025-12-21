@@ -3,7 +3,7 @@ import axios from '../axios'
 export const postContact = async (postForm) => {
 
     const res = await axios.post('/contact/post-contact', postForm)
-    return res.data.contact
+    return res.data
 
 }
 

@@ -11,6 +11,6 @@ export const User = async () => {
 export const Login = async (loginForm) => {
     
     const res = await axios.post('/user/login', loginForm)
-    return res.data;
+    return res.data
 
 }
