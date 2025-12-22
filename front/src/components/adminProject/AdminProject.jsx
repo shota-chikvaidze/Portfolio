@@ -19,6 +19,8 @@ export const AdminProject = () => {
     gitLink: '',
   })
   const navigate = useNavigate()
+  const [confirmDialog, setConfirmDialog] = useState(false)
+  const [projectToDelete, setProjectToDelete] = useState(null)
   const [projectPopup, setProjectPopup] = useState(false)
   
   const [selectedFiles, setSelectedFiles] = useState([])
@@ -247,7 +249,10 @@ export const AdminProject = () => {
                           <button
                             type='button'
                             className='cursor-pointer rounded-md border border-white/10 p-1 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50'
-                            onClick={() => handleProjDelete(pro._id)}
+                            onClick={() => {
+                              setProjectToDelete(pro)
+                              setConfirmDialog(true)
+                            }}
                             disabled={deleteProjMutation.isPending || updateProjMutation.isPending}
                             aria-label='Delete project'
                           >
@@ -263,6 +268,72 @@ export const AdminProject = () => {
           )}
         </section>
       </div>
+
+      {confirmDialog && projectToDelete && (
+        <div 
+          onClick={() => {
+            setConfirmDialog(false)
+            setProjectToDelete(null)
+          }}
+          className='flex items-center justify-center fixed h-full w-full top-0 left-0 bg-black/70 z-50'
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className='bg-[#1c112d]/95 backdrop-blur border border-white/10 rounded-2xl p-6 w-[450px] max-w-[90vw]'
+          >
+            <div className='flex items-start justify-between mb-4'>
+              <div>
+                <h2 className='text-white text-xl font-[600] mb-1'>Delete Project</h2>
+                <p className='text-white/60 text-sm'>This action cannot be undone</p>
+              </div>
+              <button
+                onClick={() => {
+                  setConfirmDialog(false)
+                  setProjectToDelete(null)
+                }}
+                className='text-white/60 hover:text-white transition p-1 rounded-lg hover:bg-white/10'
+                aria-label='Close dialog'
+              >
+                <RxCross2 className='w-5 h-5' />
+              </button>
+            </div>
+
+            <div className='mb-6 p-4 rounded-xl bg-white/5 border border-white/10'>
+              <p className='text-white/90 mb-2'>
+                Are you sure you want to delete <span className='font-[600] text-[#8E6AFB]'>"{projectToDelete.title}"</span>?
+              </p>
+              <p className='text-white/60 text-sm'>
+                All project data including images will be permanently removed.
+              </p>
+            </div>
+
+            <div className='flex gap-3 justify-end'>
+              <button
+                onClick={() => {
+                  setConfirmDialog(false)
+                  setProjectToDelete(null)
+                }}
+                className='px-4 py-2 rounded-lg border border-white/10 bg-white/5 text-white/90 font-[500] transition hover:bg-white/10'
+                disabled={deleteProjMutation.isPending}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  handleProjDelete(projectToDelete._id)
+                  setConfirmDialog(false)
+                  setProjectToDelete(null)
+                }}
+                disabled={deleteProjMutation.isPending}
+                className='px-4 py-2 rounded-lg bg-red-500/20 border border-red-500/50 text-red-300 font-[500] transition hover:bg-red-500/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2'
+              >
+                <MdDeleteOutline className='w-5 h-5' />
+                {deleteProjMutation.isPending ? 'Deleting...' : 'Delete Project'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
 
       {editingId !== null && projectPopup && (

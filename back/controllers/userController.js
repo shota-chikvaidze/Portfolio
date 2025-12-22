@@ -27,12 +27,13 @@ exports.adminLogin = async (req, res) => {
         })
 
         res.status(200).json({
-          access: token,
-          user: {
-            id: user._id,
-            email: user.email,
-            role: user.role,
-          }
+            message: 'Logged in successfully!',
+            access: token,
+            user: {
+              id: user._id,
+              email: user.email,
+              role: user.role,
+            }
         })
 
 

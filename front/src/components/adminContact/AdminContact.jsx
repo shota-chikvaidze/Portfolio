@@ -3,11 +3,14 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getContact, deleteContact } from '../../api/endpoints/Contact'
 import { Loading } from '../../components/loading/Loading'
 import { MdDeleteOutline } from "react-icons/md";
+import { RxCross2 } from "react-icons/rx";
+
 import toast from 'react-hot-toast';
 
 export const AdminContact = () => {
 
-    const [successMessage, setSuccessMessage] = useState('')
+    const [confirmDialog, setConfirmDialog] = useState(false)
+    const [contactToDelete, setContactToDelete] = useState(null)
     const queryClient = useQueryClient()
 
     const { data: contacts = [], isError, isLoading } = useQuery({
@@ -19,8 +22,8 @@ export const AdminContact = () => {
     const deleteMutation = useMutation({
       mutationKey: ['delete-contact'],
       mutationFn: (contactId) => deleteContact(contactId),
-      onSuccess: async () => {
-        setSuccessMessage('Contact deleted successfully!')
+      onSuccess: async (data) => {
+        toast.success(data.message)
         await queryClient.invalidateQueries({ queryKey: ['get-contact'] })
       },
       onError: (error) => {
@@ -62,11 +65,6 @@ export const AdminContact = () => {
               <span className='text-xs text-white/60'>{contacts.length} total</span>
             </div>
           </div>
-          {successMessage ? (
-            <div className='border-b border-white/10 px-5 py-3 text-sm text-white/80'>
-              {successMessage}
-            </div>
-          ) : null}
           {isLoading ? (
             <div className='px-5 py-10'>
               <Loading />
@@ -109,7 +107,11 @@ export const AdminContact = () => {
                         <button
                           type='button'
                           className='cursor-pointer rounded-md border border-white/10 p-1 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50'
-                          onClick={() => handleDelete(con._id)}
+                          // onClick={() => handleDelete(con._id)}
+                          onClick={() => {
+                            setContactToDelete(con)
+                            setConfirmDialog(true)
+                          }}
                           disabled={deleteMutation.isPending}
                           aria-label='Delete contact'
                         >
@@ -124,6 +126,73 @@ export const AdminContact = () => {
           )}
         </section>
       </div>
+
+      {confirmDialog && contactToDelete && (
+        <div 
+          onClick={() => {
+            setConfirmDialog(false)
+            setContactToDelete(null)
+          }}
+          className='flex items-center justify-center fixed h-full w-full top-0 left-0 bg-black/70 z-50'
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className='bg-[#1c112d]/95 backdrop-blur border border-white/10 rounded-2xl p-6 w-[450px] max-w-[90vw]'
+          >
+            <div className='flex items-start justify-between mb-4'>
+              <div>
+                <h2 className='text-white text-xl font-[600] mb-1'>Delete Project</h2>
+                <p className='text-white/60 text-sm'>This action cannot be undone</p>
+              </div>
+              <button
+                onClick={() => {
+                  setConfirmDialog(false)
+                  setContactToDelete(null)
+                }}
+                className='text-white/60 hover:text-white transition p-1 rounded-lg hover:bg-white/10'
+                aria-label='Close dialog'
+              >
+                <RxCross2 className='w-5 h-5' />
+              </button>
+            </div>
+
+            <div className='mb-6 p-4 rounded-xl bg-white/5 border border-white/10'>
+              <p className='text-white/90 mb-2'>
+                Are you sure you want to delete <span className='font-[600] text-[#8E6AFB]'>"{contactToDelete.name}"</span>?
+              </p>
+              <p className='text-white/60 text-sm'>
+                All project data including images will be permanently removed.
+              </p>
+            </div>
+
+            <div className='flex gap-3 justify-end'>
+              <button
+                onClick={() => {
+                  setConfirmDialog(false)
+                  setContactToDelete(null)
+                }}
+                className='px-4 py-2 rounded-lg border border-white/10 bg-white/5 text-white/90 font-[500] transition hover:bg-white/10'
+                disabled={handleDelete.isPending}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  handleDelete(contactToDelete._id)
+                  setConfirmDialog(false)
+                  setContactToDelete(null)
+                }}
+                disabled={handleDelete.isPending}
+                className='px-4 py-2 rounded-lg bg-red-500/20 border border-red-500/50 text-red-300 font-[500] transition hover:bg-red-500/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2'
+              >
+                <MdDeleteOutline className='w-5 h-5' />
+                {handleDelete.isPending ? 'Deleting...' : 'Delete Project'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </main>
   )
 }
