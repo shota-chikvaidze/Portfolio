@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { GetProjects } from '../../api/endpoints/Project'
 import { Loading } from '../../components/loading/Loading'
+import { Link } from 'react-router-dom'
 
 export const Projects = () => {
 
@@ -64,6 +65,7 @@ export const Projects = () => {
                   <div className='p-5'>
                     <h2 className='mb-2 text-xl font-[600] text-white'>{pro.title}</h2>
                     <p className='line-clamp-3 text-sm text-white/70'>{pro.description}</p>
+                    <Link to={pro.gitLink} target='_blank' className='mt-3 line-clamp-3 text-sm text-white'  >{pro.gitLink}</Link>
 
                     {pro.image && pro.image.length > 1 ? (
                       <button
@@ -79,6 +81,17 @@ export const Projects = () => {
               ))}
             </div>
           )}
+          <div className='mt-10 text-center'>
+            <p className='text-white/70 mb-2'>Want to see more of my work?</p>
+            <a
+              href='https://github.com/shota-chikvaidze'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='inline-block rounded-lg bg-white/5 border border-white/10 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10'
+            >
+              Check out more on my GitHub
+            </a>
+          </div>
         </div>
       </section>
 

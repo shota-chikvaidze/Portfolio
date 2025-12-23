@@ -26,9 +26,16 @@ exports.adminLogin = async (req, res) => {
             expiresIn: '2d'
         })
 
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 2 * 24 * 60 * 60 * 1000 
+        })
+
+        
         res.status(200).json({
             message: 'Logged in successfully!',
-            access: token,
             user: {
               id: user._id,
               email: user.email,
@@ -44,7 +51,6 @@ exports.adminLogin = async (req, res) => {
 
 exports.me = async (req, res) => {
     try{
-
         if (!req.admin) {
             return res.status(401).json({ message: "Unauthorized" });
         }
@@ -59,5 +65,20 @@ exports.me = async (req, res) => {
 
     }catch(err){
         res.status(500).json({message: 'server error', error: err.message})
+    }
+}
+
+exports.logout = async (req, res) => {
+    try {
+        res.cookie('token', '', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 0
+        })
+
+        res.status(200).json({ message: 'Logged out successfully' })
+    } catch (err) {
+        res.status(500).json({ message: 'server error', error: err.message })
     }
 }

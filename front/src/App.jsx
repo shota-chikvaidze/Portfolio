@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { Navigate } from 'react-router-dom'
 import { Home } from './pages/home/Home'
@@ -19,12 +19,18 @@ import SidebarWrapper from './components/sidebarWrapper/SidebarWrapper'
 import { MainLoading } from './components/loading/Loading'
 
 function App() {
-
+  const location = useLocation()
   const isAuthenticated = userAuth(s => s.isAuthenticated)
 
-  const { isLoading } = useCurrentUser()
+  // PUBLIC ROUTES - Don't check authentication on these pages
+  const publicRoutes = ['/admin-login', '/login', '/', '/about', '/contact', '/projects']
+  const isPublicRoute = publicRoutes.includes(location.pathname)
 
-  if(isLoading){
+  // Only check authentication if we're NOT on a public route
+  const { isLoading } = useCurrentUser(isPublicRoute)
+
+  // Show loading only on protected routes while checking auth
+  if(isLoading && !isPublicRoute){
     return <MainLoading />
   }
 

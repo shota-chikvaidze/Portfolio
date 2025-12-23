@@ -5,5 +5,7 @@ const router = express.Router()
 
 router.post('/login', loginAuth.adminLogin)
 router.get('/me', adminMiddleware, loginAuth.me)
+router.post('/logout', loginAuth.logout)
+
 
 module.exports = router

@@ -1,34 +1,23 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
 
-export const userAuth = create(
-    persist(
-        (set) => ({
-            user: null,
-            accessToken: null,
-            refreshToken: null,
-            isAuthenticated: false,
+export const userAuth = create((set) => ({
+    user: null,
+    isAuthenticated: false,
+    isLoading: true,
 
-            setAuth: ({ user, accessToken, refreshToken }) => 
-                set({
-                    user,
-                    accessToken,
-                    refreshToken,
-                    isAuthenticated: true 
-                }),
-
-            clearAuth: () => 
-                set({
-                    user: null,
-                    accessToken: null,
-                    refreshToken: null,
-                    isAuthenticated: false,
-                }),
+    setAuth: (user) => 
+        set({
+            user,
+            isAuthenticated: true,
+            isLoading: false
         }),
 
-    {
-        name: 'auth-storage'
-    }
+    clearAuth: () => 
+        set({
+            user: null,
+            isAuthenticated: false,
+            isLoading: false
+        }),
 
-    )
-)
+    setLoading: (isLoading) => set({ isLoading }),
+}))

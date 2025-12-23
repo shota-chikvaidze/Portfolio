@@ -1,6 +1,8 @@
 import React from 'react'
 import { Outlet, NavLink, useNavigate } from 'react-router-dom'
 import { userAuth } from '../../store/UserAuth'
+import { Logout } from '../../api/endpoints/User'
+import toast from 'react-hot-toast'
 
 const linkBase =
   'w-full rounded-lg px-3 py-2 text-sm font-[500] transition ' +
@@ -15,11 +17,17 @@ const linkIdle = 'bg-transparent border border-transparent'
 const SidebarWrapper = () => {
 
     const navigate = useNavigate()
-    const logout = userAuth((s) => s.clearAuth)
+    const clearAuth = userAuth((s) => s.clearAuth)
 
-    const logoutFunc = () => {
-        logout()
-        navigate('/')
+    const logoutFunc = async () => {
+        try {
+            await Logout() // Tell server to clear cookie
+            clearAuth() // Clear user data from memory/state
+            navigate('/')
+            toast.success('Logged out successfully')
+        } catch (error) {
+            toast.error('Logout failed')
+        }
     }
 
   return (

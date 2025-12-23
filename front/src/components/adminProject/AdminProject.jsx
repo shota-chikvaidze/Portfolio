@@ -111,30 +111,32 @@ export const AdminProject = () => {
     setEditForm(prev => ({ ...prev, [field]: value }))
   }
 
-  const handleFileSelect = (e) => {
-    const files = Array.from(e.target.files) 
-    setSelectedFiles(files) 
 
-    const fileReaders = files.map(file => {
+  const handleFileSelect = (e) => {
+    const newFiles = Array.from(e.target.files)
+    if (newFiles.length === 0) return
+
+    setSelectedFiles(prev => [...prev, ...newFiles])
+
+    const fileReaders = newFiles.map(file => {
       return new Promise((resolve, reject) => {
-        const reader = new FileReader() 
-        
-        reader.onload = (event) => {
-          resolve(event.target.result)
-        }
-        
-        reader.onerror = (error) => {
-          reject(error)
-        }
-        
+        const reader = new FileReader()
+        reader.onload = (event) => resolve(event.target.result)
+        reader.onerror = (error) => reject(error)
         reader.readAsDataURL(file)
       })
     })
 
     Promise.all(fileReaders)
       .then(base64Images => {
-        setImagePreviews(base64Images)
-        setEditForm(prev => ({ ...prev, image: base64Images }))
+        setImagePreviews(prev => [...prev, ...base64Images])
+
+        setEditForm(prev => ({
+          ...prev,
+          image: [...(Array.isArray(prev.image) ? prev.image : []), ...base64Images],
+        }))
+
+        e.target.value = ''
       })
       .catch(error => {
         console.error('Error reading files:', error)

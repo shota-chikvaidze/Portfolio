@@ -22,11 +22,7 @@ export const AdminLogin = () => {
         mutationFn: () => Login(loginForm),
 
         onSuccess: (data) => {
-            setAuth({
-                user: data.user,
-                accessToken: data.access,
-                isAuthenticated: true
-            })
+            setAuth(data.user)
             toast.success(data.message)
         },
         onError: (error) => {

@@ -3,15 +3,8 @@ import { userAuth } from '../store/UserAuth'
 import toast from 'react-hot-toast'
 
 const instance = axios.create({
-    baseURL: `${import.meta.env.VITE_API_URL}/api`
-})
-
-instance.interceptors.request.use((config) => {
-    const token = userAuth.getState().accessToken
-    if(token) {
-        config.headers.Authorization = `Bearer ${token}`
-    }
-    return config
+    baseURL: `${import.meta.env.VITE_API_URL}/api`,
+    withCredentials: true
 })
 
 
@@ -28,8 +21,8 @@ instance.interceptors.response.use(
         const url = error.config?.url || ''
 
         if (status === 401 && !url.includes('/login')) {
-            const logout = userAuth.getState().logout
-            logout()
+            const clearAuth = userAuth.getState().clearAuth
+            clearAuth()
             window.location.href = '/admin-login'
             toast.error('Session expired. Please login again.')
             return Promise.reject(error)
