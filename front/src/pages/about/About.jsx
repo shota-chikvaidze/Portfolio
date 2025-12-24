@@ -1,39 +1,9 @@
 import React from 'react'
-import { FaReact, FaNodeJs, FaGitAlt, FaDatabase } from 'react-icons/fa'
-import { SiMongodb, SiExpress, SiTailwindcss, SiJavascript, SiTypescript } from 'react-icons/si'
-import { IoCodeSlashOutline, IoRocketOutline } from 'react-icons/io5'
-import { MdTipsAndUpdates } from 'react-icons/md'
+import Tech from '../../data/Tech'
+import Values from '../../data/Values'
+
 
 export const About = () => {
-  
-  const skills = [
-    { name: 'React', icon: <FaReact className='w-8 h-8' />, level: 'Advanced', color: '#61DAFB' },
-    { name: 'Node.js', icon: <FaNodeJs className='w-8 h-8' />, level: 'Advanced', color: '#339933' },
-    { name: 'MongoDB', icon: <SiMongodb className='w-8 h-8' />, level: 'Intermediate', color: '#47A248' },
-    { name: 'Express', icon: <SiExpress className='w-8 h-8' />, level: 'Advanced', color: '#fff' },
-    { name: 'JavaScript', icon: <SiJavascript className='w-8 h-8' />, level: 'Advanced', color: '#F7DF1E' },
-    { name: 'TypeScript', icon: <SiTypescript className='w-8 h-8' />, level: 'Intermediate', color: '#3178C6' },
-    { name: 'Tailwind CSS', icon: <SiTailwindcss className='w-8 h-8' />, level: 'Advanced', color: '#06B6D4' },
-    { name: 'Git', icon: <FaGitAlt className='w-8 h-8' />, level: 'Intermediate', color: '#F05032' },
-  ]
-
-  const values = [
-    {
-      icon: <IoCodeSlashOutline className='w-8 h-8' />,
-      title: 'Clean Code',
-      description: 'Writing maintainable, readable code that follows best practices and modern standards.'
-    },
-    {
-      icon: <IoRocketOutline className='w-8 h-8' />,
-      title: 'Performance First',
-      description: 'Building fast, optimized applications that deliver excellent user experiences.'
-    },
-    {
-      icon: <MdTipsAndUpdates className='w-8 h-8' />,
-      title: 'Continuous Learning',
-      description: 'Always exploring new technologies and improving my craft every single day.'
-    }
-  ]
 
   return (
     <section className='min-h-[calc(100vh-70px)] w-full px-4 py-14'>
@@ -70,21 +40,21 @@ export const About = () => {
         <div className='mb-16'>
           <h2 className='text-2xl font-[600] text-white mb-6'>Tech Stack</h2>
           <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
-            {skills.map((skill) => (
+            {Tech.map((tech) => (
               <div 
-                key={skill.name}
+                key={tech.name}
                 className='group rounded-xl border border-white/10 bg-white/5 backdrop-blur p-6 transition hover:border-white/20 hover:bg-white/10'
               >
                 <div className='flex flex-col items-center text-center gap-3'>
                   <div 
                     className='text-white/80 transition group-hover:scale-110'
-                    style={{ color: skill.color }}
+                    style={{ color: tech.color }}
                   >
-                    {skill.icon}
+                    {tech.icon}
                   </div>
                   <div>
-                    <h3 className='text-white font-[500] text-sm mb-1'>{skill.name}</h3>
-                    <p className='text-white/60 text-xs'>{skill.level}</p>
+                    <h3 className='text-white font-[500] text-sm mb-1'>{tech.name}</h3>
+                    <p className='text-white/60 text-xs'>{tech.level}</p>
                   </div>
                 </div>
               </div>
@@ -95,7 +65,7 @@ export const About = () => {
         <div className='mb-16'>
           <h2 className='text-2xl font-[600] text-white mb-6'>What I Value</h2>
           <div className='grid md:grid-cols-3 gap-6'>
-            {values.map((value, index) => (
+            {Values.map((value, index) => (
               <div 
                 key={index}
                 className='rounded-2xl border border-white/10 bg-[#1c112d]/30 backdrop-blur-md p-6'

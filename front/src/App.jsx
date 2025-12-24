@@ -7,6 +7,7 @@ import { Contact } from './pages/contact/Contact'
 import { AdminLogin } from './pages/adminLogin/AdminLogin'
 import { Projects } from './pages/projects/Projects'
 import Layout from './layout/Layout'
+import Footer from './layout/Footer'
 
 import { userAuth } from './store/UserAuth'
 import { useCurrentUser } from './hooks/UseCurrentUser'
@@ -22,14 +23,11 @@ function App() {
   const location = useLocation()
   const isAuthenticated = userAuth(s => s.isAuthenticated)
 
-  // PUBLIC ROUTES - Don't check authentication on these pages
   const publicRoutes = ['/admin-login', '/login', '/', '/about', '/contact', '/projects']
   const isPublicRoute = publicRoutes.includes(location.pathname)
 
-  // Only check authentication if we're NOT on a public route
   const { isLoading } = useCurrentUser(isPublicRoute)
 
-  // Show loading only on protected routes while checking auth
   if(isLoading && !isPublicRoute){
     return <MainLoading />
   }
@@ -74,6 +72,8 @@ function App() {
             <Route path='/projects' element={ <Projects /> } />
             <Route path='*' element={ <Navigate to={'/'} /> } />
           </Routes>
+
+          <Footer />
         </>
       )}
 
