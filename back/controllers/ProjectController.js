@@ -3,8 +3,31 @@ const Projects = require('../models/Projects')
 exports.getProjects = async (req, res) => {
     try{
 
-        const project = await Projects.find().sort({ createdAt: -1 })
-        res.status(200).json({message: 'projects received successfully', project})
+        const page = Math.max(parseInt(req.query.page) || 1, 1)
+        const limit = Math.min(parseInt(req.query.limit) || 6, 50)
+        const skip = (page - 1) * limit
+
+        const totalCount = await Projects.countDocuments()
+
+        const project = await Projects.find()
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(limit)
+
+        const totalPages = Math.ceil(totalCount / limit)
+
+        res.status(200).json({
+            message: 'projects received successfully',
+            project,
+            pagination: {
+                page,
+                limit,
+                totalCount,
+                totalPages,
+                hasNextPage: page < totalPages,
+                hasPrevPage: page > 1
+            }
+        })
 
     }catch(err){
         res.status(500).json({message: 'server error', error: err.message})

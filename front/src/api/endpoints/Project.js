@@ -14,10 +14,10 @@ export const GetProjectsId = async (id) => {
     
 }
 
-export const GetProjects = async () => {
+export const GetProjects = async ({ page }) => {
     
-    const res = await axios.get('/project/get-projects')
-    return res.data.project
+    const res = await axios.get(`/project/get-projects?page=${page}&limit=6`)
+    return res.data
     
 }
 

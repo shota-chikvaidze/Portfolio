@@ -24,7 +24,7 @@ const Layout = () => {
   return (
     <>
       <header className={`flex justify-center fixed z-40 top-0 left-0 w-full h-[70px] transition-all duration-300 ${isScrolled ? 'bg-[#1E201E]/30 backdrop-blur-md shadow-md' : 'bg-transparent'}`} >
-        <div className='max-w-7xl w-full flex justify-between items-center'>
+        <div className='max-w-7xl w-full flex justify-between items-center '>
 
           <div>
             <h1 className='text-[1.8rem] font-[500] text-[#fff]'>SH.</h1>
@@ -32,10 +32,10 @@ const Layout = () => {
 
           <ul className='flex items-center gap-15 '>
 
-            <li className='font-[300] text-[#fff] text-[1.2rem]'> <Link className='flex items-center gap-1' to={'/'}> <IoHomeOutline /> Home </Link> </li>
-            <li className='font-[300] text-[#fff] text-[1.2rem]'> <Link className='flex items-center gap-1' to={'/about'}> <LuUser /> About </Link> </li>
-            <li className='font-[300] text-[#fff] text-[1.2rem]'> <Link className='flex items-center gap-1' to={'/contact'}> <HiOutlineMail /> Contact </Link> </li>
-            <li className='font-[300] text-[#fff] text-[1.2rem]'> <Link className='flex items-center gap-1' to={'/projects'}> <FaRegFolder /> Projects </Link> </li>
+            <li className='relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-white after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left font-[300] text-[#fff] text-[1.2rem]'> <Link className='flex items-center gap-1' to={'/'}> <IoHomeOutline /> Home </Link> </li>
+            <li className='relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-white after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left font-[300] text-[#fff] text-[1.2rem] font-[300] text-[#fff] text-[1.2rem]'> <Link className='flex items-center gap-1' to={'/about'}> <LuUser /> About </Link> </li>
+            <li className='relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-white after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left font-[300] text-[#fff] text-[1.2rem] font-[300] text-[#fff] text-[1.2rem]'> <Link className='flex items-center gap-1' to={'/contact'}> <HiOutlineMail /> Contact </Link> </li>
+            <li className='relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-white after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left font-[300] text-[#fff] text-[1.2rem] font-[300] text-[#fff] text-[1.2rem]'> <Link className='flex items-center gap-1' to={'/projects'}> <FaRegFolder /> Projects </Link> </li>
 
           </ul>
 

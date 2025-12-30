@@ -23,14 +23,14 @@ exports.adminLogin = async (req, res) => {
         }
 
         const token = jwt.sign({ id: user._id, role: 'admin' }, process.env.JWT, {
-            expiresIn: '2d'
+            expiresIn: '1d'
         })
 
         res.cookie('token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict',
-            maxAge: 2 * 24 * 60 * 60 * 1000 
+            maxAge: 1 * 24 * 60 * 60 * 1000 
         })
 
         
@@ -70,7 +70,7 @@ exports.me = async (req, res) => {
 
 exports.logout = async (req, res) => {
     try {
-        res.cookie('token', '', {
+        res.clearCookie('token', {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict',
