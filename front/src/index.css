@@ -30,9 +30,35 @@ body {
 }
 
 :root {
-    --main-color: #1E201E;
-    --secondary-color: #3C3D37;
-    --text-color: #fff;
+    --bg-900: #0b0811;
+    --bg-800: #1c112d;
+    --glass: rgba(255,255,255,0.04);
+    --muted: rgba(255,255,255,0.6);
+    --accent: #8E6AFB;
+    --accent-600: #6f4df0;
+    --text: #FFFFFF;
+    --radius-lg: 1rem;
+}
+
+* { box-sizing: border-box; }
+html,body,#root { height: 100%; }
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text);
+}
+
+.card-glass {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  max-height: 430px;
+}
+
+.muted { color: var(--muted); }
+
+.accent-btn {
+  background: linear-gradient(90deg,var(--accent),var(--accent-600));
 }
 
 .wave {
