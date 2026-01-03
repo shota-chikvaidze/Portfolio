@@ -7,15 +7,18 @@ import { MdEmail, MdWork, MdVisibility } from "react-icons/md"
 
 export const Dashboard = () => {
   
-  const { data: contacts = [], isLoading: contactsLoading, isError: contactsError  } = useQuery({
+  const { data: contactsData = [], isLoading: contactsLoading, isError: contactsError  } = useQuery({
     queryKey: ['get-dashContacts'],
     queryFn: () => getContact()
   })
 
-  const { data: projects = [], isLoading: projectsLoading, isError: projectsError  } = useQuery({
+  const { data: projectsData = [], isLoading: projectsLoading, isError: projectsError  } = useQuery({
     queryKey: ['get-dashProjects'],
     queryFn: () => GetProjects()
   })
+
+  const projects = projectsData.project || []
+  const contacts = contactsData.contact || []
 
   const isLoading = contactsLoading || projectsLoading
   const hasError = contactsError || projectsError

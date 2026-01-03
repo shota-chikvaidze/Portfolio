@@ -26,12 +26,16 @@ exports.adminLogin = async (req, res) => {
             expiresIn: '1d'
         })
 
-        res.cookie('token', token, {
+
+        const cookieOptions = {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
-            maxAge: 1 * 24 * 60 * 60 * 1000 
-        })
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+            maxAge: 1 * 24 * 60 * 60 * 1000,
+            path: '/',
+        }
+
+        res.cookie('token', token, cookieOptions)
 
         
         res.status(200).json({
@@ -69,13 +73,17 @@ exports.me = async (req, res) => {
 }
 
 exports.logout = async (req, res) => {
-    try {
-        res.clearCookie('token', {
+    try{
+
+
+        const clearOptions = {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
-            maxAge: 0
-        })
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+            path: '/',
+        }
+
+        res.clearCookie('token', clearOptions)
 
         res.status(200).json({ message: 'Logged out successfully' })
     } catch (err) {

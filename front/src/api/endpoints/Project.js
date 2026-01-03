@@ -14,9 +14,9 @@ export const GetProjectsId = async (id) => {
     
 }
 
-export const GetProjects = async ({ page }) => {
+export const GetProjects = async () => {
     
-    const res = await axios.get(`/project/get-projects?page=${page}&limit=6`)
+    const res = await axios.get(`/project/get-projects`)
     return res.data
     
 }

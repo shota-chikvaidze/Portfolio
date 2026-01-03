@@ -3,22 +3,18 @@ import { useQuery } from '@tanstack/react-query'
 import { GetProjects } from '../../api/endpoints/Project'
 import { Loading } from '../../components/loading/Loading'
 import { Link } from 'react-router-dom'
-import Pagination from '../../components/Pagination'
 
 export const Projects = () => {
 
   const [selectedProject, setSelectedProject] = useState(null)
-  const [page, setPage] = useState(1)
 
-  const { data, isLoading, isFetching, isError } = useQuery({
-    queryKey: ['get-project', page],
-    queryFn: () => GetProjects({ page }),
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['get-project',],
+    queryFn: () => GetProjects(),
     keepPreviousData: true
   })
 
-
   const projects = data?.project || []
-  const pagination = data?.pagination || {}
 
 
   if (isError) {
@@ -87,18 +83,10 @@ export const Projects = () => {
                   </div>
                 </article>
               ))}
-
-              {isFetching && (
-                <p className="mt-4 text-center text-sm text-white/50">
-                  Loading page…
-                </p>
-              )}
               
             </div>
             
           )}
-
-          <Pagination pagination={pagination} onPageChange={setPage} />
           
           <div className='mt-10 text-center'>
             <p className='text-white/70 mb-2'>Want to see more of my work?</p>

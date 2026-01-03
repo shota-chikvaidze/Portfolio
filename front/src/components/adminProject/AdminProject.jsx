@@ -31,6 +31,8 @@ export const AdminProject = () => {
     queryFn: () => GetProjects()
   })
 
+  const project = projectData.project || []
+
 
   const deleteProjMutation = useMutation({
     mutationKey: ['delete-project'],
@@ -198,7 +200,7 @@ export const AdminProject = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {projectData.map((pro) => (
+                  {project.map((pro) => (
                     <tr
                       key={pro._id ?? `${pro.createdAt}`}
                       className='border-t border-white/10 transition hover:bg-white/5'
