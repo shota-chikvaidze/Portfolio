@@ -6,6 +6,7 @@ import { About } from './pages/about/About'
 import { Contact } from './pages/contact/Contact'
 import { AdminLogin } from './pages/adminLogin/AdminLogin'
 import { Projects } from './pages/projects/Projects'
+import { Services } from './pages/services/Services'
 import Layout from './layout/Layout'
 import Footer from './layout/Footer'
 
@@ -23,7 +24,7 @@ function App() {
   const location = useLocation()
   const isAuthenticated = userAuth(s => s.isAuthenticated)
 
-  const publicRoutes = ['/admin-login', '/login', '/', '/about', '/contact', '/projects']
+  const publicRoutes = ['/admin-login', '/login', '/', '/about', '/contact', '/projects', '/services']
   const isPublicRoute = publicRoutes.includes(location.pathname)
 
   const { isLoading } = useCurrentUser(isPublicRoute)
@@ -68,6 +69,7 @@ function App() {
             <Route path='/' element={ <Home /> } />
             <Route path='/about' element={ <About /> } />
             <Route path='/contact' element={ <Contact /> } />
+            <Route path='/services' element={ <Services /> } />
             <Route path='/admin-login' element={ <AdminLogin /> } />
             <Route path='/projects' element={ <Projects /> } />
             <Route path='*' element={ <Navigate to={'/'} /> } />

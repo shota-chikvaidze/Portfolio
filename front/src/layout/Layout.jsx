@@ -5,6 +5,7 @@ import { LuUser } from "react-icons/lu";
 import { FaRegFolder } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { LuGithub } from "react-icons/lu";
+import { MdOutlineMiscellaneousServices } from "react-icons/md";
 
 const Layout = () => {
 
@@ -35,8 +36,9 @@ const Layout = () => {
 
             <li className='relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#E3E3E3] after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left text-[#E3E3E3] text-[1.2rem] font-[400]'> <Link className='flex items-center gap-1' to={'/'}> <IoHomeOutline className='text-[#E3E3E3] text-[1.2rem] font-[400]' /> Home </Link> </li>
             <li className='relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#E3E3E3] after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left text-[#E3E3E3] text-[1.2rem] font-[400] '> <Link className='flex items-center gap-1' to={'/about'}> <LuUser className='text-[#E3E3E3] text-[1.2rem] font-[400]' /> About </Link> </li>
-            <li className='relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#E3E3E3] after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left text-[#E3E3E3] text-[1.2rem] font-[400] '> <Link className='flex items-center gap-1' to={'/contact'}> <HiOutlineMail className='text-[#E3E3E3] text-[1.2rem] font-[400]' /> Contact </Link> </li>
             <li className='relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#E3E3E3] after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left text-[#E3E3E3] text-[1.2rem] font-[400] '> <Link className='flex items-center gap-1' to={'/projects'}> <FaRegFolder className='text-[#E3E3E3] text-[1.2rem] font-[400]' /> Projects </Link> </li>
+            <li className='relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#E3E3E3] after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left text-[#E3E3E3] text-[1.2rem] font-[400] '> <Link className='flex items-center gap-1' to={'/services'}> <MdOutlineMiscellaneousServices className='text-[#E3E3E3] text-[1.2rem] font-[400]' /> Services </Link> </li>
+            <li className='relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#E3E3E3] after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left text-[#E3E3E3] text-[1.2rem] font-[400] '> <Link className='flex items-center gap-1' to={'/contact'}> <HiOutlineMail className='text-[#E3E3E3] text-[1.2rem] font-[400]' /> Contact </Link> </li>
 
           </ul>
 

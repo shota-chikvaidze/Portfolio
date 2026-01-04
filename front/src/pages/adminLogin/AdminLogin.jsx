@@ -47,7 +47,7 @@ export const AdminLogin = () => {
   return (
         <section className='w-full flex justify-center px-4 py-14 min-h-[calc(100vh-70px)]'>
             <div className='w-full max-w-[440px]'>
-                <div className='bg-[#1c112d]/30 backdrop-blur-md border border-white/10 rounded-2xl p-7 shadow-md'>
+                <div className='bg-[#234C6A] backdrop-blur-md border border-white/10 rounded-2xl p-7 shadow-md'>
                     <div className='mb-7'>
                         <h2 className='text-[#fff] text-[1.8rem] font-[600] tracking-wide'>Admin Login</h2>
                         <p className='text-white/70 mt-2 text-[0.95rem]'>Sign in to manage contact messages.</p>
@@ -58,7 +58,7 @@ export const AdminLogin = () => {
                             <label className='text-white/80 text-[0.95rem]'>Email</label>
                             <input
                                 type='email'
-                                placeholder='you@example.com'
+                                placeholder='Enter email'
                                 onChange={handleChange}
                                 value={loginForm.email}
                                 name='email'
@@ -80,7 +80,7 @@ export const AdminLogin = () => {
 
                         <button
                             type='submit'
-                            className='cursor-pointer mt-2 w-full rounded-xl py-3 text-[#fff] text-[1.05rem] font-[500] bg-[#8E6AFB] hover:opacity-90 transition-opacity disabled:opacity-60'
+                            className='cursor-pointer mt-2 w-full rounded-xl py-3 text-[#E3E3E3] text-[1.05rem] font-[500] bg-[#1B3C53] hover:opacity-90 transition-opacity disabled:opacity-60'
                         >
                             {loginMutation.isPending ? <Loading /> : 'Login'}
                         </button>
