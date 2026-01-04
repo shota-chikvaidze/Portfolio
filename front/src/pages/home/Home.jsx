@@ -25,7 +25,7 @@ export const Home = () => {
           <div className='max-w-2xl'>
 
             <p className='flex gap-4 items-center mb-2 text-[#E3E3E3] text-[2rem] '> Hey there! <MdWavingHand className='wave' /> </p>
-            <p className='text-[#E3E3E3] text-[3rem] uppercase '>I'm <span className='text-[#fff]'> Shota Chikvaidze </span> </p>
+            <p className='text-[#E3E3E3] text-[3rem] uppercase '>I'm <span className='text-[#647cd5]'> Shota Chikvaidze </span> </p>
             <p className="py-2">
               <ReactTyped
                 strings={[
