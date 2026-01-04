@@ -3,6 +3,7 @@ import { useMutation } from '@tanstack/react-query'
 import { postContact } from '../../api/endpoints/Contact'
 import ContactExtras from '../../components/contactExtras/ContactExtras'
 import toast from 'react-hot-toast'
+import { motion } from 'framer-motion'
 
 export const Contact = () => {
 
@@ -41,16 +42,31 @@ export const Contact = () => {
   return (
     <section className='w-full flex justify-center px-4 py-14 min-h-[calc(100vh-70px)]'>
       <div className='w-full max-w-5xl'>
-        <div className='mb-7'>
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className='mb-7'
+        >
           <h2 className='text-white text-[2rem] font-[700] tracking-wide'>Contact</h2>
           <p className='muted mt-2'>Send a message, or choose another way to connect below.</p>
-        </div>
+        </motion.div>
 
         <div className='flex flex-col'>
-          <div className='card-glass p-6'>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            className='card-glass p-6 mb-10'
+          >
             <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
               <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                <div className='flex flex-col gap-2'>
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                  className='flex flex-col gap-2'
+                >
                   <label className='text-white/80 text-[0.95rem]'>Name</label>
                   <input
                     name='name'
@@ -61,9 +77,14 @@ export const Contact = () => {
                     required
                     className='w-full rounded-xl bg-transparent border border-white/12 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-accent/30'
                   />
-                </div>
+                </motion.div>
 
-                <div className='flex flex-col gap-2'>
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                  className='flex flex-col gap-2'
+                >
                   <label className='text-white/80 text-[0.95rem]'>Email</label>
                   <input
                     name='email'
@@ -73,10 +94,15 @@ export const Contact = () => {
                     value={postForm.email}
                     className='w-full rounded-xl bg-transparent border border-white/12 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-accent/30'
                   />
-                </div>
+                </motion.div>
               </div>
 
-              <div className='flex flex-col gap-2'>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+                className='flex flex-col gap-2'
+              >
                 <div className='flex items-center justify-between'>
                   <label className='text-white/80 text-[0.95rem]'>Message</label>
                   <span className={`text-[0.85rem] transition-colors ${
@@ -95,9 +121,14 @@ export const Contact = () => {
                   rows={6}
                   className='w-full rounded-xl bg-transparent border border-white/12 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-accent/30 resize-none'
                 />
-              </div>
+              </motion.div>
 
-              <div className='flex items-center justify-end gap-4 flex-wrap'>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                className='flex items-center justify-end gap-4 flex-wrap'
+              >
                 <button
                   type='submit'
                   disabled={contactMutate.isPending}
@@ -105,13 +136,17 @@ export const Contact = () => {
                 >
                   {contactMutate.isPending ? 'Sending…' : 'Send message'}
                 </button>
-              </div>
+              </motion.div>
             </form>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          >
             <ContactExtras />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
