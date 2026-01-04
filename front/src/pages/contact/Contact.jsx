@@ -46,7 +46,7 @@ export const Contact = () => {
           <p className='muted mt-2'>Send a message, or choose another way to connect below.</p>
         </div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+        <div className='flex flex-col'>
           <div className='card-glass p-6'>
             <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
               <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -101,7 +101,7 @@ export const Contact = () => {
                 <button
                   type='submit'
                   disabled={contactMutate.isPending}
-                  className='rounded-xl px-6 py-3 text-white text-[1rem] font-[500] accent-btn hover:opacity-95 transition-opacity disabled:opacity-60'
+                  className='rounded-xl px-6 py-3 text-white text-[1rem] font-[500] bg-[#456882]/50 cursor-pointer hover:opacity-95 transition-opacity disabled:opacity-60'
                 >
                   {contactMutate.isPending ? 'Sending…' : 'Send message'}
                 </button>

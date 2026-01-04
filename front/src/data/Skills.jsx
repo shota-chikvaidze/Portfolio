@@ -1,47 +1,46 @@
-import { FaReact, FaNodeJs } from 'react-icons/fa'
-import { SiExpress, SiMongodb, SiTypescript, SiTailwindcss, SiJsonwebtokens, SiAxios } from 'react-icons/si'
+import { FaBrain, FaLightbulb, FaUsers, FaCode, FaRocket, FaTools, FaChartLine, FaComments } from 'react-icons/fa'
 
 
 const Skills = [
   {
-    name: 'React',
-    icon: <FaReact size={22} className='text-[#61dafb]' />,
-    desc: 'Modern front-end with hooks, context, and performance.'
+    name: 'Problem Solving',
+    icon: <FaBrain size={22} className='text-[#7B9FAB]' />,
+    desc: 'Breaking down complex challenges into practical solutions.'
   },
   {
-    name: 'Node.js',
-    icon: <FaNodeJs size={22} className='text-[#3c873a]' />,
-    desc: 'Efficient back-end APIs and real-time apps.'
+    name: 'Critical Thinking',
+    icon: <FaLightbulb size={22} className='text-[#D4A574]' />,
+    desc: 'Analyzing problems logically and making smart decisions.'
   },
   {
-    name: 'Express',
-    icon: <SiExpress size={22} className='text-white' />,
-    desc: 'RESTful API design and middleware.'
+    name: 'Collaboration',
+    icon: <FaUsers size={22} className='text-[#8FA998]' />,
+    desc: 'Working effectively in teams and communicating clearly.'
   },
   {
-    name: 'MongoDB',
-    icon: <SiMongodb size={22} className='text-[#47a248]' />,
-    desc: 'NoSQL data modeling and aggregation.'
+    name: 'Clean Code',
+    icon: <FaCode size={22} className='text-[#9B8FA9]' />,
+    desc: 'Writing maintainable, readable, and well-structured code.'
   },
   {
-    name: 'TypeScript',
-    icon: <SiTypescript size={22} className='text-[#3178c6]' />,
-    desc: 'Type-safe scalable codebases.'
+    name: 'Fast Learning',
+    icon: <FaRocket size={22} className='text-[#A88B8F]' />,
+    desc: 'Adapting quickly to new technologies and frameworks.'
   },
   {
-    name: 'Tailwind CSS',
-    icon: <SiTailwindcss size={22} className='text-[#38bdf8]' />,
-    desc: 'Rapid UI prototyping and design.'
+    name: 'Debugging',
+    icon: <FaTools size={22} className='text-[#A89B7B]' />,
+    desc: 'Identifying and fixing issues efficiently and systematically.'
   },
   {
-    name: 'JWT',
-    icon: <SiJsonwebtokens size={22} className='text-[#f4b400]' />,
-    desc: 'Secure authentication and authorization.'
+    name: 'Growth Mindset',
+    icon: <FaChartLine size={22} className='text-[#7B9B9B]' />,
+    desc: 'Continuously improving skills and embracing challenges.'
   },
   {
-    name: 'Axios',
-    icon: <SiAxios size={22} className='text-[#5a29e4]' />,
-    desc: 'Robust API communication.'
+    name: 'Communication',
+    icon: <FaComments size={22} className='text-[#9B8B8B]' />,
+    desc: 'Explaining technical concepts clearly to any audience.'
   },
 ]
 
