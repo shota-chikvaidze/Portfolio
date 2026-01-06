@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 export const AdminProject = () => {
 
   const queryClient = useQueryClient()
-  const [successProjMessage, setSuccessProjMessage] = useState('')
   const [editingId, setEditingId] = useState(null)
   const [editForm, setEditForm] = useState({
     title: '',
@@ -18,7 +17,6 @@ export const AdminProject = () => {
     image: '',
     gitLink: '',
   })
-  const navigate = useNavigate()
   const [confirmDialog, setConfirmDialog] = useState(false)
   const [projectToDelete, setProjectToDelete] = useState(null)
   const [projectPopup, setProjectPopup] = useState(false)
@@ -59,7 +57,6 @@ export const AdminProject = () => {
     onSuccess: async (data) => {
       await queryClient.invalidateQueries({ queryKey: ['get-project'] })
       setEditingId(null)
-      navigate('/dashboard')
       toast.success(data.message)
     },
     onError: (error) => {
@@ -88,7 +85,6 @@ export const AdminProject = () => {
 
     setImagePreviews(pro.image || [])
     setSelectedFiles([]) 
-    setSuccessProjMessage('')
   }
 
   const handleCancelEdit = () => {
@@ -100,14 +96,19 @@ export const AdminProject = () => {
   }
 
   const handleUpdateSubmit = (projectId) => {
-    const payload = {
-      title: editForm.title,
-      description: editForm.description,
-      image: editForm.image, 
-      gitLink: editForm.gitLink,
-    }
+    const payload = new FormData()
+    payload.append('title', editForm.title)
+    payload.append('description', editForm.description)
+    payload.append('gitLink', editForm.gitLink)
+    
+    selectedFiles.forEach((file) => {
+        payload.append('images', file)
+    })
+  
     updateProjMutation.mutate({ id: projectId, payload })
-  }
+}
+
+
 
   const handleInputChange = (field, value) => {
     setEditForm(prev => ({ ...prev, [field]: value }))
@@ -117,41 +118,23 @@ export const AdminProject = () => {
   const handleFileSelect = (e) => {
     const newFiles = Array.from(e.target.files)
     if (newFiles.length === 0) return
-
+  
     setSelectedFiles(prev => [...prev, ...newFiles])
-
-    const fileReaders = newFiles.map(file => {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader()
-        reader.onload = (event) => resolve(event.target.result)
-        reader.onerror = (error) => reject(error)
-        reader.readAsDataURL(file)
-      })
-    })
-
-    Promise.all(fileReaders)
-      .then(base64Images => {
-        setImagePreviews(prev => [...prev, ...base64Images])
-
-        setEditForm(prev => ({
-          ...prev,
-          image: [...(Array.isArray(prev.image) ? prev.image : []), ...base64Images],
-        }))
-
-        e.target.value = ''
-      })
-      .catch(error => {
-        console.error('Error reading files:', error)
-      })
+  
+    const newPreviews = newFiles.map(file => URL.createObjectURL(file))
+    setImagePreviews(prev => [...prev, ...newPreviews])
+    
+    e.target.value = ''
   }
 
   const handleRemoveImage = (indexToRemove) => {
     const newPreviews = imagePreviews.filter((_, index) => index !== indexToRemove)
     const newFiles = selectedFiles.filter((_, index) => index !== indexToRemove)
-    
+
     setImagePreviews(newPreviews)
     setSelectedFiles(newFiles)
-    setEditForm(prev => ({ ...prev, image: newPreviews }))
+
+    URL.revokeObjectURL(imagePreviews[indexToRemove])
   }
 
 

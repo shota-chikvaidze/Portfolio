@@ -5,7 +5,7 @@ const projectSchema = mongoose.Schema({
     description: { type: String, required: true },
     image: { type: [String], required: true },
     gitLink: { type: String },
-    createdAt: { type: Date, default: Date.now() }
+    createdAt: { type: Date, default: Date.now }
 })
 
 module.exports = mongoose.model('Project', projectSchema)

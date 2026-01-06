@@ -10,37 +10,23 @@ const PostProject = () => {
         description: '',
         image: [],
         gitLink: ''
-
     })
+
 
     const handleChange = (e) => {
         setProjectForm({...projectForm, [e.target.name]: e.target.value})
     }
 
-    const readFileAsDataURL = (file) =>
-        new Promise((resolve, reject) => {
-            const reader = new FileReader()
-            reader.onload = () => resolve(reader.result)
-            reader.onerror = () => reject(new Error('Failed to read file'))
-            reader.readAsDataURL(file)
-        })
-
-    const handleFileChange = async (e) => {
+    const handleFileChange = (e) => {
         const files = Array.from(e.target.files || [])
-        if (files.length === 0) {
-            setProjectForm((prev) => ({ ...prev, image: [] }))
-            return
-        }
-
-        const images = await Promise.all(files.map(readFileAsDataURL))
-        setProjectForm((prev) => ({ ...prev, image: images }))
+        setProjectForm((prev) => ({ ...prev, image: files }))
     }
+
 
     const postMutation = useMutation({
         mutationKey: ['post-project'],
         mutationFn: (payload) => PostProjectApi(payload),
         onSuccess: (data) => {
-            console.log(data.message)
             toast.success(data.message || 'Project created successfully!')
             setProjectForm({ title: '', description: '', image: [], gitLink: '' })
         },
@@ -56,7 +42,26 @@ const PostProject = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        postMutation.mutate(projectForm)
+
+        console.log('[FRONTEND] Form data:', projectForm)
+        console.log('[FRONTEND] Image files:', projectForm.image)
+
+        const formData = new FormData()
+        formData.append('title', projectForm.title)
+        formData.append('description', projectForm.description)
+        formData.append('gitLink', projectForm.gitLink)
+        
+        projectForm.image.forEach((file, index) => {
+            console.log(`[FRONTEND] Appending file ${index}:`, file.name, file.type, file.size)
+            formData.append('images', file)
+        })
+        
+        console.log('[FRONTEND] FormData entries:')
+        for (let pair of formData.entries()) {
+            console.log(pair[0], pair[1])
+        }
+
+        postMutation.mutate(formData)
     }
 
   return (
