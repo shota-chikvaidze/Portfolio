@@ -94,36 +94,7 @@ const handleMultipleUpload = (req, res, next) => {
     })
 }
 
-const deleteImage = async (imageUrl) => {
-    try {
-        const urlParts = imageUrl.split('/')
-        const filename = urlParts[urlParts.length - 1]
-        const publicId = `portfolio_projects/${filename.split('.')[0]}`
-        
-        const result = await cloudinary.uploader.destroy(publicId)
-        return result
-    } catch (error) {
-        throw error
-    }
-}
-
-const deleteMultipleImages = async (imageUrls) => {
-    try {
-        const deletePromises = imageUrls.map(url => deleteImage(url))
-        const results = await Promise.allSettled(deletePromises)
-        
-        const successful = results.filter(r => r.status === 'fulfilled').length
-        const failed = results.filter(r => r.status === 'rejected').length
-        
-        return { successful, failed, results }
-    } catch (error) {
-        throw error
-    }
-}
-
 module.exports = {
     uploadSingle: handleSingleUpload,
-    uploadMultiple: handleMultipleUpload,
-    deleteImage,
-    deleteMultipleImages
+    uploadMultiple: handleMultipleUpload
 }

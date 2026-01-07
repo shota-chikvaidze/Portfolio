@@ -93,9 +93,44 @@ exports.deleteProject = async (req, res) => {
     }
 }
 
+exports.deleteImageFromProject = async (req, res) => {
+    try {
+        const { projectId, imageUrl } = req.body
+
+        if (!projectId || !imageUrl) {
+            return res.status(400).json({ message: 'Project ID and image URL are required' })
+        }
+
+        const project = await Projects.findById(projectId)
+        if (!project) {
+            return res.status(404).json({ message: 'Project not found' })
+        }
+
+        project.image = project.image.filter(img => img !== imageUrl)
+        
+        if (project.image.length === 0) {
+            return res.status(400).json({ message: 'Cannot remove all images. At least one image is required' })
+        }
+
+        await project.save()
+
+        try {
+            const urlParts = imageUrl.split('/')
+            const filename = urlParts[urlParts.length - 1]
+            const publicId = `portfolio_projects/${filename.split('.')[0]}`
+            await require('../config/cloudinary').uploader.destroy(publicId)
+        } catch (cloudinaryError) {
+            console.error('Cloudinary deletion failed:', cloudinaryError)
+        }
+
+        res.status(200).json({ message: 'Image removed successfully', project })
+    } catch (err) {
+        res.status(500).json({ message: 'Server error', error: err.message })
+    }
+}
+
 exports.updateProject = async (req, res) => {
     try{
-
         const { id } = req.params
         const { title, description, gitLink } = req.body
 
@@ -104,13 +139,18 @@ exports.updateProject = async (req, res) => {
         if (description !== undefined) updateFields.description = description
         if (gitLink !== undefined) updateFields.gitLink = gitLink
 
-         if (req.files && req.files.length > 0) {
-            updateFields.image = req.files.map(file => file.path)
+        if (req.files && req.files.length > 0) {
+            const project = await Projects.findById(id)
+            if (!project) {
+                return res.status(404).json({ message: 'Project not found' })
+            }
+            
+            const newImageUrls = req.files.map(file => file.path)
+            updateFields.image = [...project.image, ...newImageUrls]
         }
 
-
         if (Object.keys(updateFields).length === 0) {
-            return res.status(400).json({ message: 'at least one field required' })
+            return res.status(400).json({ message: 'At least one field required' })
         }
 
         const project = await Projects.findByIdAndUpdate(id, updateFields, {
@@ -119,12 +159,12 @@ exports.updateProject = async (req, res) => {
         })
 
         if(!project){
-            return res.status(404).json({message: 'project not found'})
+            return res.status(404).json({message: 'Project not found'})
         }
 
-        res.status(200).json({message: 'project updated successfully', project})
+        res.status(200).json({message: 'Project updated successfully', project})
 
     }catch(err){
-        res.status(500).json({message: 'server error', error: err.message})
+        res.status(500).json({message: 'Server error', error: err.message})
     }
 }
