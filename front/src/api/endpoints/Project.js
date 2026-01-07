@@ -39,3 +39,10 @@ export const DeleteProject = async (id) => {
     
 }
 
+export const DeleteImage = async (id) => {
+    
+    const res = await axios.delete(`/project/delete-project/${id}`)
+    return res.data
+    
+}
+

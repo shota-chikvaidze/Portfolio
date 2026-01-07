@@ -57,7 +57,34 @@ export const AdminProject = () => {
     onSuccess: async (data) => {
       await queryClient.invalidateQueries({ queryKey: ['get-project'] })
       setEditingId(null)
+      setProjectPopup(false)
+      setEditForm({ title: '', description: '', image: '', gitLink: '' })
+      setSelectedFiles([])
+      setImagePreviews([])
       toast.success(data.message)
+    },
+    onError: (error) => {
+      const errorMessage = error?.response?.data?.message
+      if(errorMessage){
+        toast.error(errorMessage)
+      }else{
+        toast.error('Something went wrong. Please try again.')
+      }
+    }
+  })
+
+  const deleteImageMutation = useMutation({
+    mutationKey: ['delete-image'],
+    mutationFn: ({ projectId, imageUrl }) => DeleteImageFromProject({ projectId, imageUrl }),
+    onSuccess: async (data) => {
+      await queryClient.invalidateQueries({ queryKey: ['get-project'] })
+      toast.success(data.message)
+      
+      setEditForm(prev => ({
+        ...prev,
+        image: data.project.image
+      }))
+      setImagePreviews(data.project.image)
     },
     onError: (error) => {
       const errorMessage = error?.response?.data?.message
@@ -96,17 +123,24 @@ export const AdminProject = () => {
   }
 
   const handleUpdateSubmit = (projectId) => {
+    if (!editForm.title || !editForm.description) {
+      toast.error('Title and description are required')
+      return
+    }
+
     const payload = new FormData()
     payload.append('title', editForm.title)
     payload.append('description', editForm.description)
     payload.append('gitLink', editForm.gitLink)
     
-    selectedFiles.forEach((file) => {
+    if (selectedFiles.length > 0) {
+      selectedFiles.forEach((file) => {
         payload.append('images', file)
-    })
+      })
+    }
   
     updateProjMutation.mutate({ id: projectId, payload })
-}
+  }
 
 
 
@@ -127,14 +161,28 @@ export const AdminProject = () => {
     e.target.value = ''
   }
 
-  const handleRemoveImage = (indexToRemove) => {
-    const newPreviews = imagePreviews.filter((_, index) => index !== indexToRemove)
-    const newFiles = selectedFiles.filter((_, index) => index !== indexToRemove)
-
-    setImagePreviews(newPreviews)
-    setSelectedFiles(newFiles)
-
-    URL.revokeObjectURL(imagePreviews[indexToRemove])
+  const handleRemoveImage = (indexToRemove, imageUrl) => {
+    const isExistingImage = typeof imageUrl === 'string' && imageUrl.includes('cloudinary')
+    
+    if (isExistingImage) {
+      const cloudinaryCount = imagePreviews.filter(img => img.includes('cloudinary')).length
+      
+      if (cloudinaryCount <= 1) {
+        toast.error('At least one image is required')
+        return
+      }
+      deleteImageMutation.mutate({ projectId: editingId, imageUrl })
+    } else {
+      const newPreviews = imagePreviews.filter((_, index) => index !== indexToRemove)
+      const newFiles = selectedFiles.filter((_, index) => index !== indexToRemove)
+      
+      setImagePreviews(newPreviews)
+      setSelectedFiles(newFiles)
+      
+      if (imagePreviews[indexToRemove]?.startsWith('blob:')) {
+        URL.revokeObjectURL(imagePreviews[indexToRemove])
+      }
+    }
   }
 
 
@@ -379,8 +427,9 @@ export const AdminProject = () => {
                       />
                       <button
                         type='button'
-                        onClick={() => handleRemoveImage(index)}
-                        className='cursor-pointer absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity'
+                        onClick={() => handleRemoveImage(index, preview)}
+                        disabled={deleteImageMutation.isPending}
+                        className='cursor-pointer absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-50'
                         aria-label='Remove image'
                       >
                         <RxCross2 />

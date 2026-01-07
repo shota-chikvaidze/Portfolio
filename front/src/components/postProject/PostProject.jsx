@@ -43,23 +43,14 @@ const PostProject = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        console.log('[FRONTEND] Form data:', projectForm)
-        console.log('[FRONTEND] Image files:', projectForm.image)
-
         const formData = new FormData()
         formData.append('title', projectForm.title)
         formData.append('description', projectForm.description)
         formData.append('gitLink', projectForm.gitLink)
         
         projectForm.image.forEach((file, index) => {
-            console.log(`[FRONTEND] Appending file ${index}:`, file.name, file.type, file.size)
             formData.append('images', file)
         })
-        
-        console.log('[FRONTEND] FormData entries:')
-        for (let pair of formData.entries()) {
-            console.log(pair[0], pair[1])
-        }
 
         postMutation.mutate(formData)
     }
