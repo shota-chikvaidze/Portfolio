@@ -7,6 +7,7 @@ const { uploadSingle, uploadMultiple } = require('../middleware/upload')
 
 router.post('/post-project', adminProtect, uploadMultiple, projectController.postProject);
 router.post('/post-project-single', adminProtect, uploadSingle, projectController.postProject);
+router.delete('/delete-image', adminProtect, projectController.deleteImageFromProject)
 
 router.get('/get-project/:id', adminProtect, projectController.getProjectsId)
 router.delete('/delete-project/:id', adminProtect, projectController.deleteProject)

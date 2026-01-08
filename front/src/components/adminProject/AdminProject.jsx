@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { GetProjects, DeleteProject, GetProjectsId, UpdateProject } from '../../api/endpoints/Project'
+import { GetProjects, DeleteProject, GetProjectsId, UpdateProject, DeleteImageFromProject } from '../../api/endpoints/Project'
 import { Loading } from '../../components/loading/Loading'
 import { MdDeleteOutline, MdEdit } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
@@ -143,7 +143,6 @@ export const AdminProject = () => {
   }
 
 
-
   const handleInputChange = (field, value) => {
     setEditForm(prev => ({ ...prev, [field]: value }))
   }
@@ -159,30 +158,6 @@ export const AdminProject = () => {
     setImagePreviews(prev => [...prev, ...newPreviews])
     
     e.target.value = ''
-  }
-
-  const handleRemoveImage = (indexToRemove, imageUrl) => {
-    const isExistingImage = typeof imageUrl === 'string' && imageUrl.includes('cloudinary')
-    
-    if (isExistingImage) {
-      const cloudinaryCount = imagePreviews.filter(img => img.includes('cloudinary')).length
-      
-      if (cloudinaryCount <= 1) {
-        toast.error('At least one image is required')
-        return
-      }
-      deleteImageMutation.mutate({ projectId: editingId, imageUrl })
-    } else {
-      const newPreviews = imagePreviews.filter((_, index) => index !== indexToRemove)
-      const newFiles = selectedFiles.filter((_, index) => index !== indexToRemove)
-      
-      setImagePreviews(newPreviews)
-      setSelectedFiles(newFiles)
-      
-      if (imagePreviews[indexToRemove]?.startsWith('blob:')) {
-        URL.revokeObjectURL(imagePreviews[indexToRemove])
-      }
-    }
   }
 
 
@@ -314,7 +289,7 @@ export const AdminProject = () => {
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className='bg-[#1c112d]/95 backdrop-blur border border-white/10 rounded-2xl p-6 w-[450px] max-w-[90vw]'
+            className=' backdrop-blur border border-white/10 rounded-2xl p-6 w-[450px] max-w-[90vw]'
           >
             <div className='flex items-start justify-between mb-4'>
               <div>
@@ -326,7 +301,7 @@ export const AdminProject = () => {
                   setConfirmDialog(false)
                   setProjectToDelete(null)
                 }}
-                className='text-white/60 hover:text-white transition p-1 rounded-lg hover:bg-white/10'
+                className='cursor-pointer text-white/60 hover:text-white transition p-1 rounded-lg hover:bg-white/10'
                 aria-label='Close dialog'
               >
                 <RxCross2 className='w-5 h-5' />
@@ -427,7 +402,7 @@ export const AdminProject = () => {
                       />
                       <button
                         type='button'
-                        onClick={() => handleRemoveImage(index, preview)}
+                        onClick={() => deleteImageMutation.mutate({ projectId: editingId, imageUrl: preview })}
                         disabled={deleteImageMutation.isPending}
                         className='cursor-pointer absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-50'
                         aria-label='Remove image'

@@ -5,6 +5,9 @@ import { ReactTyped } from "react-typed";
 import { useNavigate } from 'react-router-dom'
 import Skills from '../../data/Skills';
 import { motion } from 'framer-motion';
+import { HiLightningBolt } from "react-icons/hi";
+import { PiTargetDuotone } from "react-icons/pi";
+import { FiTrendingUp } from "react-icons/fi";
 
 export const Home = () => {
 
@@ -94,7 +97,7 @@ export const Home = () => {
               <img 
                 src={homeMain} 
                 alt='Coding guy image' 
-                className='w-[430px] rounded-xl h-auto  transition-shadow duration-300' 
+                className='w-[430px] rounded-2xl h-auto  transition-shadow duration-300' 
               />
             </div>
           </motion.div>
@@ -102,48 +105,101 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className='w-full h-auto flex justify-center'>
-        <div className=' w-full max-w-7xl flex flex-col min-h-[400px] gap-4 text-[#E3E3E3] '>
+      <section className='w-full py-20 flex justify-center'>
+        <div className='w-full max-w-7xl'>
 
-          <motion.h4 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className='py-5 uppercase text-[2rem]'
-          >
-            Get to Know Me
-          </motion.h4>
+          <div className='grid md:grid-cols-2 gap-16 items-center'>
 
-          <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-            className='tracking-[2px]'
-          >
-            I'm Shota - a web developer with a strong focus on building fast, clean, and functional applications. I work mainly with <span className='text-[#647cd5] font-semibold'> React and Node.js, </span> and I enjoy turning ideas into real, well-structured products. I care about writing maintainable code, designing clear user experiences, and constantly improving both my skills and the quality of my work.
-          </motion.p>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className='relative'
+            >
+              <div className='absolute inset-0 bg-gradient-to-br from-[#647cd5]/20 to-[#456882]/20 rounded-3xl blur-3xl'></div>
+              <div className='relative bg-gradient-to-br from-[#234C6A]/50 to-[#1B3C53]/50 backdrop-blur border border-white/10 rounded-3xl p-12'>
+                <div className='space-y-8'>
+                  
+                  <div className='flex items-start gap-4'>
+                    <div className='flex-shrink-0 w-14 h-14 rounded-xl border border-[#FFD700]/30 flex items-center justify-center'>
+                      <HiLightningBolt className='text-3xl text-[#FFD700]' />
+                    </div>
+                    <div>
+                      <h5 className='text-xl font-semibold text-[#E3E3E3] mb-2'>Performance First</h5>
+                      <p className='text-[#E3E3E3]/70 text-sm'>Clean, optimized code that scales</p>
+                    </div>
+                  </div>
 
-          <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            className='tracking-[2px]'
-          >
-            Programming isn't something I do casually - it's what I <span className='text-[#647cd5] font-semibold'> actively study, practice, and level up in every day. </span> I like creating things that solve real problems, look good, and perform even better. My mindset is simple: build, break, learn, improve.
-          </motion.p>
+                  <div className='h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent'></div>
 
-          <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className='tracking-[2px]'
-          >
-            Right now, I'm expanding my skills, taking on more complex projects, and moving toward full-stack mastery - one step at a time.
-          </motion.p>
+                  <div className='flex items-start gap-4'>
+                    <div className='flex-shrink-0 w-14 h-14 rounded-xl border border-[#FF6B6B]/30 flex items-center justify-center'>
+                      <PiTargetDuotone className='text-3xl text-[#FF6B6B]' />  
+                    </div>
+                    <div>
+                      <h5 className='text-xl font-semibold text-[#E3E3E3] mb-2'>Solution Focused</h5>
+                      <p className='text-[#E3E3E3]/70 text-sm'>Turning problems into working products</p>
+                    </div>
+                  </div>
+
+                  <div className='h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent'></div>
+
+                  <div className='flex items-start gap-4'>
+                    <div className='flex-shrink-0 w-14 h-14 rounded-xl border border-[#4ECDC4]/30 flex items-center justify-center'>
+                      <FiTrendingUp className='text-3xl text-[#4ECDC4]' />
+                    </div>
+                    <div>
+                      <h5 className='text-xl font-semibold text-[#E3E3E3] mb-2'>Continuous Growth</h5>
+                      <p className='text-[#E3E3E3]/70 text-sm'>Leveling up through daily practice</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className='space-y-6'
+            >
+              <div>
+                <h4 className='text-4xl md:text-5xl font-bold text-[#E3E3E3] leading-tight'>
+                  Build. Break. <br />
+                  <span className='bg-gradient-to-r from-[#647cd5] to-[#456882] bg-clip-text text-transparent'>
+                    Learn. Repeat.
+                  </span>
+                </h4>
+              </div>
+
+              <p className='text-lg text-[#E3E3E3]/80 leading-relaxed'>
+                That's my approach to development. I focus on creating fast, maintainable web applications 
+                with <span className='text-[#647cd5] font-semibold'>React</span> and <span className='text-[#647cd5] font-semibold'>Node.js</span>, 
+                constantly improving my craft through real projects and daily practice.
+              </p>
+
+              <div className='flex flex-wrap gap-4 pt-4'>
+                <div className='flex items-center gap-2 px-4 py-2 rounded-lg bg-[#234C6A]/30 border border-white/10 tranistion duration-300 hover:-translate-y-2'>
+                  <div className='w-2 h-2 rounded-full bg-[#647cd5] animate-pulse'></div>
+                  <span className='text-sm text-[#E3E3E3]/80'>MERN Stack</span>
+                </div>
+                <div className='flex items-center gap-2 px-4 py-2 rounded-lg bg-[#234C6A]/30 border border-white/10 tranistion duration-300 hover:-translate-y-2'>
+                  <div className='w-2 h-2 rounded-full bg-[#647cd5] animate-pulse'></div>
+                  <span className='text-sm text-[#E3E3E3]/80'>Full Stack</span>
+                </div>
+                <div className='flex items-center gap-2 px-4 py-2 rounded-lg bg-[#234C6A]/30 border border-white/10 tranistion duration-300 hover:-translate-y-2'>
+                  <div className='w-2 h-2 rounded-full bg-[#647cd5] animate-pulse'></div>
+                  <span className='text-sm text-[#E3E3E3]/80'>Always Learning</span>
+                </div>
+              </div>
+            </motion.div>
+
+            
+
+          </div>
 
         </div>
       </section>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, NavLink } from 'react-router-dom'
 import { IoHomeOutline } from "react-icons/io5";
 import { LuUser } from "react-icons/lu";
 import { FaRegFolder } from "react-icons/fa";
@@ -32,14 +32,58 @@ const Layout = () => {
             <h1 onClick={() => navigate('/')} className='cursor-pointer text-[1.8rem] font-[500] text-[#E3E3E3]'>SH.</h1>
           </div>
 
-          <ul className='flex items-center gap-15 '>
+          <ul className={`flex items-center gap-2`}>
 
-            <li className='relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#E3E3E3] after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left text-[#E3E3E3] text-[1.2rem] font-[400]'> <Link className='flex items-center gap-1' to={'/'}> <IoHomeOutline className='text-[#E3E3E3] text-[1.2rem] font-[400]' /> Home </Link> </li>
-            <li className='relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#E3E3E3] after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left text-[#E3E3E3] text-[1.2rem] font-[400] '> <Link className='flex items-center gap-1' to={'/about'}> <LuUser className='text-[#E3E3E3] text-[1.2rem] font-[400]' /> About </Link> </li>
-            <li className='relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#E3E3E3] after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left text-[#E3E3E3] text-[1.2rem] font-[400] '> <Link className='flex items-center gap-1' to={'/projects'}> <FaRegFolder className='text-[#E3E3E3] text-[1.2rem] font-[400]' /> Projects </Link> </li>
-            <li className='relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#E3E3E3] after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left text-[#E3E3E3] text-[1.2rem] font-[400] '> <Link className='flex items-center gap-1' to={'/services'}> <MdOutlineMiscellaneousServices className='text-[#E3E3E3] text-[1.2rem] font-[400]' /> Services </Link> </li>
-            <li className='relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#E3E3E3] after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left text-[#E3E3E3] text-[1.2rem] font-[400] '> <Link className='flex items-center gap-1' to={'/contact'}> <HiOutlineMail className='text-[#E3E3E3] text-[1.2rem] font-[400]' /> Contact </Link> </li>
+            <li className="relative group">
+              <NavLink to="/" className={({ isActive }) => isActive ? 'flex items-center justify-center w-[40px] h-[40px] bg-[#000]/10 rounded-lg' : 'flex items-center justify-center w-[40px] h-[40px] hover:bg-[#000]/20 rounded-lg'}>
+                <IoHomeOutline className="text-[#E3E3E3] text-[1.3rem]" />
+              </NavLink>
 
+              <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 text-xs rounded-md bg-black/20 text-white opacity-0 translate-y-1 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 pointer-events-none transition-all duration-200 whitespace-nowrap">
+                Home
+              </span>
+            </li>
+
+            <li className="relative group">
+              <NavLink to="/about" className={({ isActive }) => isActive ? 'flex items-center justify-center w-[40px] h-[40px] bg-[#000]/10 rounded-lg' : 'flex items-center justify-center w-[40px] h-[40px] hover:bg-[#000]/20 rounded-lg'}>
+                <LuUser className='text-[#E3E3E3] text-[1.3rem] font-[400]  ' />
+              </NavLink>
+
+              <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 text-xs rounded-md bg-black/20 text-white opacity-0 translate-y-1 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 pointer-events-none transition-all duration-200 whitespace-nowrap">
+                About
+              </span>
+            </li>
+
+            <li className="relative group">
+              <NavLink to="/projects" className={({ isActive }) => isActive ? 'flex items-center justify-center w-[40px] h-[40px] bg-[#000]/10 rounded-lg' : 'flex items-center justify-center w-[40px] h-[40px] hover:bg-[#000]/20 rounded-lg'}>
+                <FaRegFolder className='text-[#E3E3E3] text-[1.3rem] font-[400]  ' />
+              </NavLink>
+
+              <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 text-xs rounded-md bg-black/20 text-white opacity-0 translate-y-1 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 pointer-events-none transition-all duration-200 whitespace-nowrap">
+                Projects
+              </span>
+            </li>
+
+            <li className="relative group">
+              <NavLink to="/services" className={({ isActive }) => isActive ? 'flex items-center justify-center w-[40px] h-[40px] bg-[#000]/10 rounded-lg' : 'flex items-center justify-center w-[40px] h-[40px] hover:bg-[#000]/20 rounded-lg'}>
+                <MdOutlineMiscellaneousServices className='text-[#E3E3E3] text-[1.3rem] font-[400]  ' />
+              </NavLink>
+
+              <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 text-xs rounded-md bg-black/20 text-white opacity-0 translate-y-1 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 pointer-events-none transition-all duration-200 whitespace-nowrap">
+                Services
+              </span>
+            </li>
+
+            <li className="relative group">
+              <NavLink to="/contact" className={({ isActive }) => isActive ? 'flex items-center justify-center w-[40px] h-[40px] bg-[#000]/10 rounded-lg' : 'flex items-center justify-center w-[40px] h-[40px] hover:bg-[#000]/20 rounded-lg'}>
+                <HiOutlineMail className='text-[#E3E3E3] text-[1.3rem] font-[400]  ' />
+              </NavLink>
+
+              <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 text-xs rounded-md bg-black/20 text-white opacity-0 translate-y-1 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 pointer-events-none transition-all duration-200 whitespace-nowrap">
+                Contact
+              </span>
+            </li>
+            
           </ul>
 
           <div>
