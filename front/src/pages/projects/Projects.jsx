@@ -43,8 +43,24 @@ export const Projects = () => {
           </motion.div>
 
           {isLoading ? (
-            <div className='flex min-h-[400px] items-center justify-center'>
-              <Loading />
+            <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
+              {Array.from({ length: 6 }).map((index, _) => (
+                <div key={index} className="animate-pulse rounded-2xl border border-[var(--border-color)] bg-[var(--glass-overlay)] backdrop-blur">
+                  <div className="h-[220px] w-full rounded-t-2xl bg-white/10" />
+
+                  <div className="p-5 space-y-3">
+                    <div className="h-5 w-2/3 rounded bg-white/10" />
+
+                    <div className="h-4 w-full rounded bg-white/10" />
+                    <div className="h-4 w-5/6 rounded bg-white/10" />
+                    <div className="h-4 w-4/6 rounded bg-white/10" />
+
+                    <div className="h-4 w-1/2 rounded bg-white/10" />
+
+                    <div className="mt-4 h-9 w-40 rounded-lg bg-white/10" />
+                  </div>
+                </div>
+              ))}
             </div>
           ) : projects.length === 0 ? (
             <motion.div 
@@ -74,7 +90,7 @@ export const Projects = () => {
                         loading='lazy'
                       />
                     ) : (
-                      <div className='flex h-[220px] w-full items-center justify-center bg-[var(--glass-overlay)] text-[var(--text-muted)]'>
+                      <div className='flex h-[220px] w-full items-center justify-center bg-[var(--glass-overlay)] text-[var(--text-text-[var(--text-muted)])]'>
                         No image
                       </div>
                     )}
@@ -97,9 +113,8 @@ export const Projects = () => {
                   </div>
                 </motion.article>
               ))}
-              
             </div>
-            
+
           )}
           
           <motion.div 

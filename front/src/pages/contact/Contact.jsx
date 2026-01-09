@@ -49,7 +49,7 @@ export const Contact = () => {
           className='mb-7'
         >
           <h2 className='text-[var(--text-white)] text-[2rem] font-[700] tracking-wide'>Contact</h2>
-          <p className='muted mt-2'>Send a message, or choose another way to connect below.</p>
+          <p className='text-[var(--text-muted)] mt-2'>Send a message, or choose another way to connect below.</p>
         </motion.div>
 
         <div className='flex flex-col'>
@@ -57,7 +57,7 @@ export const Contact = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-            className='card-glass p-6 mb-10'
+            className='bg-[linear-gradient(180deg,var(--glass-overlay), var(--glass-overlay))] border border-[var(--border-color)] rounded-[var(--radius-lg)] max-h-[430px] p-6 mb-10'
           >
             <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
               <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -67,7 +67,7 @@ export const Contact = () => {
                   transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
                   className='flex flex-col gap-2'
                 >
-                  <label className='text-[var(--text-secondary)] text-[0.95rem]'>Name</label>
+                  <label className='text-[var(--text-secondary)] font-[500] text-[0.95rem]'>Name</label>
                   <input
                     name='name'
                     type='text'
@@ -75,7 +75,7 @@ export const Contact = () => {
                     onChange={handleChange}
                     value={postForm.name}
                     required
-                    className='w-full rounded-xl bg-transparent border border-[var(--border-color)] px-4 py-3 text-[var(--text-white)] placeholder:text-[var(--text-muted)] outline-none focus:border-[var(--border-color)]/50 focus:ring-2 focus:ring-accent/30'
+                    className='w-full rounded-xl bg-transparent border border-[var(--border-color)] px-4 py-3 text-[var(--text-white)] placeholder:text-[var(--text-text-[var(--text-muted)])] outline-none focus:border-[var(--border-color)]/50 focus:ring-2 focus:ring-accent/30'
                   />
                 </motion.div>
 
@@ -85,14 +85,14 @@ export const Contact = () => {
                   transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
                   className='flex flex-col gap-2'
                 >
-                  <label className='text-[var(--text-secondary)] text-[0.95rem]'>Email</label>
+                  <label className='text-[var(--text-secondary)] font-[500] text-[0.95rem]'>Email</label>
                   <input
                     name='email'
                     type='email'
                     placeholder='Your email'
                     onChange={handleChange}
                     value={postForm.email}
-                    className='w-full rounded-xl bg-transparent border border-[var(--border-color)] px-4 py-3 text-[var(--text-white)] placeholder:text-[var(--text-muted)] outline-none focus:border-[var(--border-color)]/50 focus:ring-2 focus:ring-accent/30'
+                    className='w-full rounded-xl bg-transparent border border-[var(--border-color)] px-4 py-3 text-[var(--text-white)] placeholder:text-[var(--text-text-[var(--text-muted)])] outline-none focus:border-[var(--border-color)]/50 focus:ring-2 focus:ring-accent/30'
                   />
                 </motion.div>
               </div>
@@ -104,11 +104,11 @@ export const Contact = () => {
                 className='flex flex-col gap-2'
               >
                 <div className='flex items-center justify-between'>
-                  <label className='text-white/80 text-[0.95rem]'>Message</label>
+                  <label className='text-[var(--text-secondary)] font-[500] text-[0.95rem]'>Message</label>
                   <span className={`text-[0.85rem] transition-colors ${
                     postForm.message.length >= 500 ? 'text-red-400' : 
                     postForm.message.length >= 450 ? 'text-yellow-400' :
-                    'muted'
+                    'text-[var(--text-muted)]'
                   }`}>
                     {postForm.message.length} / 500
                   </span>
@@ -119,7 +119,7 @@ export const Contact = () => {
                   placeholder='Write your message...'
                   value={postForm.message}
                   rows={6}
-                  className='w-full rounded-xl bg-transparent border border-[var(--border-color)] px-4 py-3 text-[var(--text-white)] placeholder:text-[var(--text-muted)] outline-none focus:border-[var(--border-color)]/50 focus:ring-2 focus:ring-accent/30 resize-none'
+                  className='w-full rounded-xl bg-transparent border border-[var(--border-color)] px-4 py-3 text-[var(--text-white)] placeholder:text-[var(--text-text-[var(--text-muted)])] outline-none focus:border-[var(--border-color)]/50 focus:ring-2 focus:ring-accent/30 resize-none'
                 />
               </motion.div>
 

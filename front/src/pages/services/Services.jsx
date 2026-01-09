@@ -127,7 +127,7 @@ export const Services = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className='rounded-2xl border border-[var(--border-color)] bg-gradient-to-br from-[var(--accent-primary)]/20 to-[var(--bg-accent)]/10 backdrop-blur p-12 text-center'
+          className='rounded-2xl border border-[var(--border-color)] bg-gradient-to-br from-[var(--glass-overlay)] to-transparent backdrop-blur p-12 text-center'
         >
           <h2 className='text-3xl font-[700] text-[var(--text-primary)] mb-4'>Ready to Start Your Project?</h2>
           <p className='text-[var(--text-secondary)] mb-8 max-w-2xl mx-auto'>
@@ -136,7 +136,7 @@ export const Services = () => {
           <div className='flex flex-col sm:flex-row gap-4 justify-center'>
             <a 
               href='/contact'
-              className='px-8 py-3 rounded-xl bg-[var(--accent-primary)] text-[var(--text-primary)] font-[500] hover:bg-[var(--accent-primary-hover)] transition-all duration-300 shadow-lg shadow-[var(--accent-primary)]/30 hover:shadow-[var(--accent-primary)]/50 hover:-translate-y-0.5'
+              className='px-8 py-3 rounded-xl bg-[var(--accent-primary)] get_in_touch_btn text-[var(--text-primary)] font-[500] hover:bg-[var(--accent-primary-hover)] transition-all duration-300 shadow-lg shadow-[var(--accent-primary)]/30 hover:shadow-[var(--accent-primary)]/50 hover:-translate-y-0.5'
             >
               Get In Touch
             </a>

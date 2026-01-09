@@ -50,31 +50,31 @@ export const AdminLogin = () => {
                 <div className='bg-[var(--bg-secondary)] backdrop-blur-md border border-white/10 rounded-2xl p-7 shadow-md'>
                     <div className='mb-7'>
                         <h2 className='text-[var(--text-white)] text-[1.8rem] font-[600] tracking-wide'>Admin Login</h2>
-                        <p className='text-white/70 mt-2 text-[0.95rem]'>Sign in to manage contact messages.</p>
+                        <p className='text-[var(--text-primary)]/70 mt-2 text-[0.95rem]'>Sign in to manage contact messages.</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
                         <div className='flex flex-col gap-2'>
-                            <label className='text-white/80 text-[0.95rem]'>Email</label>
+                            <label className='text-[var(--text-primary)] text-[0.95rem]'>Email</label>
                             <input
                                 type='email'
                                 placeholder='Enter email'
                                 onChange={handleChange}
                                 value={loginForm.email}
                                 name='email'
-                                className='w-full rounded-xl bg-transparent border border-white/15 px-4 py-3 text-[var(--text-white)] placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-[var(--accent-purple)]/40'
+                                className='w-full rounded-xl bg-transparent border border-[var(--text-primary)]/15 px-4 py-3 text-[var(--text-white)] placeholder:text-[var(--text-primary)]/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-[var(--accent-purple)]/40'
                             />
                         </div>
 
                         <div className='flex flex-col gap-2'>
-                            <label className='text-white/80 text-[0.95rem]'>Password</label>
+                            <label className='text-[var(--text-primary)] text-[0.95rem]'>Password</label>
                             <input
                                 type='password'
                                 placeholder='••••••••'
                                 onChange={handleChange}
                                 value={loginForm.password}
                                 name='password'
-                                className='w-full rounded-xl bg-transparent border border-white/15 px-4 py-3 text-[var(--text-white)] placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-[#8E6AFB]/40'
+                                className='w-full rounded-xl bg-transparent border border-[var(--text-primary)]/15 px-4 py-3 text-[var(--text-white)] placeholder:text-[var(--text-primary)]/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-[#8E6AFB]/40'
                             />
                         </div>
 

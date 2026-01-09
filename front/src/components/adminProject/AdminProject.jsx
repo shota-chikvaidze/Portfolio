@@ -163,8 +163,8 @@ export const AdminProject = () => {
 
   if (projectError) {
     return (
-      <main className='min-h-screen px-6 py-10 text-white'>
-        <p className='text-white/80'>Error loading your projects.</p>
+      <main className='min-h-screen px-6 py-10 text-[var(--text-primary)]'>
+        <p className='text-[var(--text-secondary)]'>Error loading your projects.</p>
       </main>
     )
   }
@@ -175,16 +175,16 @@ export const AdminProject = () => {
       <div className='mx-auto w-full max-w-6xl'>
         <div className='mb-6 flex items-center justify-between gap-4'>
           <div>
-            <h1 className='text-2xl text-white/70 font-[600] tracking-tight'>Projects</h1>
-            <p className='mt-1 text-sm text-white/70'>Projects currently listed on your portfolio.</p>
+            <h1 className='text-2xl text-[var(--text-primary)] font-[600] tracking-tight'>Projects</h1>
+            <p className='mt-1 text-sm text-[var(--text-secondary)]'>Projects currently listed on your portfolio.</p>
           </div>
         </div>
 
-        <section className='rounded-2xl border border-white/10 bg-white/5 backdrop-blur'>
-          <div className='border-b border-white/10 px-5 py-4'>
+        <section className='rounded-2xl border border-[var(--border-color)] bg-[var(--glass-overlay)] backdrop-blur'>
+          <div className='border-b border-[var(--border-color)] px-5 py-4'>
             <div className='flex items-center justify-between gap-3'>
-              <h2 className='text-sm font-[600] text-white/90'>Inbox</h2>
-              <span className='text-xs text-white/60'>{projectData.length} total</span>
+              <h2 className='text-sm font-[600] text-[var(--text-primary)]'>Inbox</h2>
+              <span className='text-xs text-[var(--text-muted)]'>{projectData.length} total</span>
             </div>
           </div>
           {projectLoading ? (
@@ -192,12 +192,12 @@ export const AdminProject = () => {
               <Loading />
             </div>
           ) : projectData.length === 0 ? (
-            <div className='px-5 py-10 text-center text-sm text-white/70'>No projects yet.</div>
+            <div className='px-5 py-10 text-center text-sm text-[var(--text-secondary)]'>No projects yet.</div>
           ) : (
             <div className='overflow-x-auto scrollbar-glass max-h-[630px] overflow-y-auto'>
               <table className='w-full min-w-[760px] table-auto borer-separate border-spacing-0 text-left text-sm'>
                 <thead>
-                  <tr className='text-xs uppercase tracking-wider text-white/60'>
+                  <tr className='text-xs uppercase tracking-wider text-[var(--text-muted)]'>
                     <th className='whitespace-nowrap px-5 py-4 font-[600]'>Image</th>
                     <th className='whitespace-nowrap px-5 py-4 font-[600]'>Name</th>
                     <th className='px-5 py-4 font-[600]'>Description</th>
@@ -209,13 +209,13 @@ export const AdminProject = () => {
                   {project.map((pro) => (
                     <tr
                       key={pro._id ?? `${pro.createdAt}`}
-                      className='border-t border-white/10 transition hover:bg-white/5'
+                      className='border-t border-[var(--border-color)] transition hover:bg-[var(--glass-overlay)]'
                     >
-                      <td className='px-5 py-4 align-top font-[600] text-white/90'> 
+                      <td className='px-5 py-4 align-top font-[600] text-[var(--text-primary)]'> 
                         <div>
                           
                             {pro.image.length === 0 ? (
-                              <div className='inline-flex h-[130px] w-[100px] items-center justify-center rounded-xl border border-white/10 bg-white/5 text-xs text-white/60'>
+                              <div className='inline-flex h-[130px] w-[100px] items-center justify-center rounded-xl border border-[var(--border-color)] bg-[var(--glass-overlay)] text-xs text-[var(--text-muted)]'>
                                 No image
                               </div>
                             ) : (
@@ -225,7 +225,7 @@ export const AdminProject = () => {
                                     key={img}
                                     src={img}
                                     alt='Project images'
-                                    className='h-[130px] w-[100px] flex-none rounded-xl border border-white/10 bg-white/5 object-cover'
+                                    className='h-[130px] w-[100px] flex-none rounded-xl border border-[var(--border-color)] bg-[var(--glass-overlay)] object-cover'
                                     loading='lazy'
                                   />
                                 ))}
@@ -234,22 +234,22 @@ export const AdminProject = () => {
                               
                         </div>
                       </td>
-                      <td className='px-5 py-4 align-top font-[600] text-white/90'>
+                      <td className='px-5 py-4 align-top font-[600] text-[var(--text-primary)]'>
                         {pro.title}
                       </td>
-                      <td className='px-5 py-4 align-top text-white/80'>
+                      <td className='px-5 py-4 align-top text-[var(--text-secondary)]'>
                         <div className='max-w-[560px] whitespace-pre-wrap break-words'>
                           {pro.description}
                         </div>
                       </td>
-                      <td className='px-5 py-4 align-top text-white/70'>
+                      <td className='px-5 py-4 align-top text-[var(--text-secondary)]'>
                         {pro.createdAt ? new Date(pro.createdAt).toLocaleString() : '—'}
                       </td>
-                      <td className='px-5 py-4 align-top text-white/70'>
+                      <td className='px-5 py-4 align-top text-[var(--text-secondary)]'>
                         <div className='flex gap-2'>
                           <button
                             type='button'
-                            className='cursor-pointer rounded-md border border-white/10 p-1 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50'
+                            className='cursor-pointer rounded-md border border-[var(--border-color)] p-1 transition hover:bg-[var(--glass-overlay)] disabled:cursor-not-allowed disabled:opacity-50'
                             onClick={() => handleEditClick(pro)}
                             disabled={deleteProjMutation.isPending || updateProjMutation.isPending}
                             aria-label='Edit project'
@@ -258,7 +258,7 @@ export const AdminProject = () => {
                           </button>
                           <button
                             type='button'
-                            className='cursor-pointer rounded-md border border-white/10 p-1 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50'
+                            className='cursor-pointer rounded-md border border-[var(--border-color)] p-1 transition hover:bg-[var(--glass-overlay)] disabled:cursor-not-allowed disabled:opacity-50'
                             onClick={() => {
                               setProjectToDelete(pro)
                               setConfirmDialog(true)
@@ -285,34 +285,34 @@ export const AdminProject = () => {
             setConfirmDialog(false)
             setProjectToDelete(null)
           }}
-          className='flex items-center justify-center fixed h-full w-full top-0 left-0 bg-black/70 z-50'
+          className='flex items-center justify-center fixed h-full w-full top-0 left-0 bg-[var(--modal-overlay)] z-50'
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className=' backdrop-blur border border-white/10 rounded-2xl p-6 w-[450px] max-w-[90vw]'
+            className=' backdrop-blur border border-[var(--border-color)] rounded-2xl p-6 w-[450px] max-w-[90vw]'
           >
             <div className='flex items-start justify-between mb-4'>
               <div>
-                <h2 className='text-white text-xl font-[600] mb-1'>Delete Project</h2>
-                <p className='text-white/60 text-sm'>This action cannot be undone</p>
+                <h2 className='text-[var(--text-primary)] text-xl font-[600] mb-1'>Delete Project</h2>
+                <p className='text-[var(--text-secondary)] text-sm'>This action cannot be undone</p>
               </div>
               <button
                 onClick={() => {
                   setConfirmDialog(false)
                   setProjectToDelete(null)
                 }}
-                className='cursor-pointer text-white/60 hover:text-white transition p-1 rounded-lg hover:bg-white/10'
+                className='cursor-pointer text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition p-1 rounded-lg hover:bg-[var(--glass-overlay)]'
                 aria-label='Close dialog'
               >
                 <RxCross2 className='w-5 h-5' />
               </button>
             </div>
 
-            <div className='mb-6 p-4 rounded-xl bg-white/5 border border-white/10'>
-              <p className='text-white/90 mb-2'>
+            <div className='mb-6 p-4 rounded-xl bg-[var(--glass-overlay)] border border-[var(--border-color)]'>
+              <p className='text-[var(--text-primary)] mb-2'>
                 Are you sure you want to delete <span className='font-[600] bg-[var(--accent)]'>"{projectToDelete.title}"</span>?
               </p>
-              <p className='text-white/60 text-sm'>
+              <p className='text-[var(--text-secondary)] text-sm'>
                 All project data including images will be permanently removed.
               </p>
             </div>
@@ -323,7 +323,7 @@ export const AdminProject = () => {
                   setConfirmDialog(false)
                   setProjectToDelete(null)
                 }}
-                className='px-4 py-2 rounded-lg border border-white/10 bg-white/5 text-white/90 font-[500] transition hover:bg-white/10'
+                className='px-4 py-2 rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] text-[var(--text-primary)] font-[500] transition hover:bg-[var(--glass-overlay)]/50'
                 disabled={deleteProjMutation.isPending}
               >
                 Cancel
@@ -349,47 +349,47 @@ export const AdminProject = () => {
       {editingId !== null && projectPopup && (
         <div 
           onClick={() => setProjectPopup(false)}
-          className='flex items-center justify-center fixed h-full w-full top-0 left-0 bg-black/70 z-50'
+          className='flex items-center justify-center fixed h-full w-full top-0 left-0 bg-[var(--modal-overlay)] z-50'
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className='bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 w-[500px] max-h-[80vh] overflow-y-auto scrollbar-glass'
+            className='bg-[var(--glass-overlay)] backdrop-blur border border-[var(--border-color)] rounded-xl p-6 w-[500px] max-h-[80vh] overflow-y-auto scrollbar-glass'
           >
-            <h2 className='text-white text-xl font-[600] mb-6'>Edit Project</h2>
+            <h2 className='text-[var(--text-primary)] text-xl font-[600] mb-6'>Edit Project</h2>
             
             <div className='mb-4'>
-              <label className='text-white/70 text-sm mb-2 block'>Title</label>
+              <label className='text-[var(--text-secondary)] text-sm mb-2 block'>Title</label>
               <input
                 type='text'
                 value={editForm.title}
                 onChange={(e) => handleInputChange('title', e.target.value)}
-                className='w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                className='w-full rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-3 py-2 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--border-color)] focus:outline-none'
                 placeholder='Project title'
               />
             </div>
 
             <div className='mb-4'>
-              <label className='text-white/70 text-sm mb-2 block'>Description</label>
+              <label className='text-[var(--text-secondary)] text-sm mb-2 block'>Description</label>
               <textarea
                 value={editForm.description}
                 onChange={(e) => handleInputChange('description', e.target.value)}
-                className='w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                className='w-full rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-3 py-2 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--border-color)] focus:outline-none'
                 placeholder='Project description'
                 rows={5}
               />
             </div>
 
             <div className='mb-4'>
-              <label className='text-white/70 text-sm mb-2 block'>Project Images</label>
+              <label className='text-[var(--text-secondary)] text-sm mb-2 block'>Project Images</label>
               
               <input
                 type='file'
                 accept='image/*'
                 multiple
                 onChange={handleFileSelect}
-                className='w-full text-white/70 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-white/10 file:text-white/90 file:cursor-pointer hover:file:bg-white/20'
+                className='w-full text-[var(--text-secondary)] text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-[var(--glass-overlay)] file:text-[var(--text-primary)] file:cursor-pointer hover:file:bg-[var(--glass-overlay)]/50'
               />
-              <p className='text-white/50 text-xs mt-1'>Select one or multiple images from your computer</p>
+              <p className='text-[var(--text-muted)] text-xs mt-1'>Select one or multiple images from your computer</p>
               
               {imagePreviews.length > 0 && (
                 <div className='mt-3 flex flex-wrap gap-2'>
@@ -398,7 +398,7 @@ export const AdminProject = () => {
                       <img
                         src={preview}
                         alt={`Preview ${index + 1}`}
-                        className='h-20 w-20 object-cover rounded-lg border border-white/20'
+                        className='h-20 w-20 object-cover rounded-lg border border-[var(--border-color)]'
                       />
                       <button
                         type='button'
@@ -416,12 +416,12 @@ export const AdminProject = () => {
             </div>
 
             <div className='mb-6'>
-              <label className='text-white/70 text-sm mb-2 block'>GitHub Link</label>
+              <label className='text-[var(--text-secondary)] text-sm mb-2 block'>GitHub Link</label>
               <input
                 type='text'
                 value={editForm.gitLink}
                 onChange={(e) => handleInputChange('gitLink', e.target.value)}
-                className='w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                className='w-full rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-3 py-2 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--border-color)] focus:outline-none'
                 placeholder='Github link'
               />
             </div>
@@ -437,7 +437,7 @@ export const AdminProject = () => {
               
               <button 
                 onClick={handleCancelEdit}  
-                className='bg-white/10 border border-white/10 text-white/90 px-4 py-2 rounded-lg font-[500] transition hover:bg-white/20'
+                className='bg-[var(--glass-overlay)] border border-[var(--border-color)] text-[var(--text-primary)] px-4 py-2 rounded-lg font-[500] transition hover:bg-[var(--glass-overlay)]/50'
               >
                 Cancel
               </button>

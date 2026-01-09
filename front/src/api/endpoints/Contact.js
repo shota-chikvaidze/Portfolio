@@ -17,6 +17,6 @@ export const deleteContact = async (id) => {
 export const getContact = async () => {
 
     const res = await axios.get('/contact/get-contact')
-    return res.data.contact
+    return res.data
 
 }

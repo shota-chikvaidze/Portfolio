@@ -24,7 +24,7 @@ import { useEffect } from 'react'
 
 function App() {
   const location = useLocation()
-  const isAuthenticated = userAuth(s => s.isAuthenticated)
+  const user = userAuth(s => s.user)
   const initTheme = useThemeStore(s => s.initTheme)
 
   useEffect(() => {
@@ -68,7 +68,7 @@ function App() {
         }}
       />
 
-      {!isAuthenticated && (
+      {!user && (
         <>
           <Layout />
 
@@ -86,7 +86,7 @@ function App() {
         </>
       )}
 
-      {isAuthenticated && (
+      {user && (
         <Routes>
           <Route path='/' element={ <SidebarWrapper /> }>
 

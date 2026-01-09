@@ -30,7 +30,7 @@ const Layout = () => {
         <div className='max-w-7xl w-full flex justify-between items-center '>
 
           <div>
-            <h1 onClick={() => navigate('/')} className='cursor-pointer text-[1.8rem] font-[500] text-[var(--text-primary)]'>SH.</h1>
+            <h1 onClick={() => navigate('/')} className='cursor-pointer text-[1.8rem] font-[500] text-[var(--text-primary)]'>SC.</h1>
           </div>
 
           <ul className={`flex items-center gap-2`}>
@@ -95,9 +95,7 @@ const Layout = () => {
         </div>
       </header>
 
-      <div className='h-[70px]'>
-
-      </div>
+      <div className='h-[70px]'></div>
     </>
   )
 }
