@@ -47,9 +47,9 @@ export const AdminLogin = () => {
   return (
         <section className='w-full flex justify-center px-4 py-14 min-h-[calc(100vh-70px)]'>
             <div className='w-full max-w-[440px]'>
-                <div className='bg-[#234C6A] backdrop-blur-md border border-white/10 rounded-2xl p-7 shadow-md'>
+                <div className='bg-[var(--bg-secondary)] backdrop-blur-md border border-white/10 rounded-2xl p-7 shadow-md'>
                     <div className='mb-7'>
-                        <h2 className='text-[#fff] text-[1.8rem] font-[600] tracking-wide'>Admin Login</h2>
+                        <h2 className='text-[var(--text-white)] text-[1.8rem] font-[600] tracking-wide'>Admin Login</h2>
                         <p className='text-white/70 mt-2 text-[0.95rem]'>Sign in to manage contact messages.</p>
                     </div>
 
@@ -62,7 +62,7 @@ export const AdminLogin = () => {
                                 onChange={handleChange}
                                 value={loginForm.email}
                                 name='email'
-                                className='w-full rounded-xl bg-transparent border border-white/15 px-4 py-3 text-[#fff] placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-[#8E6AFB]/40'
+                                className='w-full rounded-xl bg-transparent border border-white/15 px-4 py-3 text-[var(--text-white)] placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-[var(--accent-purple)]/40'
                             />
                         </div>
 
@@ -74,13 +74,13 @@ export const AdminLogin = () => {
                                 onChange={handleChange}
                                 value={loginForm.password}
                                 name='password'
-                                className='w-full rounded-xl bg-transparent border border-white/15 px-4 py-3 text-[#fff] placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-[#8E6AFB]/40'
+                                className='w-full rounded-xl bg-transparent border border-white/15 px-4 py-3 text-[var(--text-white)] placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-[#8E6AFB]/40'
                             />
                         </div>
 
                         <button
                             type='submit'
-                            className='cursor-pointer mt-2 w-full rounded-xl py-3 text-[#E3E3E3] text-[1.05rem] font-[500] bg-[#1B3C53] hover:opacity-90 transition-opacity disabled:opacity-60'
+                            className='cursor-pointer mt-2 w-full rounded-xl py-3 text-[var(--text-primary)] text-[1.05rem] font-[500] bg-[var(--bg-primary)] hover:opacity-90 transition-opacity disabled:opacity-60'
                         >
                             {loginMutation.isPending ? <Loading /> : 'Login'}
                         </button>

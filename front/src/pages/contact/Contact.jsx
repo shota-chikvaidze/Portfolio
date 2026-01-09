@@ -48,7 +48,7 @@ export const Contact = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className='mb-7'
         >
-          <h2 className='text-white text-[2rem] font-[700] tracking-wide'>Contact</h2>
+          <h2 className='text-[var(--text-white)] text-[2rem] font-[700] tracking-wide'>Contact</h2>
           <p className='muted mt-2'>Send a message, or choose another way to connect below.</p>
         </motion.div>
 
@@ -67,7 +67,7 @@ export const Contact = () => {
                   transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
                   className='flex flex-col gap-2'
                 >
-                  <label className='text-white/80 text-[0.95rem]'>Name</label>
+                  <label className='text-[var(--text-secondary)] text-[0.95rem]'>Name</label>
                   <input
                     name='name'
                     type='text'
@@ -75,7 +75,7 @@ export const Contact = () => {
                     onChange={handleChange}
                     value={postForm.name}
                     required
-                    className='w-full rounded-xl bg-transparent border border-white/12 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-accent/30'
+                    className='w-full rounded-xl bg-transparent border border-[var(--border-color)] px-4 py-3 text-[var(--text-white)] placeholder:text-[var(--text-muted)] outline-none focus:border-[var(--border-color)]/50 focus:ring-2 focus:ring-accent/30'
                   />
                 </motion.div>
 
@@ -85,14 +85,14 @@ export const Contact = () => {
                   transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
                   className='flex flex-col gap-2'
                 >
-                  <label className='text-white/80 text-[0.95rem]'>Email</label>
+                  <label className='text-[var(--text-secondary)] text-[0.95rem]'>Email</label>
                   <input
                     name='email'
                     type='email'
                     placeholder='Your email'
                     onChange={handleChange}
                     value={postForm.email}
-                    className='w-full rounded-xl bg-transparent border border-white/12 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-accent/30'
+                    className='w-full rounded-xl bg-transparent border border-[var(--border-color)] px-4 py-3 text-[var(--text-white)] placeholder:text-[var(--text-muted)] outline-none focus:border-[var(--border-color)]/50 focus:ring-2 focus:ring-accent/30'
                   />
                 </motion.div>
               </div>
@@ -119,7 +119,7 @@ export const Contact = () => {
                   placeholder='Write your message...'
                   value={postForm.message}
                   rows={6}
-                  className='w-full rounded-xl bg-transparent border border-white/12 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-accent/30 resize-none'
+                  className='w-full rounded-xl bg-transparent border border-[var(--border-color)] px-4 py-3 text-[var(--text-white)] placeholder:text-[var(--text-muted)] outline-none focus:border-[var(--border-color)]/50 focus:ring-2 focus:ring-accent/30 resize-none'
                 />
               </motion.div>
 
@@ -132,7 +132,7 @@ export const Contact = () => {
                 <button
                   type='submit'
                   disabled={contactMutate.isPending}
-                  className='rounded-xl px-6 py-3 text-white text-[1rem] font-[500] bg-[#456882]/50 cursor-pointer hover:opacity-95 transition-opacity disabled:opacity-60'
+                  className='rounded-xl px-6 py-3 text-[var(--text-primary)] text-[1rem] font-[500] bg-[var(--bg-accent)]/50 cursor-pointer hover:opacity-95 transition-opacity disabled:opacity-60'
                 >
                   {contactMutate.isPending ? 'Sending…' : 'Send message'}
                 </button>

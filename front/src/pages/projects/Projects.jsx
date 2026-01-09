@@ -21,8 +21,8 @@ export const Projects = () => {
   if (isError) {
     return (
       <section className='min-h-[calc(100vh-70px)] w-full flex items-center justify-center px-4 py-14'>
-        <div className='rounded-2xl border border-white/10 bg-white/5 backdrop-blur px-8 py-6'>
-          <p className='text-white/80'>Failed to load projects. Please try again later.</p>
+        <div className='rounded-2xl border border-[var(--border-color)] bg-[var(--glass-overlay)] backdrop-blur px-8 py-6'>
+          <p className='text-[var(--text-secondary)]'>Failed to load projects. Please try again later.</p>
         </div>
       </section>
     )
@@ -38,8 +38,8 @@ export const Projects = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className='mb-10'
           >
-            <h1 className='text-4xl font-[600] tracking-tight text-white'>Projects</h1>
-            <p className='mt-2 text-lg text-white/70'>Explore my recent work and side projects.</p>
+            <h1 className='text-4xl font-[600] tracking-tight text-[var(--text-white)]'>Projects</h1>
+            <p className='mt-2 text-lg text-[var(--text-secondary)]'>Explore my recent work and side projects.</p>
           </motion.div>
 
           {isLoading ? (
@@ -51,9 +51,9 @@ export const Projects = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className='rounded-2xl border border-white/10 bg-white/5 backdrop-blur px-8 py-12 text-center'
+              className='rounded-2xl border border-[var(--border-color)] bg-[var(--glass-overlay)] backdrop-blur px-8 py-12 text-center'
             >
-              <p className='text-white/70'>No projects available yet. Check back soon!</p>
+              <p className='text-[var(--text-secondary)]'>No projects available yet. Check back soon!</p>
             </motion.div>
           ) : (
             <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
@@ -63,7 +63,7 @@ export const Projects = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-                  className='group rounded-2xl border border-white/10 bg-white/5 backdrop-blur transition hover:border-white/20 hover:bg-white/10'
+                  className='group rounded-2xl border border-[var(--border-color)] bg-[var(--glass-overlay)] backdrop-blur transition hover:border-[var(--border-color)]/50 hover:bg-[var(--glass-overlay)]/50'
                 >
                   <div className='overflow-hidden rounded-t-2xl'>
                     {pro.image && pro.image.length > 0 ? (
@@ -74,22 +74,22 @@ export const Projects = () => {
                         loading='lazy'
                       />
                     ) : (
-                      <div className='flex h-[220px] w-full items-center justify-center bg-white/5 text-white/40'>
+                      <div className='flex h-[220px] w-full items-center justify-center bg-[var(--glass-overlay)] text-[var(--text-muted)]'>
                         No image
                       </div>
                     )}
                   </div>
 
                   <div className='p-5'>
-                    <h2 className='mb-2 text-xl font-[600] text-white'>{pro.title}</h2>
-                    <p className='line-clamp-3 text-sm text-white/70'>{pro.description}</p>
-                    <Link to={pro.gitLink} target='_blank' className='mt-3 line-clamp-3 text-sm text-white'  >{pro.gitLink}</Link>
+                    <h2 className='mb-2 text-xl font-[600] text-[var(--text-white)]'>{pro.title}</h2>
+                    <p className='line-clamp-3 text-sm text-[var(--text-secondary)]'>{pro.description}</p>
+                    <Link to={pro.gitLink} target='_blank' className='mt-3 line-clamp-3 text-sm text-[var(--text-white)]'  >{pro.gitLink}</Link>
 
                     {pro.image && pro.image.length > 1 ? (
                       <button
                         type='button'
                         onClick={() => setSelectedProject(pro)}
-                        className='mt-4 cursor-pointer rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-[500] text-white/90 transition hover:bg-white/10'
+                        className='mt-4 cursor-pointer rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-4 py-2 text-sm font-[500] text-[var(--text-secondary)] transition hover:bg-[var(--glass-overlay)]/50'
                       >
                         View all images ({pro.image.length})
                       </button>
@@ -108,12 +108,12 @@ export const Projects = () => {
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
             className='mt-10 text-center'
           >
-            <p className='text-white/70 mb-2'>Want to see more of my work?</p>
+            <p className='text-[var(--text-secondary)] mb-2'>Want to see more of my work?</p>
             <a
               href='https://github.com/shota-chikvaidze'
               target='_blank'
               rel='noopener noreferrer'
-              className='inline-block rounded-lg bg-white/5 border border-white/10 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10'
+              className='inline-block rounded-lg bg-[var(--glass-overlay)] border border-[var(--border-color)] px-5 py-3 text-sm font-medium text-[var(--text-white)] transition hover:bg-[var(--glass-overlay)]/50'
             >
               Check out more on my GitHub
             </a>
@@ -128,7 +128,7 @@ export const Projects = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className='fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm'
+            className='fixed inset-0 z-50 flex items-center justify-center bg-[var(--modal-overlay)] p-4 backdrop-blur-sm'
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
@@ -136,22 +136,22 @@ export const Projects = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className='relative w-full max-w-4xl rounded-2xl border border-white/10 bg-[#1c112d]/95 backdrop-blur'
+              className='relative w-full max-w-4xl rounded-2xl border border-white/10 bg-[var(--bg-dark)]/95 backdrop-blur'
               onClick={(e) => e.stopPropagation()}
             >
-              <div className='flex items-center justify-between border-b border-white/10 px-6 py-4'>
-                <h3 className='text-xl font-[600] text-white'>{selectedProject.title}</h3>
+              <div className='flex items-center justify-between border-b border-[var(--border-color)] px-6 py-4'>
+                <h3 className='text-xl font-[600] text-[var(--text-white)]'>{selectedProject.title}</h3>
                 <button
                   type='button'
                   onClick={() => setSelectedProject(null)}
-                  className='cursor-pointer rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-sm font-[500] text-white/90 transition hover:bg-white/10'
+                  className='cursor-pointer rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-3 py-1 text-sm font-[500] text-[var(--text-secondary)] transition hover:bg-[var(--glass-overlay)]/50'
                 >
                   Close
                 </button>
               </div>
 
               <div className='max-h-[70vh] overflow-y-auto scrollbar-glass p-6'>
-                <p className='mb-6 text-white/80'>{selectedProject.description}</p>
+                <p className='mb-6 text-[var(--text-secondary)]'>{selectedProject.description}</p>
 
                 <div className='grid gap-4 sm:grid-cols-2'>
                   {selectedProject.image.map((img, idx) => (
@@ -162,7 +162,7 @@ export const Projects = () => {
                       transition={{ duration: 0.3, delay: idx * 0.1, ease: "easeOut" }}
                       src={img}
                       alt={`${selectedProject.title} image ${idx + 1}`}
-                      className='w-full rounded-xl border border-white/10 object-cover'
+                      className='w-full rounded-xl border border-[var(--border-color)] object-cover'
                       loading='lazy'
                     />
                   ))}

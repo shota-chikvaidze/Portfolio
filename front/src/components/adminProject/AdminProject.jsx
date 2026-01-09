@@ -310,7 +310,7 @@ export const AdminProject = () => {
 
             <div className='mb-6 p-4 rounded-xl bg-white/5 border border-white/10'>
               <p className='text-white/90 mb-2'>
-                Are you sure you want to delete <span className='font-[600] text-[#8E6AFB]'>"{projectToDelete.title}"</span>?
+                Are you sure you want to delete <span className='font-[600] bg-[var(--accent)]'>"{projectToDelete.title}"</span>?
               </p>
               <p className='text-white/60 text-sm'>
                 All project data including images will be permanently removed.

@@ -32,7 +32,7 @@ export const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-              className='flex gap-4 items-center mb-2 text-[#E3E3E3] text-[2rem]'
+              className='flex gap-4 items-center mb-2 text-[var(--text-primary)] text-[2rem]'
             > 
               Hey there! <MdWavingHand className='wave' /> 
             </motion.p>
@@ -41,9 +41,9 @@ export const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              className='text-[#E3E3E3] text-[3rem] uppercase'
+              className='text-[var(--text-primary)] text-[3rem] uppercase'
             >
-              I'm <span className='text-[#647cd5]'> Shota Chikvaidze </span> 
+              I'm <span className='text-[var(--accent-primary)]'> Shota Chikvaidze </span> 
             </motion.p>
 
             <motion.p 
@@ -61,7 +61,7 @@ export const Home = () => {
                 typeSpeed={70}
                 backSpeed={50}
                 loop
-                className='text-[1.2rem] text-[#E3E3E3]'
+                className='text-[1.2rem] text-[var(--text-primary)]'
               />
             </motion.p>
 
@@ -69,7 +69,7 @@ export const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-              className='text-[#E3E3E3] py-2'
+              className='text-[var(--text-primary)] py-2'
             >
               I build performant, accessible web apps with a focus on clean code, UX and pragmatic architecture. I enjoy crafting apps that scale and are pleasent to work on.
             </motion.p>
@@ -80,8 +80,8 @@ export const Home = () => {
               transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
               className='flex gap-3 py-2'
             >
-              <button onClick={projNavigate} className="w-[140px] h-[35px] rounded-xl bg-[#456882] text-white cursor-pointer text-[15px] border border-transparent hover:bg-transparent hover:border-white/10 transition-all duration-300"> View Projects </button>
-              <button onClick={contNavigate} className='w-[140px] h-[35px] bg-transparent text-[#E3E3E3] rounded-xl border border-white/10 text-[15px] cursor-pointer hover:border-white/40 transition '>Contact</button>
+              <button onClick={projNavigate} className="w-[140px] h-[35px] rounded-xl bg-[var(--bg-accent)] text-[var(--text-primary)] cursor-pointer text-[15px] border border-transparent hover:bg-transparent hover:border-[var(--border-color)] transition-all duration-300"> View Projects </button>
+              <button onClick={contNavigate} className='w-[140px] h-[35px] bg-transparent text-[var(--text-primary)] rounded-xl border border-[var(--border-color)] text-[15px] cursor-pointer hover:border-[var(--border-color)]/50 transition '>Contact</button>
             </motion.div>
 
           </div>
@@ -92,8 +92,8 @@ export const Home = () => {
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
             className='relative group'
           >
-            <div className='absolute -inset-1 bg-gradient-to-r from-[#647cd5] to-[#456882] rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition duration-500 animate-pulse'></div>
-            <div className='relative bg-gradient-to-br from-[#456882] to-[#234C6A] rounded-2xl p-2 shadow-2xl transform hover:scale-105 transition-all duration-500'>
+            <div className='absolute -inset-1 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--bg-accent)] rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition duration-500 animate-pulse'></div>
+            <div className='relative bg-gradient-to-br from-[var(--bg-accent)] to-[var(--bg-secondary)] rounded-2xl p-2 shadow-2xl transform hover:scale-105 transition-all duration-500'>
               <img 
                 src={homeMain} 
                 alt='Coding guy image' 
@@ -117,41 +117,41 @@ export const Home = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className='relative'
             >
-              <div className='absolute inset-0 bg-gradient-to-br from-[#647cd5]/20 to-[#456882]/20 rounded-3xl blur-3xl'></div>
-              <div className='relative bg-gradient-to-br from-[#234C6A]/50 to-[#1B3C53]/50 backdrop-blur border border-white/10 rounded-3xl p-12'>
+              <div className='absolute inset-0 bg-gradient-to-br from-[var(--accent-primary)]/20 to-[var(--bg-accent)]/20 rounded-3xl blur-3xl'></div>
+              <div className='relative bg-gradient-to-br from-[var(--bg-secondary)]/50 to-[var(--bg-primary)]/50 backdrop-blur border border-white/10 rounded-3xl p-12'>
                 <div className='space-y-8'>
                   
                   <div className='flex items-start gap-4'>
-                    <div className='flex-shrink-0 w-14 h-14 rounded-xl border border-[#FFD700]/30 flex items-center justify-center'>
-                      <HiLightningBolt className='text-3xl text-[#FFD700]' />
+                    <div className='flex-shrink-0 w-14 h-14 rounded-xl border border-[var(--color-gold)]/30 flex items-center justify-center'>
+                      <HiLightningBolt className='text-3xl text-[var(--color-gold)]' />
                     </div>
                     <div>
-                      <h5 className='text-xl font-semibold text-[#E3E3E3] mb-2'>Performance First</h5>
-                      <p className='text-[#E3E3E3]/70 text-sm'>Clean, optimized code that scales</p>
+                      <h5 className='text-xl font-semibold text-[var(--text-primary)] mb-2'>Performance First</h5>
+                      <p className='text-[var(--text-primary)]/70 text-sm'>Clean, optimized code that scales</p>
                     </div>
                   </div>
 
                   <div className='h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent'></div>
 
                   <div className='flex items-start gap-4'>
-                    <div className='flex-shrink-0 w-14 h-14 rounded-xl border border-[#FF6B6B]/30 flex items-center justify-center'>
-                      <PiTargetDuotone className='text-3xl text-[#FF6B6B]' />  
+                    <div className='flex-shrink-0 w-14 h-14 rounded-xl border border-[var(--color-coral)]/30 flex items-center justify-center'>
+                      <PiTargetDuotone className='text-3xl text-[var(--color-coral)]' />  
                     </div>
                     <div>
-                      <h5 className='text-xl font-semibold text-[#E3E3E3] mb-2'>Solution Focused</h5>
-                      <p className='text-[#E3E3E3]/70 text-sm'>Turning problems into working products</p>
+                      <h5 className='text-xl font-semibold text-[var(--text-primary)] mb-2'>Solution Focused</h5>
+                      <p className='text-[var(--text-primary)]/70 text-sm'>Turning problems into working products</p>
                     </div>
                   </div>
 
                   <div className='h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent'></div>
 
                   <div className='flex items-start gap-4'>
-                    <div className='flex-shrink-0 w-14 h-14 rounded-xl border border-[#4ECDC4]/30 flex items-center justify-center'>
-                      <FiTrendingUp className='text-3xl text-[#4ECDC4]' />
+                    <div className='flex-shrink-0 w-14 h-14 rounded-xl border border-[var(--color-teal)]/30 flex items-center justify-center'>
+                      <FiTrendingUp className='text-3xl text-[var(--color-teal)]' />
                     </div>
                     <div>
-                      <h5 className='text-xl font-semibold text-[#E3E3E3] mb-2'>Continuous Growth</h5>
-                      <p className='text-[#E3E3E3]/70 text-sm'>Leveling up through daily practice</p>
+                      <h5 className='text-xl font-semibold text-[var(--text-primary)] mb-2'>Continuous Growth</h5>
+                      <p className='text-[var(--text-primary)]/70 text-sm'>Leveling up through daily practice</p>
                     </div>
                   </div>
 
@@ -167,32 +167,32 @@ export const Home = () => {
               className='space-y-6'
             >
               <div>
-                <h4 className='text-4xl md:text-5xl font-bold text-[#E3E3E3] leading-tight'>
+                <h4 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] leading-tight'>
                   Build. Break. <br />
-                  <span className='bg-gradient-to-r from-[#647cd5] to-[#456882] bg-clip-text text-transparent'>
+                  <span className='bg-gradient-to-r from-[var(--accent-primary)] to-[var(--bg-accent)] bg-clip-text text-transparent'>
                     Learn. Repeat.
                   </span>
                 </h4>
               </div>
 
-              <p className='text-lg text-[#E3E3E3]/80 leading-relaxed'>
+              <p className='text-lg text-[var(--text-primary)]/80 leading-relaxed'>
                 That's my approach to development. I focus on creating fast, maintainable web applications 
-                with <span className='text-[#647cd5] font-semibold'>React</span> and <span className='text-[#647cd5] font-semibold'>Node.js</span>, 
+                with <span className='text-[var(--accent-primary)] font-semibold'>React</span> and <span className='text-[var(--accent-primary)] font-semibold'>Node.js</span>, 
                 constantly improving my craft through real projects and daily practice.
               </p>
 
               <div className='flex flex-wrap gap-4 pt-4'>
-                <div className='flex items-center gap-2 px-4 py-2 rounded-lg bg-[#234C6A]/30 border border-white/10 tranistion duration-300 hover:-translate-y-2'>
-                  <div className='w-2 h-2 rounded-full bg-[#647cd5] animate-pulse'></div>
-                  <span className='text-sm text-[#E3E3E3]/80'>MERN Stack</span>
+                <div className='flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--bg-secondary)]/30 border border-white/10 tranistion duration-300 hover:-translate-y-2'>
+                  <div className='w-2 h-2 rounded-full bg-[var(--accent-primary)] animate-pulse'></div>
+                  <span className='text-sm text-[var(--text-primary)]/80'>MERN Stack</span>
                 </div>
-                <div className='flex items-center gap-2 px-4 py-2 rounded-lg bg-[#234C6A]/30 border border-white/10 tranistion duration-300 hover:-translate-y-2'>
-                  <div className='w-2 h-2 rounded-full bg-[#647cd5] animate-pulse'></div>
-                  <span className='text-sm text-[#E3E3E3]/80'>Full Stack</span>
+                <div className='flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--bg-secondary)]/30 border border-white/10 tranistion duration-300 hover:-translate-y-2'>
+                  <div className='w-2 h-2 rounded-full bg-[var(--accent-primary)] animate-pulse'></div>
+                  <span className='text-sm text-[var(--text-primary)]/80'>Full Stack</span>
                 </div>
-                <div className='flex items-center gap-2 px-4 py-2 rounded-lg bg-[#234C6A]/30 border border-white/10 tranistion duration-300 hover:-translate-y-2'>
-                  <div className='w-2 h-2 rounded-full bg-[#647cd5] animate-pulse'></div>
-                  <span className='text-sm text-[#E3E3E3]/80'>Always Learning</span>
+                <div className='flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--bg-secondary)]/30 border border-white/10 tranistion duration-300 hover:-translate-y-2'>
+                  <div className='w-2 h-2 rounded-full bg-[var(--accent-primary)] animate-pulse'></div>
+                  <span className='text-sm text-[var(--text-primary)]/80'>Always Learning</span>
                 </div>
               </div>
             </motion.div>
@@ -211,7 +211,7 @@ export const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className='text-2xl font-semibold text-slate-100 mb-7'
+            className='text-2xl font-semibold text-[var(--text-primary)] mb-7'
           >
             Main Skills
           </motion.h3>
@@ -223,11 +223,11 @@ export const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-                className="cursor-pointer relative overflow-hidden flex items-center gap-4 rounded-xl bg-[#234C6A] border border-white/10 p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 before:absolute before:inset-0 before:bg-[#456882]/20 before:transition-transform before:duration-300 before:translate-y-0 hover:before:-translate-y-full before:z-0 ">
+                className="cursor-pointer relative overflow-hidden flex items-center gap-4 rounded-xl bg-[var(--bg-secondary)] border border-white/10 p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 before:absolute before:inset-0 before:bg-[var(--bg-accent)]/20 before:transition-transform before:duration-300 before:translate-y-0 hover:before:-translate-y-full before:z-0 ">
                 <div className='flex-shrink-0'>{skill.icon}</div>
                 <div>
-                  <div className='font-semibold text-slate-100'>{skill.name}</div>
-                  <div className='text-sm text-slate-300 mt-1'>{skill.desc}</div>
+                  <div className='font-semibold text-[var(--text-primary)]'>{skill.name}</div>
+                  <div className='text-sm text-[var(--text-secondary)] mt-1'>{skill.desc}</div>
                 </div>
               </motion.div>
             ))}

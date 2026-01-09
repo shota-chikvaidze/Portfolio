@@ -1,4 +1,4 @@
-import { FaReact, FaNodeJs, FaGitAlt, FaDatabase } from 'react-icons/fa'
+import { FaReact, FaNodeJs, FaGitAlt } from 'react-icons/fa'
 import { SiMongodb, SiExpress, SiTailwindcss, SiJavascript, SiTypescript } from 'react-icons/si'
 
 const Tech = [

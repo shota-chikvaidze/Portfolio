@@ -11,6 +11,7 @@ import Layout from './layout/Layout'
 import Footer from './layout/Footer'
 
 import { userAuth } from './store/UserAuth'
+import { useThemeStore } from './store/ThemeStore'
 import { useCurrentUser } from './hooks/UseCurrentUser'
 import { Dashboard } from './components/dashboard/Dashboard'
 import { AdminContact } from './components/adminContact/AdminContact'
@@ -19,10 +20,16 @@ import PostProject from './components/postProject/PostProject'
 import SidebarWrapper from './components/sidebarWrapper/SidebarWrapper'
 
 import { MainLoading } from './components/loading/Loading'
+import { useEffect } from 'react'
 
 function App() {
   const location = useLocation()
   const isAuthenticated = userAuth(s => s.isAuthenticated)
+  const initTheme = useThemeStore(s => s.initTheme)
+
+  useEffect(() => {
+    initTheme()
+  }, [initTheme])
 
   const publicRoutes = ['/admin-login', '/login', '/', '/about', '/contact', '/projects', '/services']
   const isPublicRoute = publicRoutes.includes(location.pathname)

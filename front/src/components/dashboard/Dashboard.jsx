@@ -73,9 +73,8 @@ export const Dashboard = () => {
           </div>
         </div>
 
-        {/* Recent Contacts & Projects Side by Side */}
         <div className='grid gap-6 lg:grid-cols-2'>
-          {/* Recent Contacts */}
+
           <section className='rounded-2xl border border-white/10 bg-white/5 backdrop-blur'>
             <div className='border-b border-white/10 px-5 py-4'>
               <div className='flex items-center justify-between'>
@@ -113,7 +112,6 @@ export const Dashboard = () => {
             </div>
           </section>
 
-          {/* Recent Projects */}
           <section className='rounded-2xl border border-white/10 bg-white/5 backdrop-blur'>
             <div className='border-b border-white/10 px-5 py-4'>
               <div className='flex items-center justify-between'>

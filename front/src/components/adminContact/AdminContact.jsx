@@ -137,7 +137,7 @@ export const AdminContact = () => {
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className='bg-[#1c112d]/95 backdrop-blur border border-white/10 rounded-2xl p-6 w-[450px] max-w-[90vw]'
+            className='bg-[var(--bg-dark)]/95 backdrop-blur border border-white/10 rounded-2xl p-6 w-[450px] max-w-[90vw]'
           >
             <div className='flex items-start justify-between mb-4'>
               <div>
@@ -158,7 +158,7 @@ export const AdminContact = () => {
 
             <div className='mb-6 p-4 rounded-xl bg-white/5 border border-white/10'>
               <p className='text-white/90 mb-2'>
-                Are you sure you want to delete <span className='font-[600] text-[#8E6AFB]'>"{contactToDelete.name}"</span>?
+                Are you sure you want to delete <span className='font-[600] bg-[var(--accent)]'>"{contactToDelete.name}"</span>?
               </p>
               <p className='text-white/60 text-sm'>
                 All project data including images will be permanently removed.
