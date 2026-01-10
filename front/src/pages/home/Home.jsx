@@ -114,8 +114,7 @@ export const Home = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className='relative'
             >
-              <div className='absolute inset-0 bg-gradient-to-br from-[var(--accent-primary)]/20 to-[var(--bg-accent)]/20 rounded-3xl blur-3xl'></div>
-              <div className='relative bg-gradient-to-br from-[var(--bg-secondary)]/50 to-[var(--bg-primary)]/50 backdrop-blur border border-white/10 rounded-3xl p-12'>
+              <div className='relative bg-gradient-to-br from-[var(--bg-secondary)]/25 to-[var(--bg-primary)]/25 backdrop-blur border border-white/10 rounded-3xl p-12'>
                 <div className='space-y-8'>
                   
                   <div className='flex items-start gap-4'>
