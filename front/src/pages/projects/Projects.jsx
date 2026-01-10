@@ -151,7 +151,7 @@ export const Projects = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className='relative w-full max-w-4xl rounded-2xl border border-white/10 bg-[var(--bg-dark)]/95 backdrop-blur'
+              className='relative w-full max-w-4xl rounded-2xl border border-white/10 bg-[var(--bg-primary)]/65 backdrop-blur'
               onClick={(e) => e.stopPropagation()}
             >
               <div className='flex items-center justify-between border-b border-[var(--border-color)] px-6 py-4'>

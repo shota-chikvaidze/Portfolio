@@ -109,7 +109,6 @@ export const AdminContact = () => {
                         <button
                           type='button'
                           className='cursor-pointer rounded-md border border-[var(--border-color)] p-1 transition hover:bg-[var(--glass-overlay)] disabled:cursor-not-allowed disabled:opacity-50'
-                          // onClick={() => handleDelete(con._id)}
                           onClick={() => {
                             setContactToDelete(con)
                             setConfirmDialog(true)
@@ -139,7 +138,7 @@ export const AdminContact = () => {
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className='bg-[var(--bg-dark)]/95 backdrop-blur border border-[var(--border-color)] rounded-2xl p-6 w-[450px] max-w-[90vw]'
+            className='bg-[var(--bg-primary)]/65 backdrop-blur border border-[var(--border-color)] rounded-2xl p-6 w-[450px] max-w-[90vw]'
           >
             <div className='flex items-start justify-between mb-4'>
               <div>

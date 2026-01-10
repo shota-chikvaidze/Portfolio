@@ -87,7 +87,7 @@ export const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className='text-2xl font-[600] text-[var(--text-white)] text-right mb-8'
+              className='text-2xl font-[600] text-[var(--text-white)] text-left md:text-right mb-8'
             >
               Tech Stack
             </motion.h2>

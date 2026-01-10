@@ -4,20 +4,24 @@ export const userAuth = create((set) => ({
     user: null,
     isAuthenticated: false,
     isLoading: true,
+    hasCheckedAuth: false, 
 
     setAuth: (user) => 
         set({
             user,
             isAuthenticated: true,
-            isLoading: false
+            isLoading: false,
+            hasCheckedAuth: true 
         }),
 
     clearAuth: () => 
-        set({
+        set( {
             user: null,
             isAuthenticated: false,
-            isLoading: false
+            isLoading: false,
+            hasCheckedAuth: true
         }),
+
 
     setLoading: (isLoading) => set({ isLoading }),
 }))

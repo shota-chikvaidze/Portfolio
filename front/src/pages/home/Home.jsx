@@ -17,16 +17,12 @@ export const Home = () => {
     navigate('/projects')
   }
 
-  const contNavigate = () => {
-    navigate('/contact')
-  }
-
   return (
-    <div className='p-[20px] lg:p-[0]'>
-      <section className='w-full h-100 flex items-center justify-center min-h-[650px] px-[20px] lg:px-[20px] '>
-        <div className='flex items-center justify-between w-full max-w-7xl flex-col md:flex-row'>
+    <div className=''>
+      <section className='w-full h-auto flex items-center justify-center my-[70px]'>
+        <div className='flex items-center justify-between w-full max-w-7xl flex-col gap-[20px] md:flex-row px-6 lg:px-2'>
 
-          <div className='max-w-2xl'>
+          <div className='lg:max-w-2xl w-full'>
 
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -41,7 +37,7 @@ export const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              className='text-[var(--text-primary)] text-[3rem] uppercase'
+              className='text-[var(--text-primary)] text-[2.4rem] lg:text-[3rem] uppercase'
             >
               I'm <span className='text-[var(--accent-primary)]'> Shota Chikvaidze </span> 
             </motion.p>
@@ -100,7 +96,7 @@ export const Home = () => {
               <img 
                 src={homeMain} 
                 alt='Coding guy image' 
-                className='w-[430px] mf rounded-2xl h-auto  transition-shadow duration-300' 
+                className='w-full h-auto  object-cover md:w-[430px] md:h-auto rounded-2xl transition-shadow duration-300' 
               />
             </div>
           </motion.div>
@@ -109,9 +105,7 @@ export const Home = () => {
       </section>
 
       <section className='w-full py-20 flex justify-center'>
-        <div className='w-full max-w-7xl'>
-
-          <div className='grid md:grid-cols-2 gap-16 items-center'>
+        <div className='w-full max-w-7xl px-4 md:px-0 grid md:grid-cols-2 gap-16 items-center'>
 
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -200,15 +194,11 @@ export const Home = () => {
               </div>
             </motion.div>
 
-            
-
-          </div>
-
         </div>
       </section>
 
       <section className='w-full py-10'>
-        <div className='max-w-7xl mx-auto px-4'>
+        <div className='max-w-7xl mx-auto px-4 md:px-0'>
           <motion.h3 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

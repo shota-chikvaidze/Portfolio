@@ -19,8 +19,9 @@ instance.interceptors.response.use(
 
         const { status } = error.response
         const url = error.config?.url || ''
+        const currentPath = window.location.pathname
 
-        if (status === 401 && !url.includes('/login')) {
+        if (status === 401 && !url.includes('/login') && !url.includes('/user/me') && currentPath !== '/admin-login') {
             const clearAuth = userAuth.getState().clearAuth
             clearAuth()
             window.location.href = '/admin-login'

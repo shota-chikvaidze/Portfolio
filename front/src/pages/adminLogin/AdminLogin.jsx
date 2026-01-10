@@ -4,6 +4,8 @@ import { useMutation } from '@tanstack/react-query'
 import { userAuth } from '../../store/UserAuth'
 import toast from 'react-hot-toast'
 import { Loading } from '../../components/loading/Loading'
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
 
 export const AdminLogin = () => {
 
@@ -11,6 +13,7 @@ export const AdminLogin = () => {
         email: '',
         password: ''
     })
+    const [showPass, setShowPass] = useState(false)
     const setAuth = userAuth((s) => s.setAuth)
 
     const handleChange = (e) => {
@@ -70,10 +73,14 @@ export const AdminLogin = () => {
                             <label className='text-[var(--text-primary)] text-[0.95rem]'>Password</label>
                             <input
                                 type='password'
-                                placeholder='••••••••'
+                                placeholder='Enter password'
                                 onChange={handleChange}
                                 value={loginForm.password}
                                 name='password'
+                                autoComplete="new-password"
+                                autoCorrect="off"
+                                autoCapitalize="off"
+                                spellCheck="false"
                                 className='w-full rounded-xl bg-transparent border border-[var(--text-primary)]/15 px-4 py-3 text-[var(--text-white)] placeholder:text-[var(--text-primary)]/40 outline-none focus:border-white/30 focus:ring-2 focus:ring-[#8E6AFB]/40'
                             />
                         </div>

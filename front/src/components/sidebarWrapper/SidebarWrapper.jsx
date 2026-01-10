@@ -41,19 +41,19 @@ const SidebarWrapper = () => {
         <div className='relative border-r border-[var(--border-color)] bg-[var(--glass-overlay)] backdrop-blur flex flex-col justify-between p-[12px] w-[220px]  '>
 
           <div className='flex flex-col gap-2'>
-            <NavLink to="dashboard" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
+            <NavLink to="/" end className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
               Dashboard
             </NavLink>
 
-            <NavLink to="contacts" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
+            <NavLink to="/contacts" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
               Contacts
             </NavLink>
             
-            <NavLink to="projects" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
+            <NavLink to="/projects" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
               Projects
             </NavLink>
 
-            <NavLink to="add-project" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
+            <NavLink to="/add-project" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
               Post project
             </NavLink>
           </div>

@@ -15,23 +15,29 @@ export const useCurrentUser = (skipCheck = false) => {
     queryFn: () => User(),
     enabled: !skipCheck,
     retry: false,
-    staleTime: 1000 * 60 * 5,
-
-    onSuccess: (data) => {
-      setAuth(data)
-    },
-
-    onError: () => {
-      clearAuth()
-    },
+    staleTime: Infinity,
+    gcTime: 1000 * 60 * 5,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
   })
+
   useEffect(() => {
     if (skipCheck) {
       setLoading(false)
-    } else {
-      setLoading(query.isLoading)
+      return
     }
-  }, [query.isLoading, setLoading, skipCheck])
+
+    if (query.isLoading) {
+      setLoading(true)
+    }else if (query.isSuccess && query.data) {
+      setAuth(query.data)
+      setLoading(false)
+    }else if (query.isError) {
+      clearAuth()
+      setLoading(false)
+    }
+  }, [query.isLoading, query.isSuccess, query.isError, query.data, setAuth, clearAuth, setLoading, skipCheck])
 
   return query
 }

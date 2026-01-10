@@ -26,17 +26,21 @@ function App() {
   const location = useLocation()
   const user = userAuth(s => s.user)
   const initTheme = useThemeStore(s => s.initTheme)
+  const hasCheckedAuth = userAuth(s => s.hasCheckedAuth)
+
 
   useEffect(() => {
     initTheme()
   }, [initTheme])
 
+
   const publicRoutes = ['/admin-login', '/login', '/', '/about', '/contact', '/projects', '/services']
   const isPublicRoute = publicRoutes.includes(location.pathname)
 
-  const { isLoading } = useCurrentUser(isPublicRoute)
+  const shouldSkipCheck = location.pathname === '/admin-login' || (isPublicRoute && hasCheckedAuth)
+  const { isLoading } = useCurrentUser(shouldSkipCheck)
 
-  if(isLoading && !isPublicRoute){
+  if(isLoading){
     return <MainLoading />
   }
 
@@ -47,8 +51,8 @@ function App() {
         toastOptions={{
           duration: 4000,
           style: {
-            background: '#1c112d',
-            color: '#fff',
+            background: 'var(--bg-primary)',
+            color: 'var(--text-primary)',
             border: '1px solid rgba(255, 255, 255, 0.1)',
             borderRadius: '12px',
             padding: '16px',
@@ -91,14 +95,13 @@ function App() {
           <Route path='/' element={ <SidebarWrapper /> }>
 
             <Route index element={ <Dashboard /> } />
-            <Route path='dashboard' element={ <Dashboard /> } />
             <Route path='contacts' element={ <AdminContact /> } />
             <Route path='projects' element={ <AdminProject /> } />
             <Route path='add-project' element={ <PostProject /> } />
 
           </Route>
 
-          <Route path='*' element={ <Navigate to={'/dashboard'} /> } />
+          <Route path='*' element={ <Navigate to={'/'} /> } />
         </Routes>
       )}
 

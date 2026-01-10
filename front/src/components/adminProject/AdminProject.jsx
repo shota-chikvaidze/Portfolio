@@ -289,7 +289,7 @@ export const AdminProject = () => {
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className=' backdrop-blur border border-[var(--border-color)] rounded-2xl p-6 w-[450px] max-w-[90vw]'
+            className='bg-[var(--bg-primary)]/65 backdrop-blur border border-[var(--border-color)] rounded-2xl p-6 w-[450px] max-w-[90vw]'
           >
             <div className='flex items-start justify-between mb-4'>
               <div>
