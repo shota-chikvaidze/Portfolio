@@ -7,13 +7,11 @@ import { useEffect } from 'react'
 export const useCurrentUser = (skipCheck = false) => {
   const setAuth = userAuth((s) => s.setAuth)
   const clearAuth = userAuth((s) => s.clearAuth)
-  const setLoading = userAuth((s) => s.setLoading)
 
 
   const query = useQuery({
     queryKey: ['currentUser'],
     queryFn: () => User(),
-    enabled: !skipCheck,
     retry: false,
     staleTime: 1000 * 60 * 5,
 
@@ -25,13 +23,7 @@ export const useCurrentUser = (skipCheck = false) => {
       clearAuth()
     },
   })
-  useEffect(() => {
-    if (skipCheck) {
-      setLoading(false)
-    } else {
-      setLoading(query.isLoading)
-    }
-  }, [query.isLoading, setLoading, skipCheck])
+
 
   return query
 }

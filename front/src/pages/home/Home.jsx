@@ -22,9 +22,9 @@ export const Home = () => {
   }
 
   return (
-    <>
-      <section className='w-full h-100 flex items-center justify-center min-h-[650px] '>
-        <div className='flex items-center justify-between w-full max-w-7xl'>
+    <div className='p-[20px] lg:p-[0]'>
+      <section className='w-full h-100 flex items-center justify-center min-h-[650px] px-[20px] lg:px-[20px] '>
+        <div className='flex items-center justify-between w-full max-w-7xl flex-col md:flex-row'>
 
           <div className='max-w-2xl'>
 
@@ -81,7 +81,10 @@ export const Home = () => {
               className='flex gap-3 py-2'
             >
               <button onClick={projNavigate} className="w-[140px] h-[35px] rounded-xl bg-[var(--bg-accent)] text-[var(--text-primary)] cursor-pointer text-[15px] border border-transparent hover:bg-transparent hover:border-[var(--border-color)] transition-all duration-300"> View Projects </button>
-              <button onClick={contNavigate} className='w-[140px] h-[35px] bg-transparent text-[var(--text-primary)] rounded-xl border border-[var(--border-color)] text-[15px] cursor-pointer hover:border-[var(--border-color)]/50 transition '>Contact</button>
+              <button className="w-[140px] h-[35px] bg-transparent text-[var(--text-primary)] rounded-xl border border-[var(--border-color)] text-[15px] cursor-pointer hover:border-[var(--border-color)]/50 transition "> 
+                <a href='/CV.pdf' download > Download CV </a>
+              </button>
+              
             </motion.div>
 
           </div>
@@ -97,7 +100,7 @@ export const Home = () => {
               <img 
                 src={homeMain} 
                 alt='Coding guy image' 
-                className='w-[430px] rounded-2xl h-auto  transition-shadow duration-300' 
+                className='w-[430px] mf rounded-2xl h-auto  transition-shadow duration-300' 
               />
             </div>
           </motion.div>
@@ -235,6 +238,6 @@ export const Home = () => {
         </div>
       </section>
 
-    </>
+    </div>
   )
 }
