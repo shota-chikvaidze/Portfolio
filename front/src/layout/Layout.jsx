@@ -9,12 +9,14 @@ import { MdOutlineMiscellaneousServices } from "react-icons/md";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import ThemeToggle from '../components/themeToggle/ThemeToggle';
+import { useThemeStore } from '../store/ThemeStore';
 
 const Layout = () => {
 
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const navigate = useNavigate()
+  const theme = useThemeStore((state) => state.theme)
 
   useEffect(() => {
 
@@ -29,6 +31,18 @@ const Layout = () => {
 
   return (
     <>
+    
+      {theme === 'dark' && (
+        <div className='fixed inset-0 pointer-events-none z-[-1]'>
+          <div 
+            className='absolute inset-0'
+            style={{
+              background: 'linear-gradient(to bottom right, #1c112d, #19374c, #1c112d)'
+            }}
+          ></div>
+        </div>
+      )}
+
       <header className={`flex justify-center fixed z-40 top-0 left-0 w-full h-[70px] transition-all duration-300 ${isScrolled ? 'bg-[var(--bg-header-scroll)]/30 backdrop-blur-md shadow-md' : 'bg-transparent'}`} >
         <div className='max-w-7xl w-full flex justify-between items-center px-[20px] lg:px-0'>
 
