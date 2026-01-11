@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import homeMain from '../../assets/images/newImage.jpg'
 import { MdWavingHand } from "react-icons/md";
 import { ReactTyped } from "react-typed";
@@ -16,6 +16,11 @@ export const Home = () => {
   const projNavigate = () => {
     navigate('/projects')
   }
+
+  
+  useEffect(() => {
+    window.history.scrollRestoration = 'manual'
+  }, [])
 
   return (
     <div className=''>
