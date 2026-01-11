@@ -30,7 +30,7 @@ export const Home = () => {
               transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
               className='flex gap-4 items-center mb-2 text-[var(--text-primary)] text-[2rem]'
             > 
-              Hey there! <MdWavingHand className='wave' /> 
+              Hey there! 
             </motion.p>
 
             <motion.p 
@@ -54,8 +54,8 @@ export const Home = () => {
                   "React Front-End Specialist",
                   "Node.js and Express Back-End Builder"
                 ]}
-                typeSpeed={70}
-                backSpeed={50}
+                typeSpeed={55}
+                backSpeed={30}
                 loop
                 className='text-[1.2rem] text-[var(--text-primary)]'
               />
@@ -67,7 +67,7 @@ export const Home = () => {
               transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
               className='text-[var(--text-primary)] py-2'
             >
-              I build performant, accessible web apps with a focus on clean code, UX and pragmatic architecture. I enjoy crafting apps that scale and are pleasent to work on.
+              I'm a web developer based in Georgia with over two years of experience building clean, efficient web applications using React and Node.js, focused on performance, structure, and continuous improvement.
             </motion.p>
 
             <motion.div 
@@ -112,46 +112,21 @@ export const Home = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className='relative'
+              className='space-y-8'
             >
-              <div className='relative bg-gradient-to-br from-[var(--bg-secondary)]/25 to-[var(--bg-primary)]/25 backdrop-blur border border-white/10 rounded-3xl p-12'>
-                <div className='space-y-8'>
-                  
-                  <div className='flex items-start gap-4'>
-                    <div className='flex-shrink-0 w-14 h-14 rounded-xl border border-[var(--color-gold)]/30 flex items-center justify-center'>
-                      <HiLightningBolt className='text-3xl text-[var(--color-gold)]' />
-                    </div>
-                    <div>
-                      <h5 className='text-xl font-semibold text-[var(--text-primary)] mb-2'>Performance First</h5>
-                      <p className='text-[var(--text-primary)]/70 text-sm'>Clean, optimized code that scales</p>
-                    </div>
-                  </div>
+              <div className='border-l-4 border-[var(--accent-primary)] pl-6 py-3'>
+                <h5 className='text-2xl font-semibold text-[var(--text-primary)] mb-3'>Performance First</h5>
+                <p className='text-[var(--text-secondary)] text-lg'>Clean, optimized code that scales</p>
+              </div>
 
-                  <div className='h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent'></div>
+              <div className='border-l-4 border-[var(--accent-primary)] pl-6 py-3'>
+                <h5 className='text-2xl font-semibold text-[var(--text-primary)] mb-3'>Solution Focused</h5>
+                <p className='text-[var(--text-secondary)] text-lg'>Turning problems into working products</p>
+              </div>
 
-                  <div className='flex items-start gap-4'>
-                    <div className='flex-shrink-0 w-14 h-14 rounded-xl border border-[var(--color-coral)]/30 flex items-center justify-center'>
-                      <PiTargetDuotone className='text-3xl text-[var(--color-coral)]' />  
-                    </div>
-                    <div>
-                      <h5 className='text-xl font-semibold text-[var(--text-primary)] mb-2'>Solution Focused</h5>
-                      <p className='text-[var(--text-primary)]/70 text-sm'>Turning problems into working products</p>
-                    </div>
-                  </div>
-
-                  <div className='h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent'></div>
-
-                  <div className='flex items-start gap-4'>
-                    <div className='flex-shrink-0 w-14 h-14 rounded-xl border border-[var(--color-teal)]/30 flex items-center justify-center'>
-                      <FiTrendingUp className='text-3xl text-[var(--color-teal)]' />
-                    </div>
-                    <div>
-                      <h5 className='text-xl font-semibold text-[var(--text-primary)] mb-2'>Continuous Growth</h5>
-                      <p className='text-[var(--text-primary)]/70 text-sm'>Leveling up through daily practice</p>
-                    </div>
-                  </div>
-
-                </div>
+              <div className='border-l-4 border-[var(--accent-primary)] pl-6 py-3'>
+                <h5 className='text-2xl font-semibold text-[var(--text-primary)] mb-3'>Continuous Growth</h5>
+                <p className='text-[var(--text-secondary)] text-lg'>Leveling up through daily practice</p>
               </div>
             </motion.div>
             
@@ -163,18 +138,17 @@ export const Home = () => {
               className='space-y-6'
             >
               <div>
-                <h4 className='text-4xl md:text-5xl font-bold text-[var(--text-primary)] leading-tight'>
-                  Build. Break. <br />
-                  <span className='bg-gradient-to-r from-[var(--accent-primary)] to-[var(--bg-accent)] bg-clip-text text-transparent'>
-                    Learn. Repeat.
+                <h4 className='text-3xl md:text-[40px] font-bold text-[var(--text-primary)] leading-tight'>
+                  Building Web Apps <br />
+                  <span className='bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-primary-hover)] bg-clip-text text-transparent'>
+                    That Work.
                   </span>
                 </h4>
               </div>
 
               <p className='text-lg text-[var(--text-primary)]/80 leading-relaxed'>
-                That's my approach to development. I focus on creating fast, maintainable web applications 
-                with <span className='text-[var(--accent-primary)] font-semibold'>React</span> and <span className='text-[var(--accent-primary)] font-semibold'>Node.js</span>, 
-                constantly improving my craft through real projects and daily practice.
+                I specialize in full-stack development with the MERN stack. 
+                My focus is writing clean code, building reliable systems, and solving real problems with practical solutions.
               </p>
 
               <div className='flex flex-wrap gap-4 pt-4'>
