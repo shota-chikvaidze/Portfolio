@@ -95,7 +95,7 @@ export const Home = () => {
             <div className='relative bg-gradient-to-br from-[var(--bg-accent)] to-[var(--bg-secondary)] rounded-2xl p-2 shadow-2xl transform hover:scale-105 transition-all duration-500'>
               <img 
                 src={homeMain} 
-                alt='Coding guy image' 
+                alt='Home image' 
                 className='w-full h-auto  object-cover md:w-[430px] md:h-auto rounded-2xl transition-shadow duration-300' 
               />
             </div>
@@ -110,7 +110,7 @@ export const Home = () => {
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               className='space-y-8'
             >
@@ -133,7 +133,7 @@ export const Home = () => {
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               className='space-y-6'
             >
