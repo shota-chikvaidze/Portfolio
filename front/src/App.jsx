@@ -40,9 +40,7 @@ function App() {
   const shouldSkipCheck = location.pathname === '/admin-login' || (isPublicRoute && hasCheckedAuth)
   const { isLoading } = useCurrentUser(shouldSkipCheck)
 
-  if(isLoading){
-    return <MainLoading />
-  }
+
 
   return (
     <>

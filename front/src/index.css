@@ -138,8 +138,12 @@
 }
 
 body {
-  background-color: var(--bg-primary);
-  transition: background-color 0.3s ease;
+  background: linear-gradient(to bottom right, #1c112d, #19374c, #1c112d);
+  transition: background 0.3s ease;
+}
+
+.light body {
+  background: var(--bg-primary);
 }
 
 .light .get_in_touch_btn {
