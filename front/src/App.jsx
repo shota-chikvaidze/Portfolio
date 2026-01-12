@@ -2,7 +2,6 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { Navigate } from 'react-router-dom'
 import { Home } from './pages/home/Home'
-import { About } from './pages/about/About'
 import { Contact } from './pages/contact/Contact'
 import { AdminLogin } from './pages/adminLogin/AdminLogin'
 import { Projects } from './pages/projects/Projects'
@@ -18,7 +17,6 @@ import { AdminProject } from './components/adminProject/AdminProject'
 import PostProject from './components/postProject/PostProject'
 import SidebarWrapper from './components/sidebarWrapper/SidebarWrapper'
 
-import { MainLoading } from './components/loading/Loading'
 import { useEffect } from 'react'
 
 function App() {
@@ -33,11 +31,10 @@ function App() {
   }, [initTheme])
 
 
-  const publicRoutes = ['/admin-login', '/login', '/', '/about', '/contact', '/projects']
+  const publicRoutes = ['/admin-login', '/login', '/', '', '/contact', '/projects']
   const isPublicRoute = publicRoutes.includes(location.pathname)
 
   const shouldSkipCheck = location.pathname === '/admin-login' || (isPublicRoute && hasCheckedAuth)
-  const { isLoading } = useCurrentUser(shouldSkipCheck)
 
 
 
@@ -75,7 +72,6 @@ function App() {
 
           <Routes>
             <Route path='/' element={ <Home /> } />
-            <Route path='/about' element={ <About /> } />
             <Route path='/contact' element={ <Contact /> } />
             <Route path='/admin-login' element={ <AdminLogin /> } />
             <Route path='/projects' element={ <Projects /> } />

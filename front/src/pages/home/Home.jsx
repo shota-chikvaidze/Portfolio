@@ -1,13 +1,10 @@
 import React, { useEffect } from 'react'
 import homeMain from '../../assets/images/newImage.jpg'
-import { MdWavingHand } from "react-icons/md";
 import { ReactTyped } from "react-typed";
 import { useNavigate } from 'react-router-dom'
 import Skills from '../../data/Skills';
 import { motion } from 'framer-motion';
-import { HiLightningBolt } from "react-icons/hi";
-import { PiTargetDuotone } from "react-icons/pi";
-import { FiTrendingUp } from "react-icons/fi";
+import Tech from '../../data/Tech'
 
 export const Home = () => {
 
@@ -106,6 +103,121 @@ export const Home = () => {
         </div>
       </section>
 
+      <section className='w-full h-auto flex items-center justify-center my-[70px]'>
+
+
+      <div className='grid md:grid-cols-2 gap-16 mt-16 mb-10 w-full max-w-7xl' >
+          
+          <div>
+            <motion.h2 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className='text-2xl font-[600] text-[var(--text-white)] mb-8'
+            >
+              My Story
+            </motion.h2>
+
+            <div className='relative pl-8 before:content-[""] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-gradient-to-b before:from-[var(--accent-primary)] before:via-[var(--bg-accent)] before:to-transparent'>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3 }}
+                className='mb-10 relative'
+              >
+                <div className='absolute -left-[33px] top-1 w-3 h-3 rounded-full bg-[var(--accent-primary)] ring-4 ring-[var(--accent-primary)]/20'></div>
+                <div className='text-[var(--accent-primary)] text-sm font-[500] mb-2'>THE BEGINNING</div>
+                <h3 className='text-[var(--text-white)] text-xl font-[600] mb-2'>3 Month Foundation Course</h3>
+                <p className='text-[var(--text-secondary)] text-sm'>Started with HTML, CSS basics and JavaScript concepts</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3 }}
+                className='mb-10 relative'
+              >
+                <div className='absolute -left-[33px] top-1 w-3 h-3 rounded-full bg-[var(--accent-primary)] ring-4 ring-[var(--accent-primary)]/20'></div>
+                <div className='text-[var(--accent-primary)] text-sm font-[500] mb-2'>DEEP DIVE</div>
+                <h3 className='text-[var(--text-white)] text-xl font-[600] mb-2'>9 Month Intensive Program</h3>
+                <p className='text-[var(--text-secondary)] text-sm'>Mastered HTML, CSS, JavaScript, React, Node.js & Express</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3 }}
+                className='mb-10 relative'
+              >
+                <div className='absolute -left-[33px] top-1 w-3 h-3 rounded-full bg-[var(--accent-primary)] ring-4 ring-[var(--accent-primary)]/20'></div>
+                <div className='text-[var(--accent-primary)] text-sm font-[500] mb-2'>CONTINUOUS GROWTH</div>
+                <h3 className='text-[var(--text-white)] text-xl font-[600] mb-2'>Self-Driven Improvement</h3>
+                <p className='text-[var(--text-secondary)] text-sm'>Building projects daily, constantly leveling up my skills</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3 }}
+                className='relative'
+              >
+                <div className='absolute -left-[33px] top-1 w-3 h-3 rounded-full bg-[var(--accent-primary)] ring-4 ring-[var(--accent-primary)]/20'></div>
+                <div className='text-[var(--accent-primary)] text-sm font-[500] mb-2'>NEXT CHAPTER</div>
+                <h3 className='text-[var(--text-white)] text-xl font-[600] mb-2'>Expanding Tech Arsenal</h3>
+                <p className='text-[var(--text-secondary)] text-sm'>Learning Python and Django framework for backend development</p>
+              </motion.div>
+
+            </div>
+          </div>
+
+
+          <div>
+            <motion.h2 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className='text-2xl font-[600] text-[var(--text-white)] text-left md:text-right mb-8'
+            >
+              Tech Stack
+            </motion.h2>
+            <div className='grid grid-cols-2 gap-4'>
+              {Tech?.map((tech, index) => (
+                <motion.div 
+                  key={tech.name}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  className='group rounded-xl border border-[var(--border-color)] px-4 py-6 transition hover:border-[var(--border-color)]/50 hover:bg-[var(--glass-overlay)]/50'
+                >
+                  <div className='flex flex-col items-center text-center gap-2'>
+                    <div 
+                      className='text-[var(--text-secondary)] transition group-hover:scale-110 text-2xl'
+                      style={{ color: tech.color }}
+                    >
+                      {tech.icon}
+                    </div>
+                    <div>
+                      <h3 className='text-[var(--text-white)] font-[500] text-xs mb-0.5'>{tech.name}</h3>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+
+        </div>
+
+      </section>
+
       <section className='w-full py-20 flex justify-center'>
         <div className='w-full max-w-7xl px-4 md:px-0 grid md:grid-cols-2 gap-16 items-center'>
 
@@ -152,15 +264,15 @@ export const Home = () => {
               </p>
 
               <div className='flex flex-wrap gap-4 pt-4'>
-                <div className='flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--bg-secondary)]/30 border border-white/10'>
+                <div className='flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10'>
                   <div className='w-2 h-2 rounded-full bg-[var(--accent-primary)]'></div>
                   <span className='text-sm text-[var(--text-primary)]/80'>MERN Stack</span>
                 </div>
-                <div className='flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--bg-secondary)]/30 border border-white/10'>
+                <div className='flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10'>
                   <div className='w-2 h-2 rounded-full bg-[var(--accent-primary)]'></div>
                   <span className='text-sm text-[var(--text-primary)]/80'>Full Stack</span>
                 </div>
-                <div className='flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--bg-secondary)]/30 border border-white/10'>
+                <div className='flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10'>
                   <div className='w-2 h-2 rounded-full bg-[var(--accent-primary)]'></div>
                   <span className='text-sm text-[var(--text-primary)]/80'>Always Learning</span>
                 </div>
@@ -170,36 +282,6 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className='w-full py-10'>
-        <div className='max-w-7xl mx-auto px-4 md:px-0'>
-          <motion.h3 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className='text-2xl font-semibold text-[var(--text-primary)] mb-7'
-          >
-            Main Skills
-          </motion.h3>
-          <div className='grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-            {Skills.map((skill, index) => (
-              <motion.div 
-                key={skill.name}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="cursor-pointer relative overflow-hidden flex items-center gap-4 rounded-xl bg-[var(--bg-secondary)] border border-white/10 p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 before:absolute before:inset-0 before:bg-[var(--bg-accent)]/20 before:transition-transform before:duration-300 before:translate-y-0 hover:before:-translate-y-full before:z-0 ">
-                <div className='flex-shrink-0'>{skill.icon}</div>
-                <div>
-                  <div className='font-semibold text-[var(--text-primary)]'>{skill.name}</div>
-                  <div className='text-sm text-[var(--text-secondary)] mt-1'>{skill.desc}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
     </div>
   )

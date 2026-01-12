@@ -53,16 +53,6 @@ const Layout = () => {
             </li>
 
             <li className="relative group">
-              <NavLink to="/about" className={({ isActive }) => isActive ? 'flex items-center justify-center w-[40px] h-[40px] bg-[var(--nav-active-bg)] rounded-lg' : 'flex items-center justify-center w-[40px] h-[40px] hover:bg-[var(--nav-hover-bg)] rounded-lg'}>
-                <LuUser className='text-[var(--text-primary)] text-[1.3rem] font-[400] ' />
-              </NavLink>
-
-              <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 text-xs rounded-md bg-black/20 text-white opacity-0 translate-y-1 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 pointer-events-none transition-all duration-200 whitespace-nowrap">
-                About
-              </span>
-            </li>
-
-            <li className="relative group">
               <NavLink to="/projects" className={({ isActive }) => isActive ? 'flex items-center justify-center w-[40px] h-[40px] bg-[var(--nav-active-bg)] rounded-lg' : 'flex items-center justify-center w-[40px] h-[40px] hover:bg-[var(--nav-hover-bg)] rounded-lg'}>
                 <FaRegFolder className='text-[var(--text-primary)] text-[1.3rem] font-[400]  ' />
               </NavLink>
