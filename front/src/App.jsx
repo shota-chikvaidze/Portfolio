@@ -9,7 +9,6 @@ import Layout from './layout/Layout'
 import Footer from './layout/Footer'
 
 import { userAuth } from './store/UserAuth'
-import { useThemeStore } from './store/ThemeStore'
 import { useCurrentUser } from './hooks/UseCurrentUser'
 import { Dashboard } from './components/dashboard/Dashboard'
 import { AdminContact } from './components/adminContact/AdminContact'
@@ -17,25 +16,20 @@ import { AdminProject } from './components/adminProject/AdminProject'
 import PostProject from './components/postProject/PostProject'
 import SidebarWrapper from './components/sidebarWrapper/SidebarWrapper'
 
-import { useEffect } from 'react'
+import { MainLoading } from './components/loading/Loading'
 
 function App() {
+
+  
   const location = useLocation()
   const user = userAuth(s => s.user)
-  const initTheme = useThemeStore(s => s.initTheme)
   const hasCheckedAuth = userAuth(s => s.hasCheckedAuth)
 
-
-  useEffect(() => {
-    initTheme()
-  }, [initTheme])
-
-
-  const publicRoutes = ['/admin-login', '/login', '/', '', '/contact', '/projects']
+  const publicRoutes = ['/admin-login', '/login', '/', '/about', '/contact', '/projects']
   const isPublicRoute = publicRoutes.includes(location.pathname)
 
   const shouldSkipCheck = location.pathname === '/admin-login' || (isPublicRoute && hasCheckedAuth)
-
+  const { isLoading } = useCurrentUser(shouldSkipCheck)
 
 
   return (

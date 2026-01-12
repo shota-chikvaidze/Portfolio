@@ -8,15 +8,12 @@ import { LuGithub } from "react-icons/lu";
 import { MdOutlineMiscellaneousServices } from "react-icons/md";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
-import ThemeToggle from '../components/themeToggle/ThemeToggle';
-import { useThemeStore } from '../store/ThemeStore';
 
 const Layout = () => {
 
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const navigate = useNavigate()
-  const theme = useThemeStore((state) => state.theme)
 
   useEffect(() => {
 
@@ -74,12 +71,10 @@ const Layout = () => {
             
           </ul>
           <div className='hidden md:flex items-center gap-3'>
-            <ThemeToggle />
             <Link to={'https://github.com/shota-chikvaidze'} target='_blank'> <LuGithub className=' text-[1.5rem] text-[var(--text-primary)] ' /> </Link>
           </div>
 
           <div className='flex md:hidden items-center gap-3'>
-            <ThemeToggle />
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className='flex items-center justify-center w-[40px] h-[40px] hover:bg-[var(--nav-hover-bg)] rounded-lg transition-colors'

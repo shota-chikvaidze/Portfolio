@@ -4,7 +4,6 @@ import { userAuth } from '../../store/UserAuth'
 import { Logout } from '../../api/endpoints/User'
 import toast from 'react-hot-toast'
 import { useMutation } from '@tanstack/react-query'
-import ThemeToggle from '../themeToggle/ThemeToggle';
 
 const linkBase =
   'w-full rounded-lg px-3 py-2 text-sm font-[500] transition ' +
@@ -60,7 +59,6 @@ const SidebarWrapper = () => {
 
           <div className='sticky bottom-3 left-0 flex gap-2 justify-between'>
 
-            <ThemeToggle />
             <button
                 type='button'
                 onClick={logoutFunc}
