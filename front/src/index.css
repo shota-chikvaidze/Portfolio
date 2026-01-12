@@ -138,7 +138,8 @@
 }
 
 body {
-  background: linear-gradient(to bottom right, #1c112d, #19374c, #1c112d);
+  background: var(--bg-primary);
+
   transition: background 0.3s ease;
 }
 

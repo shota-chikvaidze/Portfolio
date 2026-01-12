@@ -6,7 +6,6 @@ import { About } from './pages/about/About'
 import { Contact } from './pages/contact/Contact'
 import { AdminLogin } from './pages/adminLogin/AdminLogin'
 import { Projects } from './pages/projects/Projects'
-import { Services } from './pages/services/Services'
 import Layout from './layout/Layout'
 import Footer from './layout/Footer'
 
@@ -34,7 +33,7 @@ function App() {
   }, [initTheme])
 
 
-  const publicRoutes = ['/admin-login', '/login', '/', '/about', '/contact', '/projects', '/services']
+  const publicRoutes = ['/admin-login', '/login', '/', '/about', '/contact', '/projects']
   const isPublicRoute = publicRoutes.includes(location.pathname)
 
   const shouldSkipCheck = location.pathname === '/admin-login' || (isPublicRoute && hasCheckedAuth)
@@ -78,7 +77,6 @@ function App() {
             <Route path='/' element={ <Home /> } />
             <Route path='/about' element={ <About /> } />
             <Route path='/contact' element={ <Contact /> } />
-            <Route path='/services' element={ <Services /> } />
             <Route path='/admin-login' element={ <AdminLogin /> } />
             <Route path='/projects' element={ <Projects /> } />
             <Route path='*' element={ <Navigate to={'/'} /> } />

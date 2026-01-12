@@ -32,16 +32,6 @@ const Layout = () => {
   return (
     <>
     
-      {theme === 'dark' && (
-        <div className='fixed inset-0 pointer-events-none z-[-1]'>
-          <div 
-            className='absolute inset-0'
-            style={{
-              background: 'linear-gradient(to bottom right, #1c112d, #19374c, #1c112d)'
-            }}
-          ></div>
-        </div>
-      )}
 
       <header className={`flex justify-center fixed z-40 top-0 left-0 w-full h-[70px] transition-all duration-300 ${isScrolled ? 'bg-[var(--bg-header-scroll)]/30 backdrop-blur-md shadow-md' : 'bg-transparent'}`} >
         <div className='max-w-7xl w-full flex justify-between items-center px-[20px] lg:px-0'>
@@ -79,16 +69,6 @@ const Layout = () => {
 
               <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 text-xs rounded-md bg-black/20 text-white opacity-0 translate-y-1 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 pointer-events-none transition-all duration-200 whitespace-nowrap">
                 Projects
-              </span>
-            </li>
-
-            <li className="relative group">
-              <NavLink to="/services" className={({ isActive }) => isActive ? 'flex items-center justify-center w-[40px] h-[40px] bg-[var(--nav-active-bg)] rounded-lg' : 'flex items-center justify-center w-[40px] h-[40px] hover:bg-[var(--nav-hover-bg)] rounded-lg'}>
-                <MdOutlineMiscellaneousServices className='text-[var(--text-primary)] text-[1.3rem] font-[400]  ' />
-              </NavLink>
-
-              <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 text-xs rounded-md bg-black/20 text-white opacity-0 translate-y-1 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 pointer-events-none transition-all duration-200 whitespace-nowrap">
-                Services
               </span>
             </li>
 

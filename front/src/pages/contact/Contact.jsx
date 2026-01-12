@@ -43,9 +43,9 @@ export const Contact = () => {
     <section className='w-full flex justify-center px-4 py-14 min-h-[calc(100vh-70px)]'>
       <div className='w-full max-w-5xl'>
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
           className='mb-7'
         >
           <h2 className='text-[var(--text-white)] text-[2rem] font-[700] tracking-wide'>Contact</h2>
@@ -54,17 +54,17 @@ export const Contact = () => {
 
         <div className='flex flex-col'>
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
             className='bg-[linear-gradient(180deg,var(--glass-overlay), var(--glass-overlay))] border border-[var(--border-color)] rounded-[var(--radius-lg)] max-h-[430px] p-6 mb-10'
           >
             <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
               <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                 <motion.div 
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
                   className='flex flex-col gap-2'
                 >
                   <label className='text-[var(--text-secondary)] font-[500] text-[0.95rem]'>Name</label>
@@ -80,9 +80,9 @@ export const Contact = () => {
                 </motion.div>
 
                 <motion.div 
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
                   className='flex flex-col gap-2'
                 >
                   <label className='text-[var(--text-secondary)] font-[500] text-[0.95rem]'>Email</label>
@@ -98,9 +98,9 @@ export const Contact = () => {
               </div>
 
               <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
                 className='flex flex-col gap-2'
               >
                 <div className='flex items-center justify-between'>
@@ -124,9 +124,9 @@ export const Contact = () => {
               </motion.div>
 
               <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
                 className='flex items-center justify-end gap-4 flex-wrap'
               >
                 <button
@@ -141,9 +141,9 @@ export const Contact = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
           >
             <ContactExtras />
           </motion.div>

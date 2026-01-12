@@ -33,9 +33,9 @@ export const Projects = () => {
       <section className='min-h-[calc(100vh-70px)] w-full px-4 py-14'>
         <div className='mx-auto w-full max-w-7xl'>
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
             className='mb-10'
           >
             <h1 className='text-4xl font-[600] tracking-tight text-[var(--text-white)]'>Projects</h1>
@@ -64,9 +64,9 @@ export const Projects = () => {
             </div>
           ) : projects.length === 0 ? (
             <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
               className='rounded-2xl border border-[var(--border-color)] bg-[var(--glass-overlay)] backdrop-blur px-8 py-12 text-center'
             >
               <p className='text-[var(--text-secondary)]'>No projects available yet. Check back soon!</p>
@@ -76,9 +76,9 @@ export const Projects = () => {
               {projects.map((pro, index) => (
                 <motion.article
                   key={pro._id}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
                   className='group rounded-2xl border border-[var(--border-color)] bg-[var(--glass-overlay)] backdrop-blur transition hover:border-[var(--border-color)]/50 hover:bg-[var(--glass-overlay)]/50'
                 >
                   <div className='overflow-hidden rounded-t-2xl'>
@@ -118,9 +118,9 @@ export const Projects = () => {
           )}
           
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
             className='mt-10 text-center'
           >
             <p className='text-[var(--text-secondary)] mb-2'>Want to see more of my work?</p>
@@ -147,10 +147,10 @@ export const Projects = () => {
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
               className='relative w-full max-w-4xl rounded-2xl border border-white/10 bg-[var(--bg-primary)]/65 backdrop-blur'
               onClick={(e) => e.stopPropagation()}
             >
@@ -172,9 +172,9 @@ export const Projects = () => {
                   {selectedProject.image.map((img, idx) => (
                     <motion.img
                       key={`${img.slice(0, 24)}-${idx}`}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: idx * 0.1, ease: "easeOut" }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3, delay: idx * 0.05 }}
                       src={img}
                       alt={`${selectedProject.title} image ${idx + 1}`}
                       className='w-full rounded-xl border border-[var(--border-color)] object-cover'
