@@ -43,10 +43,6 @@ const SidebarWrapper = () => {
             <NavLink to="/" end className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
               Dashboard
             </NavLink>
-
-            <NavLink to="/contacts" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
-              Contacts
-            </NavLink>
             
             <NavLink to="/projects" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`} >
               Projects

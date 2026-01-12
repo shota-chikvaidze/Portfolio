@@ -1,63 +1,50 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import homeMain from '../../assets/images/newImage.jpg'
-import { ReactTyped } from "react-typed";
-import { useNavigate } from 'react-router-dom'
-import Skills from '../../data/Skills';
 import { motion } from 'framer-motion';
 import Tech from '../../data/Tech'
+import { Projects } from '../projects/Projects';
+import { FiGithub } from "react-icons/fi";
+import { FaLinkedinIn, FaFacebookF } from "react-icons/fa6";
+import { LuMail } from "react-icons/lu";
 
 export const Home = () => {
 
-  const navigate = useNavigate()
-
-  const projNavigate = () => {
-    navigate('/projects')
-  }
-
-
 
   return (
-    <div className=''>
-      <section className='w-full h-auto flex items-center justify-center my-[70px]'>
-        <div className='flex items-center justify-between w-full max-w-7xl flex-col gap-[20px] md:flex-row px-6 lg:px-2'>
+    <>
+      <section id='hero' className='w-full h-auto md:h-[450px] flex items-center justify-center mb-[50px] '>
+        <div className='flex items-center justify-center w-full max-w-6xl flex-col gap-[30px] md:flex-row px-6 lg:px-2'>
 
-          <div className='lg:max-w-2xl w-full'>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className='relative group'
+          >
+            <div>
+              <img 
+                src={homeMain} 
+                alt='Home image' 
+                className='w-full h-auto border-4 border-[var(--bg-secondary)]  object-cover md:w-[210px] md:h-auto rounded-full transition-shadow duration-300' 
+              />
+            </div>
+          </motion.div>
 
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className='flex gap-4 items-center mb-2 text-[var(--text-primary)] text-[2rem]'
-            > 
-              Hey there! 
-            </motion.p>
+          <div className='lg:max-w-md w-full'>
+
+            <div className='flex gap-4'>
+              <span className='text-[var(--text-secondary)] font-[400] text-[14px] border border-[var(--border-color)] rounded-md px-5 h-[25px] flex items-center bg-[var(--glass-bg)]/40 ' > 15yo </span>
+              <span className='text-[var(--text-secondary)] font-[400] text-[14px] border border-[var(--border-color)] rounded-md px-5 h-[25px] flex items-center bg-[var(--glass-bg)]/40 ' > Passionate </span>
+              <span className='text-[var(--text-secondary)] font-[400] text-[14px] border border-[var(--border-color)] rounded-md px-5 h-[25px] flex items-center bg-[var(--glass-bg)]/40 ' > Disciplined </span>
+            </div>
 
             <motion.p 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className='text-[var(--text-primary)] text-[2.4rem] lg:text-[3rem] uppercase'
+              className='text-[var(--text-primary)] text-[2.4rem] lg:text-[3rem] font-[700] capitalize'
             >
-              I'm <span className='text-[var(--accent-primary)]'> Shota Chikvaidze </span> 
-            </motion.p>
-
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="py-2"
-            >
-              <ReactTyped
-                strings={[
-                  "MERN Stack Developer",
-                  "React Front-End Specialist",
-                  "Node.js and Express Back-End Builder"
-                ]}
-                typeSpeed={55}
-                backSpeed={30}
-                loop
-                className='text-[1.2rem] text-[var(--text-primary)]'
-              />
+              Hey I'm Shota 
             </motion.p>
 
             <motion.p 
@@ -75,119 +62,38 @@ export const Home = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               className='flex gap-3 py-2'
             >
-              <button onClick={projNavigate} className="w-[140px] h-[35px] rounded-xl bg-[var(--bg-accent)] text-[var(--text-primary)] cursor-pointer text-[15px] border border-transparent hover:bg-transparent hover:border-[var(--border-color)] transition-all duration-300"> View Projects </button>
-              <button className="w-[140px] h-[35px] bg-transparent text-[var(--text-primary)] rounded-xl border border-[var(--border-color)] text-[15px] cursor-pointer hover:border-[var(--border-color)]/50 transition "> 
+              <button className="w-[140px] h-[35px] bg-[var(--bg-accent)] text-[var(--text-primary)] rounded-xl border border-[var(--border-color)] text-[15px] cursor-pointer hover:border-[var(--border-color)]/50 transition "> 
                 <a href='/CV.pdf' download > Download CV </a>
               </button>
-              
+
+              <a target='_blank' rel='noopener noreferrer' href='https://github.com/shota-chikvaidze' className='p-2 border border-[var(--border-color)] rounded-md '> <FiGithub className='text-[var(--text-primary)] ' /> </a>
+              <a target='_blank' rel='noopener noreferrer' href='https://www.linkedin.com/in/shota-chikvaidze-a6845b370/' className='p-2 border border-[var(--border-color)] rounded-md '> <FaLinkedinIn className='text-[17px] text-white/70 ' /> </a>
+              <a target='_blank' rel='noopener noreferrer' href='https://www.facebook.com/shota.chikvaidze.90' className='p-2 border border-[var(--border-color)] rounded-md '> <FaFacebookF className='text-[17px] text-white/70 ' /> </a>
+              <a target='_blank' rel='noopener noreferrer' href='mailto:shchikvaidze1@gmail.com' className='p-2 border border-[var(--border-color)] rounded-md '> <LuMail className='text-[17px] text-white/70 ' /> </a>
+                    
+
             </motion.div>
-
           </div>
-
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className='relative group'
-          >
-            <div className='absolute -inset-1 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--bg-accent)] rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition duration-500'></div>
-            <div className='relative bg-gradient-to-br from-[var(--bg-accent)] to-[var(--bg-secondary)] rounded-2xl p-2 shadow-2xl'>
-              <img 
-                src={homeMain} 
-                alt='Home image' 
-                className='w-full h-auto  object-cover md:w-[430px] md:h-auto rounded-2xl transition-shadow duration-300' 
-              />
-            </div>
-          </motion.div>
 
         </div>
       </section>
 
-      <section className='w-full h-auto flex items-center justify-center my-[70px]'>
+      <Projects />
 
 
-      <div className='grid md:grid-cols-2 gap-16 mt-16 mb-10 w-full max-w-7xl' >
-          
-          <div>
+      <section id='tech' className='w-full h-auto my-20 flex justify-center '>
+        <div className='max-w-6xl w-full px-4'>
+
             <motion.h2 
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className='text-2xl font-[600] text-[var(--text-white)] mb-8'
-            >
-              My Story
-            </motion.h2>
-
-            <div className='relative pl-8 before:content-[""] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-gradient-to-b before:from-[var(--accent-primary)] before:via-[var(--bg-accent)] before:to-transparent'>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3 }}
-                className='mb-10 relative'
-              >
-                <div className='absolute -left-[33px] top-1 w-3 h-3 rounded-full bg-[var(--accent-primary)] ring-4 ring-[var(--accent-primary)]/20'></div>
-                <div className='text-[var(--accent-primary)] text-sm font-[500] mb-2'>THE BEGINNING</div>
-                <h3 className='text-[var(--text-white)] text-xl font-[600] mb-2'>3 Month Foundation Course</h3>
-                <p className='text-[var(--text-secondary)] text-sm'>Started with HTML, CSS basics and JavaScript concepts</p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3 }}
-                className='mb-10 relative'
-              >
-                <div className='absolute -left-[33px] top-1 w-3 h-3 rounded-full bg-[var(--accent-primary)] ring-4 ring-[var(--accent-primary)]/20'></div>
-                <div className='text-[var(--accent-primary)] text-sm font-[500] mb-2'>DEEP DIVE</div>
-                <h3 className='text-[var(--text-white)] text-xl font-[600] mb-2'>9 Month Intensive Program</h3>
-                <p className='text-[var(--text-secondary)] text-sm'>Mastered HTML, CSS, JavaScript, React, Node.js & Express</p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3 }}
-                className='mb-10 relative'
-              >
-                <div className='absolute -left-[33px] top-1 w-3 h-3 rounded-full bg-[var(--accent-primary)] ring-4 ring-[var(--accent-primary)]/20'></div>
-                <div className='text-[var(--accent-primary)] text-sm font-[500] mb-2'>CONTINUOUS GROWTH</div>
-                <h3 className='text-[var(--text-white)] text-xl font-[600] mb-2'>Self-Driven Improvement</h3>
-                <p className='text-[var(--text-secondary)] text-sm'>Building projects daily, constantly leveling up my skills</p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3 }}
-                className='relative'
-              >
-                <div className='absolute -left-[33px] top-1 w-3 h-3 rounded-full bg-[var(--accent-primary)] ring-4 ring-[var(--accent-primary)]/20'></div>
-                <div className='text-[var(--accent-primary)] text-sm font-[500] mb-2'>NEXT CHAPTER</div>
-                <h3 className='text-[var(--text-white)] text-xl font-[600] mb-2'>Expanding Tech Arsenal</h3>
-                <p className='text-[var(--text-secondary)] text-sm'>Learning Python and Django framework for backend development</p>
-              </motion.div>
-
-            </div>
-          </div>
-
-
-          <div>
-            <motion.h2 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className='text-2xl font-[600] text-[var(--text-white)] text-left md:text-right mb-8'
-            >
+              className='text-5xl font-[700] mb-6 tracking-tight text-[var(--text-white)]'>
               Tech Stack
             </motion.h2>
-            <div className='grid grid-cols-2 gap-4'>
+
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
               {Tech?.map((tech, index) => (
                 <motion.div 
                   key={tech.name}
@@ -195,9 +101,9 @@ export const Home = () => {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className='group rounded-xl border border-[var(--border-color)] px-4 py-6 transition hover:border-[var(--border-color)]/50 hover:bg-[var(--glass-overlay)]/50'
+                  className='group rounded-xl border border-[var(--border-color)] transition hover:border-[var(--border-color)]/50 hover:bg-[var(--glass-overlay)]/50'
                 >
-                  <div className='flex flex-col items-center text-center gap-2'>
+                  <div className='flex items-center justify-start w-auto h-[60px] p-4 gap-2'>
                     <div 
                       className='text-[var(--text-secondary)] transition group-hover:scale-110 text-2xl'
                       style={{ color: tech.color }}
@@ -206,20 +112,19 @@ export const Home = () => {
                     </div>
                     <div>
                       <h3 className='text-[var(--text-white)] font-[500] text-xs mb-0.5'>{tech.name}</h3>
+                      <p className='text-[var(--text-primary)] font-[300] text-[13px] text-gray-400 '> {tech.type} </p>
                     </div>
                   </div>
                 </motion.div>
               ))}
             </div>
+
           </div>
-
-
-        </div>
-
       </section>
 
-      <section className='w-full py-20 flex justify-center'>
-        <div className='w-full max-w-7xl px-4 md:px-0 grid md:grid-cols-2 gap-16 items-center'>
+        
+      <section className='w-full py-20 flex justify-center px-4'>
+        <div className='w-full max-w-6xl px-4 md:px-0 grid md:grid-cols-2 gap-16 items-center'>
 
             <motion.div
               initial={{ opacity: 0 }}
@@ -254,7 +159,7 @@ export const Home = () => {
               <div>
                 <h4 className='text-3xl md:text-[40px] font-bold text-[var(--text-primary)] leading-tight'>
                   Building Web Apps <br />
-                    That Work.
+                  That Work.
                 </h4>
               </div>
 
@@ -282,7 +187,6 @@ export const Home = () => {
         </div>
       </section>
 
-
-    </div>
+    </>
   )
 }

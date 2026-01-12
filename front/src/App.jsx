@@ -1,22 +1,18 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { Navigate } from 'react-router-dom'
+
 import { Home } from './pages/home/Home'
-import { Contact } from './pages/contact/Contact'
 import { AdminLogin } from './pages/adminLogin/AdminLogin'
-import { Projects } from './pages/projects/Projects'
 import Layout from './layout/Layout'
 import Footer from './layout/Footer'
 
 import { userAuth } from './store/UserAuth'
 import { useCurrentUser } from './hooks/UseCurrentUser'
 import { Dashboard } from './components/dashboard/Dashboard'
-import { AdminContact } from './components/adminContact/AdminContact'
 import { AdminProject } from './components/adminProject/AdminProject'
 import PostProject from './components/postProject/PostProject'
 import SidebarWrapper from './components/sidebarWrapper/SidebarWrapper'
-
-import { MainLoading } from './components/loading/Loading'
 
 function App() {
 
@@ -66,9 +62,7 @@ function App() {
 
           <Routes>
             <Route path='/' element={ <Home /> } />
-            <Route path='/contact' element={ <Contact /> } />
             <Route path='/admin-login' element={ <AdminLogin /> } />
-            <Route path='/projects' element={ <Projects /> } />
             <Route path='*' element={ <Navigate to={'/'} /> } />
           </Routes>
 
@@ -81,7 +75,6 @@ function App() {
           <Route path='/' element={ <SidebarWrapper /> }>
 
             <Route index element={ <Dashboard /> } />
-            <Route path='contacts' element={ <AdminContact /> } />
             <Route path='projects' element={ <AdminProject /> } />
             <Route path='add-project' element={ <PostProject /> } />
 

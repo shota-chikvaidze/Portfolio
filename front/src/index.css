@@ -3,7 +3,7 @@
 :root {
   --bg-darkest: #0b0811;
   --bg-dark: #1c112d;
-  --bg-primary: #1B3C53;
+  --bg-primary: #0f2738;
   --bg-secondary: #234C6A;
   --bg-accent: #456882;
   --bg-header-scroll: #1E201E;
@@ -60,87 +60,9 @@
   --radius-lg: 1rem;
 }
 
-.light {
-  --bg-darkest: #FFFFFF;
-  --bg-dark: #F8F9FA;
-  --bg-primary: #F5F7FA;
-  --bg-secondary: #FFFFFF;
-  --bg-accent: #E8EEF4;
-  --bg-header-scroll: #F5F7FA;
-  
-  --text-primary: #1B3C53;
-  --text-secondary: rgba(27, 60, 83, 0.7);
-  --text-white: #1B3C53;
-  --text-muted: rgba(27, 60, 83, 0.6);
-  
-  --border-color: rgba(27, 60, 83, 0.15);
-  --glass-bg: rgba(255, 255, 255, 0.8);
-  --glass-overlay: rgba(27, 60, 83, 0.04);
-  
-  --accent-primary: #5B4EC8;
-  --accent-primary-hover: #4A3FB0;
-  --accent-purple: #5B4EC8;
-  --accent-purple-dark: #4A3FB0;
-  
-  --color-gold: #F59E0B;
-  --color-coral: #EF4444;
-  --color-teal: #14B8A6;
-  
-  --color-success: #10b981;
-  --color-error: #ef4444;
-  
-  --tech-react: #61DAFB;
-  --tech-node: #339933;
-  --tech-mongo: #47A248;
-  --tech-javascript: #F7DF1E;
-  --tech-typescript: #3178C6;
-  --tech-tailwind: #06B6D4;
-  --tech-git: #F05032;
-  
-  --skill-strategic: #5A7F8B;
-  --skill-creative: #C4955A;
-  --skill-collaborative: #6F8978;
-  --skill-technical: #7B6F89;
-  --skill-execution: #886B6F;
-  --skill-adaptability: #887B5B;
-  --skill-performance: #5B7B7B;
-  --skill-communication: #7B6B6B;
-  
-  --service-backend: #68A063;
-  --service-fullstack: #F59E0B;
-  
-  --nav-active-bg: rgba(255, 255, 255, 0.1);
-  --nav-hover-bg: rgba(255, 255, 255, 0.15);
-  
-  --tooltip-bg: rgba(255, 255, 255, 0.15);
-  --modal-overlay: rgba(255, 255, 255, 0.9);
-  
-  --black: #000000;
-  --white: #FFFFFF;
-  --radius-lg: 1rem;
-}
-
-
-@keyframes wave {
-  0% { transform: rotate(0deg); }
-  15% { transform: rotate(20deg); }
-  30% { transform: rotate(-15deg); }
-  45% { transform: rotate(20deg); }
-  60% { transform: rotate(-10deg); }
-  75% { transform: rotate(15deg); }
-  100% { transform: rotate(0deg); }
-}
-
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
 
 body {
   background: var(--bg-primary);
-
-  transition: background 0.3s ease;
 }
 
 .light body {

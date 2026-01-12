@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 
-const contactRoutes = require('./routes/ContactRoutes')
 const userRoutes = require('./routes/LoginRoutes')
 const projectRoutes = require('./routes/ProjectRoutes')
 
@@ -23,7 +22,6 @@ app.use(express.json({ limit: '15mb' }))
 app.use(express.urlencoded({ extended: true, limit: '15mb' }))
 app.use(cookieParser())
 
-app.use('/api/contact', contactRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/project', projectRoutes)
 
