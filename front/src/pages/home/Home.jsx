@@ -62,10 +62,8 @@ export const Home = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               className='flex gap-3 py-2'
             >
-              <button className="w-[140px] h-[35px] bg-[var(--bg-accent)] text-[var(--text-primary)] rounded-xl border border-[var(--border-color)] text-[15px] cursor-pointer hover:border-[var(--border-color)]/50 transition "> 
-                <a href='/CV.pdf' download > Download CV </a>
-              </button>
 
+              <a href='/CV.pdf' className='flex items-center justify-center w-[140px] h-[35px] bg-[var(--bg-accent)] text-[var(--text-primary)] rounded-xl border border-[var(--border-color)] text-[15px] cursor-pointer hover:border-[var(--border-color)]/50 transition ' download > Download CV </a>
               <a target='_blank' rel='noopener noreferrer' href='https://github.com/shota-chikvaidze' className='p-2 border border-[var(--border-color)] rounded-md '> <FiGithub className='text-[var(--text-primary)] ' /> </a>
               <a target='_blank' rel='noopener noreferrer' href='https://www.linkedin.com/in/shota-chikvaidze-a6845b370/' className='p-2 border border-[var(--border-color)] rounded-md '> <FaLinkedinIn className='text-[17px] text-white/70 ' /> </a>
               <a target='_blank' rel='noopener noreferrer' href='https://www.facebook.com/shota.chikvaidze.90' className='p-2 border border-[var(--border-color)] rounded-md '> <FaFacebookF className='text-[17px] text-white/70 ' /> </a>
