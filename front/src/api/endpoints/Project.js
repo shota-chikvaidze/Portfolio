@@ -18,13 +18,6 @@ export const UpdateProject = async ({ id, payload }) => {
     return res.data
 }
 
-export const GetProjectsId = async (id) => {
-
-    const res = await axios.get(`/project/post-project/${id}`, id)
-    return res.data.project
-    
-}
-
 export const GetProjects = async () => {
     
     const res = await axios.get(`/project/get-projects`)

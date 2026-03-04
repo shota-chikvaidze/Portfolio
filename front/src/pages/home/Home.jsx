@@ -110,7 +110,7 @@ export const Home = () => {
                     </div>
                     <div>
                       <h3 className='text-[var(--text-white)] font-[500] text-xs mb-0.5'>{tech.name}</h3>
-                      <p className='text-[var(--text-primary)] font-[300] text-[13px] text-gray-400 '> {tech.type} </p>
+                      <p className='font-[300] text-[13px] text-gray-400 '> {tech.type} </p>
                     </div>
                   </div>
                 </motion.div>
@@ -121,66 +121,32 @@ export const Home = () => {
       </section>
 
         
-      <section className='w-full py-20 flex justify-center px-4'>
-        <div className='w-full max-w-6xl px-4 md:px-0 grid md:grid-cols-2 gap-16 items-center'>
+      <section id='about' className='w-full py-20 flex justify-center px-4'>
+        <div className='w-full max-w-6xl px-4 md:px-0 space-y-6'>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className='space-y-8'
-            >
-              <div className='border-l-4 border-[var(--accent-primary)] pl-6 py-3'>
-                <h5 className='text-2xl font-semibold text-[var(--text-primary)] mb-3'>Performance First</h5>
-                <p className='text-[var(--text-secondary)] text-lg'>Clean, optimized code that scales</p>
-              </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className='rounded-2xl border border-[var(--border-color)] p-8 md:p-12'
+          >
+            <h2 className='text-3xl md:text-4xl font-bold text-[var(--text-white)] mb-6'>About me</h2>
+            <div className='grid gap-6 text-[var(--text-secondary)] text-[1.05rem] leading-relaxed'>
+              <p>
+                
+                I've been studying programming for the past two years, building projects with JavaScript and Node.js while consistently working to improve my skills.
+                I code every day and focus on steady progress through real projects and practical experience. 
+                So far, I've completed six projects to strengthen my foundation, 
+                and I'm currently building a larger project that I plan to fully ship. 
+                Alongside that, I'm learning TypeScript to write more scalable and maintainable code, 
+                and I plan to start learning Python next to expand my technical range. 
+                I care about writing clean, logical code and building things that are functional, 
+                structured, and well thought out. For me, programming is about discipline, growth, and continuous improvement.
 
-              <div className='border-l-4 border-[var(--accent-primary)] pl-6 py-3'>
-                <h5 className='text-2xl font-semibold text-[var(--text-primary)] mb-3'>Solution Focused</h5>
-                <p className='text-[var(--text-secondary)] text-lg'>Turning problems into working products</p>
-              </div>
-
-              <div className='border-l-4 border-[var(--accent-primary)] pl-6 py-3'>
-                <h5 className='text-2xl font-semibold text-[var(--text-primary)] mb-3'>Continuous Growth</h5>
-                <p className='text-[var(--text-secondary)] text-lg'>Leveling up through daily practice</p>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className='space-y-6'
-            >
-              <div>
-                <h4 className='text-3xl md:text-[40px] font-bold text-[var(--text-primary)] leading-tight'>
-                  Building Web Apps <br />
-                  That Work.
-                </h4>
-              </div>
-
-              <p className='text-lg text-[var(--text-primary)]/80 leading-relaxed'>
-                I specialize in full-stack development with the MERN stack. 
-                My focus is writing clean code, building reliable systems, and solving real problems with practical solutions.
               </p>
-
-              <div className='flex flex-wrap gap-4 pt-4'>
-                <div className='flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10'>
-                  <div className='w-2 h-2 rounded-full bg-[var(--accent-primary)]'></div>
-                  <span className='text-sm text-[var(--text-primary)]/80'>MERN Stack</span>
-                </div>
-                <div className='flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10'>
-                  <div className='w-2 h-2 rounded-full bg-[var(--accent-primary)]'></div>
-                  <span className='text-sm text-[var(--text-primary)]/80'>Full Stack</span>
-                </div>
-                <div className='flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10'>
-                  <div className='w-2 h-2 rounded-full bg-[var(--accent-primary)]'></div>
-                  <span className='text-sm text-[var(--text-primary)]/80'>Always Learning</span>
-                </div>
-              </div>
-            </motion.div>
+            </div>
+          </motion.div>
 
         </div>
       </section>

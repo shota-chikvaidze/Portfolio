@@ -25,6 +25,16 @@ app.use(cookieParser())
 app.use('/api/user', userRoutes)
 app.use('/api/project', projectRoutes)
 
+app.get('/health', (req, res) => {
+  const healthCheck = {
+    uptime: process.uptime(),
+    status: 'ok',
+    timeStamps: Date.now(),
+    mongodb: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
+  }
+  res.status(200).json(healthCheck)
+})
+
 const PORT = process.env.PORT || 5000
 
 

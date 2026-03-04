@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, NavLink } from 'react-router-dom'
-import { IoHomeOutline } from "react-icons/io5";
-import { FaRegFolder } from "react-icons/fa";
-import { HiOutlineMail } from "react-icons/hi";
 
 const Layout = () => {
 
   const [isScrolled, setIsScrolled] = useState(false)
-  const navigate = useNavigate()
 
   useEffect(() => {
 
@@ -56,6 +51,10 @@ const Layout = () => {
 
             <li onClick={() => scrollTo('tech', 100)} className="text-[var(--text-primary)] cursor-pointer hover:text-[var(--text-secondary)] transition-colors duration-400 "> 
               Tech 
+            </li>
+
+            <li onClick={() => scrollTo('about', 100)} className="text-[var(--text-primary)] cursor-pointer hover:text-[var(--text-secondary)] transition-colors duration-400 "> 
+              About
             </li>
 
           </ul>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { GetProjects, DeleteProject, GetProjectsId, UpdateProject, DeleteImageFromProject } from '../../api/endpoints/Project'
+import { GetProjects, DeleteProject, UpdateProject, DeleteImageFromProject } from '../../api/endpoints/Project'
 import { Loading } from '../../components/loading/Loading'
 import { MdDeleteOutline, MdEdit } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
