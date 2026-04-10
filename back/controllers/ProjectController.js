@@ -48,14 +48,14 @@ exports.getProjectsId = async (req, res) => {
 exports.postProject = async (req, res) => {
     try{
         
-        const { title, description, gitLink } = req.body
+        const { title, description, gitLink, webLink } = req.body
 
-        if (!req.files || req.files.length === 0) {
-            return res.status(400).json({ message: 'At least one image is required' })
-        }
+        // if (!req.files || req.files.length === 0) {
+        //     return res.status(400).json({ message: 'At least one image is required' })
+        // }
         const imageUrls = req.files.map(file => file.path)
         
-        if(!title || !description) return res.status(400).json({message: 'Title and description are required'})
+        if(!title || !description || !webLink) return res.status(400).json({message: 'Title and description are required'})
 
         if(description.length < 10 || description.length > 500){
             return res.status(400).json({message: 'Description must be between 10 and 500 characters'})
@@ -65,7 +65,8 @@ exports.postProject = async (req, res) => {
             title,
             description,
             image: imageUrls,
-            gitLink
+            gitLink,
+            webLink,
         })
 
         res.status(201).json({message: 'Project created successfully', createProject})
@@ -132,12 +133,13 @@ exports.deleteImageFromProject = async (req, res) => {
 exports.updateProject = async (req, res) => {
     try{
         const { id } = req.params
-        const { title, description, gitLink } = req.body
+        const { title, description, gitLink, webLink } = req.body
 
         const updateFields = {}
         if (title !== undefined) updateFields.title = title
         if (description !== undefined) updateFields.description = description
         if (gitLink !== undefined) updateFields.gitLink = gitLink
+        if (webLink !== undefined) updateFields.webLink = webLink
 
         if (req.files && req.files.length > 0) {
             const project = await Projects.findById(id)

@@ -50,7 +50,7 @@ export const AdminLogin = () => {
   return (
         <section className='w-full flex justify-center px-4 py-14 min-h-[calc(100vh-70px)]'>
             <div className='w-full max-w-[440px]'>
-                <div className='bg-[var(--bg-secondary)] backdrop-blur-md border border-white/10 rounded-2xl p-7 shadow-md'>
+                <div className=' backdrop-blur-md border border-white/10 rounded-2xl p-7 shadow-md'>
                     <div className='mb-7'>
                         <h2 className='text-[var(--text-white)] text-[1.8rem] font-[600] tracking-wide'>Admin Login</h2>
                         <p className='text-[var(--text-primary)]/70 mt-2 text-[0.95rem]'>Sign in to manage contact messages.</p>
@@ -87,7 +87,7 @@ export const AdminLogin = () => {
 
                         <button
                             type='submit'
-                            className='cursor-pointer mt-2 w-full rounded-xl py-3 text-[var(--text-primary)] text-[1.05rem] font-[500] bg-[var(--bg-primary)] hover:opacity-90 transition-opacity disabled:opacity-60'
+                            className='cursor-pointer mt-2 w-full border border-[#5b5b5b] rounded-xl py-3 text-[var(--text-primary)] text-[1.05rem] font-[500] bg-[var(--bg-primary)] hover:opacity-90 transition-opacity disabled:opacity-60'
                         >
                             {loginMutation.isPending ? <Loading /> : 'Login'}
                         </button>

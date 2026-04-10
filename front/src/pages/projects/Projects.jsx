@@ -4,6 +4,7 @@ import { GetProjects } from '../../api/endpoints/Project'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiGithub } from "react-icons/fi";
+import { TbWorld } from "react-icons/tb";
 
 export const Projects = () => {
 
@@ -104,7 +105,23 @@ export const Projects = () => {
                     
                     <div className='flex mt-4 gap-4'>
 
-                      <Link to={pro.gitLink} target='_blank' className='flex items-center gap-4 cursor-pointer rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-4 py-2 text-sm font-[500] text-[var(--text-secondary)] transition hover:bg-[var(--glass-overlay)]/50'> <FiGithub /> View source  </Link>
+                      <Link 
+                        to={pro.gitLink} 
+                        target='_blank' 
+                        className='flex items-center gap-4 cursor-pointer rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-4 py-2 text-sm font-[500] text-[var(--text-secondary)] transition hover:bg-[var(--glass-overlay)]/50'
+                      > 
+                        <FiGithub />
+                        View source
+                      </Link>
+
+                      <Link 
+                        to={pro.webLink} 
+                        target='_blank' 
+                        className='flex items-center gap-4 cursor-pointer rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-4 py-2 text-sm font-[500] text-[var(--text-secondary)] transition hover:bg-[var(--glass-overlay)]/50'
+                      > 
+                        <TbWorld />
+                        View website
+                      </Link>
 
                       {pro.image && pro.image.length > 1 ? (
                         <button

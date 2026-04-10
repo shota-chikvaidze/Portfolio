@@ -9,9 +9,9 @@ const PostProject = () => {
         title: '',
         description: '',
         image: [],
-        gitLink: ''
+        gitLink: '',
+        webLink: ''
     })
-
 
     const handleChange = (e) => {
         setProjectForm({...projectForm, [e.target.name]: e.target.value})
@@ -28,7 +28,7 @@ const PostProject = () => {
         mutationFn: (payload) => PostProjectApi(payload),
         onSuccess: (data) => {
             toast.success(data.message || 'Project created successfully!')
-            setProjectForm({ title: '', description: '', image: [], gitLink: '' })
+            setProjectForm({ title: '', description: '', image: [], gitLink: '', webLink: '' })
         },
         onError: (error) => {
             const errorMessage = error?.response?.data?.message
@@ -47,6 +47,7 @@ const PostProject = () => {
         formData.append('title', projectForm.title)
         formData.append('description', projectForm.description)
         formData.append('gitLink', projectForm.gitLink)
+        formData.append('webLink', projectForm.webLink)
         
         projectForm.image.forEach((file, index) => {
             formData.append('images', file)
@@ -104,6 +105,18 @@ const PostProject = () => {
                                 onChange={handleChange}
                                 placeholder='Enter Github Link'
                                 value={projectForm.gitLink}
+                                className='w-full rounded-xl bg-transparent border border-[var(--border-color)] px-4 py-3 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none focus:border-[var(--border-color)]/50 focus-visible:ring-2 focus-visible:ring-[var(--border-color)]'
+                            />
+                        </div>
+
+                        <div className='grid gap-2'>
+                            <label className='text-sm font-[500] text-[var(--text-secondary)]'>Website link</label>
+                            <input
+                                name='webLink'
+                                type='text'
+                                onChange={handleChange}
+                                placeholder='Enter Website Link'
+                                value={projectForm.webLink}
                                 className='w-full rounded-xl bg-transparent border border-[var(--border-color)] px-4 py-3 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none focus:border-[var(--border-color)]/50 focus-visible:ring-2 focus-visible:ring-[var(--border-color)]'
                             />
                         </div>

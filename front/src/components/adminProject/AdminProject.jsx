@@ -16,6 +16,7 @@ export const AdminProject = () => {
     description: '',
     image: '',
     gitLink: '',
+    webLink: ''
   })
   const [confirmDialog, setConfirmDialog] = useState(false)
   const [projectToDelete, setProjectToDelete] = useState(null)
@@ -108,6 +109,7 @@ export const AdminProject = () => {
       description: pro.description,
       image: pro.image || [], 
       gitLink: pro.gitLink || '',
+      webLink: pro.webLink || '',
     })
 
     setImagePreviews(pro.image || [])
@@ -117,7 +119,7 @@ export const AdminProject = () => {
   const handleCancelEdit = () => {
     setEditingId(null)
     setProjectPopup(false)
-    setEditForm({ title: '', description: '', image: '', gitLink: '' })
+    setEditForm({ title: '', description: '', image: '', gitLink: '', webLink: '' })
     setSelectedFiles([])
     setImagePreviews([])
   }
@@ -132,6 +134,7 @@ export const AdminProject = () => {
     payload.append('title', editForm.title)
     payload.append('description', editForm.description)
     payload.append('gitLink', editForm.gitLink)
+    payload.append('webLink', editForm.webLink)
     
     if (selectedFiles.length > 0) {
       selectedFiles.forEach((file) => {

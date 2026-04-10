@@ -5,6 +5,7 @@ const projectSchema = mongoose.Schema({
     description: { type: String, required: true },
     image: { type: [String], required: true },
     gitLink: { type: String },
+    webLink: { type: String },
     createdAt: { type: Date, default: Date.now }
 })
 
