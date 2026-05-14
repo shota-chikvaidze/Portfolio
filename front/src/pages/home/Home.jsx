@@ -34,7 +34,7 @@ export const Home = () => {
           <div className='lg:max-w-md w-full'>
 
             <div className='flex gap-4'>
-              <span data-cursor-hover className='text-[var(--text-secondary)] font-[400] text-[14px] border border-[var(--border-color)] rounded-md px-5 h-[25px] flex items-center bg-[var(--glass-bg)]/40 ' > 15yo </span>
+              <span data-cursor-hover className='text-[var(--text-secondary)] font-[400] text-[14px] border border-[var(--border-color)] rounded-md px-5 h-[25px] flex items-center bg-[var(--glass-bg)]/40 ' > 16yo </span>
               <span data-cursor-hover className='text-[var(--text-secondary)] font-[400] text-[14px] border border-[var(--border-color)] rounded-md px-5 h-[25px] flex items-center bg-[var(--glass-bg)]/40 ' > Passionate </span>
               <span data-cursor-hover className='text-[var(--text-secondary)] font-[400] text-[14px] border border-[var(--border-color)] rounded-md px-5 h-[25px] flex items-center bg-[var(--glass-bg)]/40 ' > Disciplined </span>
             </div>
@@ -136,14 +136,7 @@ export const Home = () => {
             <div className='grid gap-6 text-[var(--text-secondary)] text-[1.05rem] leading-relaxed'>
               <p>
                 
-                I've been studying programming for the past two years, building projects with JavaScript and Node.js while consistently working to improve my skills.
-                I code every day and focus on steady progress through real projects and practical experience. 
-                So far, I've completed six projects to strengthen my foundation, 
-                and I'm currently building a larger project that I plan to fully ship. 
-                Alongside that, I'm learning TypeScript to write more scalable and maintainable code, 
-                and I plan to start learning Python next to expand my technical range. 
-                I care about writing clean, logical code and building things that are functional, 
-                structured, and well thought out. For me, programming is about discipline, growth, and continuous improvement.
+                I've been studying programming for the past two years, building projects with JavaScript, TypeScript, and Node.js while consistently working to improve my skills. I code every day and focus on steady progress through real projects and practical experience. So far I've completed six projects, and I care about writing clean, logical code and building things that are functional, structured, and well thought out. For me, programming is about discipline, growth, and continuous improvement.
 
               </p>
             </div>

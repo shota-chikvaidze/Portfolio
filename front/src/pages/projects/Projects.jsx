@@ -162,14 +162,14 @@ export const Projects = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className='fixed inset-0 z-50 flex items-center justify-center bg-[var(--modal-overlay)] p-4 backdrop-blur-sm'
-            onClick={() => setSelectedProject(null)}
+            onClick={() => { play('closeCard'); setSelectedProject(null) }}
           >
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className='relative w-full max-w-4xl rounded-2xl border border-white/10 bg-[var(--bg-primary)]/65 backdrop-blur'
+              className='relative w-full max-w-4xl rounded-2xl border border-white/10 bg-[var(--bg-primary)]/75 backdrop-blur'
               onClick={(e) => e.stopPropagation()}
             >
               <div className='flex items-center justify-between border-b border-[var(--border-color)] px-6 py-4'>
