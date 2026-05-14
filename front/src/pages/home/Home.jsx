@@ -6,6 +6,7 @@ import { Projects } from '../projects/Projects';
 import { FiGithub } from "react-icons/fi";
 import { FaLinkedinIn, FaFacebookF } from "react-icons/fa6";
 import { LuMail } from "react-icons/lu";
+import { play } from '../../utils/sounds';
 
 export const Home = () => {
 
@@ -33,9 +34,9 @@ export const Home = () => {
           <div className='lg:max-w-md w-full'>
 
             <div className='flex gap-4'>
-              <span className='text-[var(--text-secondary)] font-[400] text-[14px] border border-[var(--border-color)] rounded-md px-5 h-[25px] flex items-center bg-[var(--glass-bg)]/40 ' > 15yo </span>
-              <span className='text-[var(--text-secondary)] font-[400] text-[14px] border border-[var(--border-color)] rounded-md px-5 h-[25px] flex items-center bg-[var(--glass-bg)]/40 ' > Passionate </span>
-              <span className='text-[var(--text-secondary)] font-[400] text-[14px] border border-[var(--border-color)] rounded-md px-5 h-[25px] flex items-center bg-[var(--glass-bg)]/40 ' > Disciplined </span>
+              <span data-cursor-hover className='text-[var(--text-secondary)] font-[400] text-[14px] border border-[var(--border-color)] rounded-md px-5 h-[25px] flex items-center bg-[var(--glass-bg)]/40 ' > 15yo </span>
+              <span data-cursor-hover className='text-[var(--text-secondary)] font-[400] text-[14px] border border-[var(--border-color)] rounded-md px-5 h-[25px] flex items-center bg-[var(--glass-bg)]/40 ' > Passionate </span>
+              <span data-cursor-hover className='text-[var(--text-secondary)] font-[400] text-[14px] border border-[var(--border-color)] rounded-md px-5 h-[25px] flex items-center bg-[var(--glass-bg)]/40 ' > Disciplined </span>
             </div>
 
             <motion.p 
@@ -63,11 +64,11 @@ export const Home = () => {
               className='flex gap-3 py-2'
             >
 
-              <a href='/CV.pdf' className='flex items-center justify-center w-[140px] h-[35px] bg-[var(--bg-accent)] text-[var(--text-primary)] rounded-xl border border-[var(--border-color)] text-[15px] cursor-pointer hover:border-[var(--border-color)]/50 transition ' download > Download CV </a>
-              <a target='_blank' rel='noopener noreferrer' href='https://github.com/shota-chikvaidze' className='p-2 border border-[var(--border-color)] rounded-md '> <FiGithub className='text-[var(--text-primary)] ' /> </a>
-              <a target='_blank' rel='noopener noreferrer' href='https://www.linkedin.com/in/shota-chikvaidze-a6845b370/' className='p-2 border border-[var(--border-color)] rounded-md '> <FaLinkedinIn className='text-[17px] text-white/70 ' /> </a>
-              <a target='_blank' rel='noopener noreferrer' href='https://www.facebook.com/shota.chikvaidze.90' className='p-2 border border-[var(--border-color)] rounded-md '> <FaFacebookF className='text-[17px] text-white/70 ' /> </a>
-              <a target='_blank' rel='noopener noreferrer' href='mailto:shchikvaidze1@gmail.com' className='p-2 border border-[var(--border-color)] rounded-md '> <LuMail className='text-[17px] text-white/70 ' /> </a>
+              <a onClick={() => play('cardClick')} onMouseEnter={() => play('hover')} href='/CV.pdf' className='flex items-center justify-center w-[140px] h-[35px] bg-[var(--bg-accent)] text-[var(--text-primary)] rounded-xl border border-[var(--border-color)] text-[15px] cursor-pointer hover:border-[var(--border-color)]/50 transition ' download > Download CV </a>
+              <a onClick={() => play('cardClick')} onMouseEnter={() => play('hover')} target='_blank' rel='noopener noreferrer' href='https://github.com/shota-chikvaidze' className='p-2 border border-[var(--border-color)] rounded-md '> <FiGithub className='text-[var(--text-primary)] ' /> </a>
+              <a onClick={() => play('cardClick')} onMouseEnter={() => play('hover')} target='_blank' rel='noopener noreferrer' href='https://www.linkedin.com/in/shota-chikvaidze-a6845b370/' className='p-2 border border-[var(--border-color)] rounded-md '> <FaLinkedinIn className='text-[17px] text-white/70 ' /> </a>
+              <a onClick={() => play('cardClick')} onMouseEnter={() => play('hover')} target='_blank' rel='noopener noreferrer' href='https://www.facebook.com/shota.chikvaidze.90' className='p-2 border border-[var(--border-color)] rounded-md '> <FaFacebookF className='text-[17px] text-white/70 ' /> </a>
+              <a onClick={() => play('cardClick')} onMouseEnter={() => play('hover')} target='_blank' rel='noopener noreferrer' href='mailto:shchikvaidze1@gmail.com' className='p-2 border border-[var(--border-color)] rounded-md '> <LuMail className='text-[17px] text-white/70 ' /> </a>
                     
 
             </motion.div>

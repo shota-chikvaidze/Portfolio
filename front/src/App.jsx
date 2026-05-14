@@ -13,6 +13,7 @@ import { Dashboard } from './components/dashboard/Dashboard'
 import { AdminProject } from './components/adminProject/AdminProject'
 import PostProject from './components/postProject/PostProject'
 import SidebarWrapper from './components/sidebarWrapper/SidebarWrapper'
+import Cursor from './components/cursor/Cursor'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <>
+      <Cursor />
       <Toaster 
         position="bottom-right"
         toastOptions={{

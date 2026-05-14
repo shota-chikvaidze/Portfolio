@@ -7,6 +7,7 @@
   --bg-secondary: #234C6A;
   --bg-accent: #456882;
   --bg-header-scroll: #1E201E;
+  --bg-hader-scroll: #1c1c1c ;
   
   --text-primary: #E3E3E3;
   --text-secondary: rgba(227, 227, 227, 0.8);
@@ -15,49 +16,8 @@
   
   --border-color: rgba(255, 255, 255, 0.1);
   --glass-bg: rgba(69, 104, 130, 0.3);
-  --glass-overlay: rgba(255, 255, 255, 0.04);
   
-  --accent-primary: #647cd5;
-  --accent-primary-hover: #5569c4;
-  --accent-purple: #8E6AFB;
-  --accent-purple-dark: #6f4df0;
-  
-  --color-gold: #FFD700;
-  --color-coral: #FF6B6B;
-  --color-teal: #4ECDC4;
-  
-  --color-success: #10b981;
-  --color-error: #ef4444;
-  
-  --tech-react: #61DAFB;
-  --tech-node: #339933;
-  --tech-mongo: #47A248;
-  --tech-javascript: #F7DF1E;
-  --tech-typescript: #3178C6;
-  --tech-tailwind: #06B6D4;
-  --tech-git: #F05032;
-  
-  --skill-strategic: #7B9FAB;
-  --skill-creative: #D4A574;
-  --skill-collaborative: #8FA998;
-  --skill-technical: #9B8FA9;
-  --skill-execution: #A88B8F;
-  --skill-adaptability: #A89B7B;
-  --skill-performance: #7B9B9B;
-  --skill-communication: #9B8B8B;
-  
-  --service-backend: #68A063;
-  --service-fullstack: #F59E0B;
-  
-  --nav-active-bg: rgba(0, 0, 0, 0.1);
-  --nav-hover-bg: rgba(0, 0, 0, 0.2);
-  
-  --tooltip-bg: rgba(0, 0, 0, 0.2);
-  --modal-overlay: rgba(0, 0, 0, 0.8);
-  
-  --black: #000000;
-  --white: #FFFFFF;
-  --radius-lg: 1rem;
+
 }
 
 

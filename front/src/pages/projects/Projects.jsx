@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiGithub } from "react-icons/fi";
 import { TbWorld } from "react-icons/tb";
+import { play } from '../../utils/sounds'
 
 export const Projects = () => {
 
@@ -40,7 +41,7 @@ export const Projects = () => {
             className='mb-10'
           >
             <h1 className='text-5xl font-[700] mb-2 tracking-tight text-[var(--text-white)]'>My projects</h1>
-            <p className='mt-2 text-lg text-[var(--text-secondary)]'>Explore my recent work and side projects.</p>
+            <p className='mt-2 text-lg text-[var(--text-secondary)]'>Check out some cool things I've built!</p>
           </motion.div>
 
           {isLoading ? (
@@ -79,8 +80,11 @@ export const Projects = () => {
                   key={pro._id}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
+                  onMouseEnter={() => play('cardHover')}
+                  onClick={() => play('cardClick')}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className='group rounded-2xl border border-[var(--border-color)] bg-[var(--glass-overlay)] backdrop-blur transition hover:border-[var(--border-color)]/50 hover:bg-[var(--glass-overlay)]/50'
+                  className='group m-2 hover:scale-102 transition duration-400 shadow-2xl shadow-black/50 rounded-2xl '
+
                 >
                   <div className='p-5'>
 
@@ -101,13 +105,15 @@ export const Projects = () => {
 
 
                     <h2 className='mb-2 text-xl font-[600] text-[var(--text-white)]'>{pro.title}</h2>
-                    <p className='line-clamp-3 text-sm text-[var(--text-secondary)]'>{pro.description}</p>
+                    <p className='line-clamp-3 text-sm text-[var(--text-primary))]'>{pro.description}</p>
                     
                     <div className='flex mt-4 gap-4'>
 
                       <Link 
                         to={pro.gitLink} 
                         target='_blank' 
+                        onClick={() => play('openLink')} 
+                        onMouseEnter={() => play('hover')}
                         className='flex items-center gap-4 cursor-pointer rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-4 py-2 text-sm font-[500] text-[var(--text-secondary)] transition hover:bg-[var(--glass-overlay)]/50'
                       > 
                         <FiGithub />
@@ -117,6 +123,8 @@ export const Projects = () => {
                       <Link 
                         to={pro.webLink} 
                         target='_blank' 
+                        onClick={() => play('openLink')}
+                        onMouseEnter={() => play('hover')}
                         className='flex items-center gap-4 cursor-pointer rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-4 py-2 text-sm font-[500] text-[var(--text-secondary)] transition hover:bg-[var(--glass-overlay)]/50'
                       > 
                         <TbWorld />
@@ -126,7 +134,8 @@ export const Projects = () => {
                       {pro.image && pro.image.length > 1 ? (
                         <button
                           type='button'
-                          onClick={() => setSelectedProject(pro)}
+                          onClick={() => { play('openCard'); setSelectedProject(pro); }}
+                          onMouseEnter={() => play('hover')}
                           className=' cursor-pointer rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-4 py-2 text-sm font-[500] text-[var(--text-secondary)] transition hover:bg-[var(--glass-overlay)]/50'
                         >
                           View all images ({pro.image.length})
@@ -167,7 +176,7 @@ export const Projects = () => {
                 <h3 className='text-xl font-[600] text-[var(--text-white)]'>{selectedProject.title}</h3>
                 <button
                   type='button'
-                  onClick={() => setSelectedProject(null)}
+                   onClick={() => { play('closeCard'); setSelectedProject(null); }}
                   className='cursor-pointer rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-3 py-1 text-sm font-[500] text-[var(--text-secondary)] transition hover:bg-[var(--glass-overlay)]/50'
                 >
                   Close

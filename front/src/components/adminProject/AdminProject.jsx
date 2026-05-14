@@ -429,6 +429,17 @@ export const AdminProject = () => {
               />
             </div>
 
+            <div className='mb-6'>
+              <label className='text-[var(--text-secondary)] text-sm mb-2 block'>Website Link</label>
+              <input
+                type='text'
+                value={editForm.webLink}
+                onChange={(e) => handleInputChange('webLink', e.target.value)}
+                className='w-full rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-3 py-2 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--border-color)] focus:outline-none'
+                placeholder='Website Link '
+              />
+            </div>
+
             <div className='flex gap-3'>
               <button 
                 onClick={() => handleUpdateSubmit(editingId)}

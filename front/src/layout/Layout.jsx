@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { play } from '../utils/sounds'
 
 const Layout = () => {
 
@@ -41,19 +42,19 @@ const Layout = () => {
 
           <ul className={`flex items-center gap-4`}>
 
-            <li onClick={() => scrollTo('hero', 100)}  className="text-[var(--text-primary)] cursor-pointer hover:text-[var(--text-secondary)] transition-colors duration-400 "> 
+            <li data-cursor-hover onMouseEnter={() => play('cardHover')} onClick={() => scrollTo('hero', 100)}  className="text-[var(--text-primary)] cursor-pointer hover:text-[var(--text-secondary)] hover:scale-105 transition-colors duration-400 "> 
               Home 
             </li>
 
-            <li onClick={() => scrollTo('projects', 100)} className="text-[var(--text-primary)] cursor-pointer hover:text-[var(--text-secondary)] transition-colors duration-400 "> 
+            <li data-cursor-hover onMouseEnter={() => play('cardHover')} onClick={() => scrollTo('projects', 100)} className="text-[var(--text-primary)] cursor-pointer hover:text-[var(--text-secondary)] hover:scale-105 transition-colors duration-400 "> 
               Projects 
             </li>
 
-            <li onClick={() => scrollTo('tech', 100)} className="text-[var(--text-primary)] cursor-pointer hover:text-[var(--text-secondary)] transition-colors duration-400 "> 
+            <li data-cursor-hover onMouseEnter={() => play('cardHover')} onClick={() => scrollTo('tech', 100)} className="text-[var(--text-primary)] cursor-pointer hover:text-[var(--text-secondary) hover:scale-105 transition-colors duration-400 "> 
               Tech 
             </li>
 
-            <li onClick={() => scrollTo('about', 100)} className="text-[var(--text-primary)] cursor-pointer hover:text-[var(--text-secondary)] transition-colors duration-400 "> 
+            <li data-cursor-hover onMouseEnter={() => play('cardHover')} onClick={() => scrollTo('about', 100)} className="text-[var(--text-primary)] hover:scale-105 duration-300 cursor-pointer transition "> 
               About
             </li>
 
