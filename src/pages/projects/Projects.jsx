@@ -69,17 +69,20 @@ export const Projects = () => {
                     <p className='line-clamp-3 text-sm text-[var(--text-primary))]'>{pro.description}</p>
                     
                     <div className='flex mt-4 gap-2 xs:gap-4 flex-col xs:flex-row '>
+                      
+                      {pro.gitLink && (
+                        <Link 
+                          to={pro.gitLink} 
+                          target='_blank' 
+                          onClick={() => play('openLink')} 
+                          onMouseEnter={() => play('hover')}
+                          className='flex items-center justify-center gap-4 cursor-pointer rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-4 py-2 text-sm font-[500] text-[var(--text-secondary)] transition hover:bg-[var(--glass-overlay)]/50'
+                        > 
+                          <FiGithub />
+                          View source
+                        </Link>
+                      )}
 
-                      <Link 
-                        to={pro.gitLink} 
-                        target='_blank' 
-                        onClick={() => play('openLink')} 
-                        onMouseEnter={() => play('hover')}
-                        className='flex items-center justify-center gap-4 cursor-pointer rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-4 py-2 text-sm font-[500] text-[var(--text-secondary)] transition hover:bg-[var(--glass-overlay)]/50'
-                      > 
-                        <FiGithub />
-                        View source
-                      </Link>
 
                       <Link 
                         to={pro.webLink} 

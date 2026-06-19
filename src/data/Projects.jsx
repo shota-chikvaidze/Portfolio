@@ -1,6 +1,23 @@
 // projects.ts
 export const projects = [
   {
+    id: "6a035436394f27fb84f5b5c7",
+    title: "Uplearn",
+    description:
+      "Uplearn is a Georgian-language AI education platform designed to make artificial intelligence accessible to beginners. It offers structured, interactive lessons with AI-powered explanations, helping users build foundational understanding of modern AI concepts in their native language. Built with React, Node.js, and MongoDB — currently live with real users at uplearn.ge.",
+    images: [
+      "https://res.cloudinary.com/dmvxjjxwb/image/upload/v1781874239/Screenshot_2026-06-19_165934_iie8qm.png",
+      "https://res.cloudinary.com/dmvxjjxwb/image/upload/v1781874240/Screenshot_2026-06-19_165944_xzrais.png",
+      "https://res.cloudinary.com/dmvxjjxwb/image/upload/v1781874240/Screenshot_2026-06-19_170011_t3ujlv.png",
+      "https://res.cloudinary.com/dmvxjjxwb/image/upload/v1781874240/Screenshot_2026-06-19_170025_eiywvf.png",
+      "https://res.cloudinary.com/dmvxjjxwb/image/upload/v1781874240/Screenshot_2026-06-19_170038_qgoahf.png",
+      "https://res.cloudinary.com/dmvxjjxwb/image/upload/v1781874239/Screenshot_2026-06-19_170046_jsug3q.png",
+      "https://res.cloudinary.com/dmvxjjxwb/image/upload/v1781874361/Screenshot_2026-06-19_170537_hlnbee.png",
+      "https://res.cloudinary.com/dmvxjjxwb/image/upload/v1781874361/Screenshot_2026-06-19_170548_xg7lsd.png",
+    ],
+    webLink: "https://uplearn.ge",
+  },
+  {
     id: "6a035436399f17fb84f5b5c7",
     title: "Messenger app",
     description:
