@@ -1,123 +1,171 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiGithub } from "react-icons/fi";
-import { TbWorld } from "react-icons/tb";
+import { FiGithub } from 'react-icons/fi'
+import { TbWorld } from 'react-icons/tb'
+import { LuX, LuImages } from 'react-icons/lu'
 import { play } from '../../utils/sounds'
 
 import projects from '../../data/Projects'
 
-export const Projects = () => {
+const GalleryImage = ({ src, alt }) => {
+  const [loaded, setLoaded] = useState(false)
 
+  return (
+    <div className='relative aspect-video w-full overflow-hidden rounded-xl border border-line bg-surface-hover'>
+      {!loaded && (
+        <div className='absolute inset-0 animate-pulse bg-surface-hover' aria-hidden='true' />
+      )}
+      <img
+        src={src}
+        alt={alt}
+        loading='lazy'
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
+        className={`h-full w-full object-cover transition-opacity duration-300 ${
+          loaded ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
+    </div>
+  )
+}
+
+export const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null)
+
+  useEffect(() => {
+    if (!selectedProject) return
+    const onKey = (e) => {
+      if (e.key === 'Escape') { play('closeCard'); setSelectedProject(null) }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [selectedProject])
 
   return (
     <>
-      <section className='min-h-[calc(100vh-70px)] w-full px-4 py-14' id='projects' >
-        <div className='mx-auto w-full max-w-6xl'>
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+      <section id='projects' className='section-y border-y border-line bg-surface/30'>
+        <div className='wrap'>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.5 }}
-            className='mb-10 px-3'
+            className='mb-10 flex items-end justify-between gap-4'
           >
-            <h1 className='text-4xl sm:text-5xl font-[700] mb-2 tracking-tight text-[var(--text-white)]'>My projects</h1>
-            <p className='mt-2 text-lg text-[var(--text-secondary)]'>Check out some cool things I've built!</p>
+            <div>
+              <span className='eyebrow'>Work</span>
+              <h2 className='mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl'>
+                Selected projects
+              </h2>
+            </div>
+            <span className='hidden shrink-0 text-sm text-ink-faint sm:block'>
+              {projects.length} projects
+            </span>
           </motion.div>
 
-          { projects.length === 0 ? (
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className='rounded-2xl border border-[var(--border-color)] bg-[var(--glass-overlay)] backdrop-blur px-8 py-12 text-center'
-            >
-              <p className='text-[var(--text-secondary)]'>No projects available yet. Check back soon!</p>
-            </motion.div>
-          ) : (
-            <div className='grid gap-6 sm:grid-cols-1 lg:grid-cols-2'>
-              {projects.map((pro, index) => (
+          <div className='grid gap-6 lg:grid-cols-2'>
+            {projects.map((pro, index) => {
+              const hasGallery = pro.images && pro.images.length > 1
+              return (
                 <motion.article
-                  key={pro._id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  key={pro.id}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
                   onMouseEnter={() => play('cardHover')}
-                  onClick={() => play('cardClick')}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className='group m-2 hover:scale-102 transition duration-400 shadow-2xl shadow-black/50 rounded-2xl '
-
+                  className='group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-all duration-300 ease-out hover:-translate-y-1 hover:border-accent hover:shadow-2xl hover:shadow-black/40'
                 >
-                  <div className='p-5'>
+                  <button
+                    type='button'
+                    onClick={() => { play('openCard'); setSelectedProject(pro) }}
+                    aria-label={`View ${pro.title} gallery`}
+                    className='relative aspect-[16/9] w-full overflow-hidden bg-bg'
+                  >
+                    {pro.images?.length ? (
+                      <img
+                        src={pro.images[0]}
+                        alt={pro.title}
+                        loading='lazy'
+                        className='absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]'
+                      />
+                    ) : (
+                      <span className='absolute inset-0 flex items-center justify-center text-ink-faint'>
+                        No image
+                      </span>
+                    )}
+                    {hasGallery && (
+                      <span className='absolute bottom-3 right-3 rounded-md bg-bg/80 px-2 py-1 text-xs font-medium text-ink-muted backdrop-blur-sm'>
+                        {pro.images.length} images
+                      </span>
+                    )}
+                  </button>
 
-                    <div className='relative w-full overflow-hidden rounded-2xl mb-4 aspect-[16/9]'>
-                      {pro.images && pro.images.length > 0 ? (
-                        <img
-                          src={pro.images[0]}
-                          alt={pro.title || 'Project image'}
-                          className='absolute inset-0 h-full w-full object-cover'
-                          loading='lazy'
-                        />
-                      ) : (
-                        <div className='absolute inset-0 flex items-center justify-center bg-[var(--glass-overlay)] text-[var(--text-muted)]'>
-                          No image
-                        </div>
-                      )}
-                    </div>
+                  <div className='flex flex-1 flex-col p-6'>
+                    <h3 className='text-xl font-semibold text-ink'>{pro.title}</h3>
+                    <p className='mt-2 line-clamp-3 text-sm leading-relaxed text-ink-muted'>
+                      {pro.description}
+                    </p>
 
+                    {pro.tags?.length ? (
+                      <ul className='mt-4 flex flex-wrap gap-2'>
+                        {pro.tags.map((tag) => (
+                          <li
+                            key={tag}
+                            className='rounded-md border border-line px-2 py-0.5 text-xs font-medium text-ink-faint'
+                          >
+                            {tag}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
 
-                    <h2 className='mb-2 text-xl font-[600] text-[var(--text-white)]'>{pro.title}</h2>
-                    <p className='line-clamp-3 text-sm text-[var(--text-primary))]'>{pro.description}</p>
-                    
-                    <div className='flex mt-4 gap-2 xs:gap-4 flex-col xs:flex-row '>
-                      
-                      {pro.gitLink && (
-                        <Link 
-                          to={pro.gitLink} 
-                          target='_blank' 
-                          onClick={() => play('openLink')} 
-                          onMouseEnter={() => play('hover')}
-                          className='flex items-center justify-center gap-4 cursor-pointer rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-4 py-2 text-sm font-[500] text-[var(--text-secondary)] transition hover:bg-[var(--glass-overlay)]/50'
-                        > 
-                          <FiGithub />
-                          View source
-                        </Link>
-                      )}
-
-
-                      <Link 
-                        to={pro.webLink} 
-                        target='_blank' 
+                    <div className='mt-6 flex flex-wrap gap-3 pt-2'>
+                      <a
+                        href={pro.webLink}
+                        target='_blank'
+                        rel='noopener noreferrer'
                         onClick={() => play('openLink')}
                         onMouseEnter={() => play('hover')}
-                        className='flex items-center justify-center gap-4 cursor-pointer rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-4 py-2 text-sm font-[500] text-[var(--text-secondary)] transition hover:bg-[var(--glass-overlay)]/50'
-                      > 
-                        <TbWorld />
-                        View website
-                      </Link>
-
-                      {pro.images && pro.images.length > 1 ? (
+                        className='inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-hover'
+                      >
+                        <TbWorld className='text-base' />
+                        Live site
+                      </a>
+                      {pro.gitLink && (
+                        <a
+                          href={pro.gitLink}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          onClick={() => play('openLink')}
+                          onMouseEnter={() => play('hover')}
+                          className='inline-flex items-center gap-2 rounded-lg border border-line px-4 py-2 text-sm font-medium text-ink-muted transition-colors hover:border-line-strong hover:text-ink'
+                        >
+                          <FiGithub className='text-base' />
+                          Source
+                        </a>
+                      )}
+                      {hasGallery && (
                         <button
                           type='button'
-                          onClick={() => { play('openCard'); setSelectedProject(pro); }}
+                          onClick={() => { play('openCard'); setSelectedProject(pro) }}
                           onMouseEnter={() => play('hover')}
-                          className=' cursor-pointer rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-4 py-2 text-sm font-[500] text-[var(--text-secondary)] transition hover:bg-[var(--glass-overlay)]/50'
+                          className='cursor-pointer inline-flex items-center gap-2 rounded-lg border border-line px-4 py-2 text-sm font-medium text-ink-muted transition-colors hover:border-line-strong hover:text-ink'
                         >
-                          View all images ({pro.images.length})
+                          <LuImages className='text-base' />
+                          Images ({pro.images.length})
                         </button>
-                      ) : null}
-
+                      )}
                     </div>
-
                   </div>
                 </motion.article>
-              ))}
-            </div>
-
-          )}
-        
+              )
+            })}
+          </div>
         </div>
       </section>
 
+      {/* Gallery modal */}
       <AnimatePresence>
         {selectedProject ? (
           <motion.div
@@ -125,49 +173,46 @@ export const Projects = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className='fixed inset-0 z-50 flex items-center justify-center bg-[var(--modal-overlay)] p-4 backdrop-blur-sm'
+            role='dialog'
+            aria-modal='true'
+            aria-label={`${selectedProject.title} gallery`}
+            className='fixed inset-0 z-50 flex items-center justify-center bg-bg/80 p-4 backdrop-blur-sm'
             onClick={() => { play('closeCard'); setSelectedProject(null) }}
           >
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className='relative w-full max-w-4xl rounded-2xl border border-white/10 bg-[var(--bg-primary)]/75 backdrop-blur'
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className='relative flex max-h-[85vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-line bg-surface'
               onClick={(e) => e.stopPropagation()}
             >
-              <div className='flex items-center justify-between border-b border-[var(--border-color)] px-6 py-4'>
-                <h3 className='text-xl font-[600] text-[var(--text-white)]'>{selectedProject.title}</h3>
-
+              <div className='flex items-center justify-between border-b border-line px-6 py-4'>
+                <h3 className='text-lg font-semibold text-ink'>{selectedProject.title}</h3>
                 <button
                   type='button'
-                   onClick={() => { play('closeCard'); setSelectedProject(null); }}
-                  className='cursor-pointer rounded-lg border border-[var(--border-color)] bg-[var(--glass-overlay)] px-3 py-1 text-sm font-[500] text-[var(--text-secondary)] transition hover:bg-[var(--glass-overlay)]/50'
+                  aria-label='Close gallery'
+                  onClick={() => { play('closeCard'); setSelectedProject(null) }}
+                  className='flex h-8 w-8 items-center justify-center rounded-lg border border-line text-ink-muted transition-colors hover:border-line-strong hover:text-ink'
                 >
-                  Close
+                  <LuX />
                 </button>
               </div>
 
-              <div className='max-h-[70vh] overflow-y-auto scrollbar-glass p-6'>
-                <p className='mb-6 text-[var(--text-secondary)]'>{selectedProject.description}</p>
-
+              <div className='scrollbar-thin overflow-y-auto p-6'>
+                <p className='mb-6 text-sm leading-relaxed text-ink-muted'>
+                  {selectedProject.description}
+                </p>
                 <div className='grid gap-4 sm:grid-cols-2'>
                   {selectedProject.images.map((img, idx) => (
-                    <motion.img
+                    <GalleryImage
                       key={`${img.slice(0, 24)}-${idx}`}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3, delay: idx * 0.05 }}
                       src={img}
-                      alt={`${selectedProject.title} image ${idx + 1}`}
-                      className='w-full rounded-xl border border-[var(--border-color)] object-cover'
-                      loading='lazy'
+                      alt={`${selectedProject.title} screenshot ${idx + 1}`}
                     />
                   ))}
                 </div>
-
               </div>
-              
             </motion.div>
           </motion.div>
         ) : null}

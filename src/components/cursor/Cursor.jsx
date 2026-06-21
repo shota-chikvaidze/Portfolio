@@ -6,14 +6,17 @@ export default function Cursor() {
   return (
     <div
       ref={cursorRef}
+      aria-hidden="true"
       style={{
-        background: hovering ? "transparent" : "var(--bg-hader-scroll)",
-        border: hovering ? "2px solid var(--bg-hader-scroll)" : "none",
-        transition: "background 0.2s, border 0.2s",
+        background: hovering
+          ? "color-mix(in srgb, var(--color-accent) 18%, transparent)"
+          : "transparent",
+        borderColor: hovering ? "var(--color-accent)" : "var(--color-line-strong)",
+        transition: "background 0.2s, border-color 0.2s, transform 0.15s",
         top: 0,
         left: 0,
       }}
-      className="fixed pointer-events-none z-[9999] w-10 h-10 rounded-full -translate-x-1/2 -translate-y-1/2"
+      className="pointer-events-none fixed z-[9999] hidden h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border md:block"
     />
   );
 }

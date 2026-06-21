@@ -6,10 +6,10 @@ Portfolio for managing projects and contact inquiries.
 
 ## Tech Stack
 
-**Frontend** — React 19, Vite, TanStack Query, Zustand, Axios, Tailwind CSS 4, Framer Motion, React Router v6
+**Frontend:** React 19, Vite, TanStack Query, Zustand, Axios, Tailwind CSS 4, Framer Motion, React Router v6
 
 ---
 
 ## Features
 
-**Portfolio** — Hero, About, Projects gallery, Contact form
+**Portfolio:** Hero, About, Projects gallery
