@@ -50,19 +50,19 @@ export const projects = [
     gitLink: "https://github.com/shota-chikvaidze/Movie-finder",
     webLink: "https://movie-finder-ten-rho.vercel.app/",
   },
-  {
-    id: "69d937618097eabf51bccf9f",
-    title: "RetroZone",
-    description:
-      "A furniture shop concept with a clean storefront, detailed product pages, and visual category filters, focused on layout, typography, and a polished browsing flow.",
-    tags: ["React", "Tailwind"],
-    images: [
-      "https://res.cloudinary.com/dmvxjjxwb/image/upload/v1767801476/portfolio_projects/1767801491022-screenshot-2025-12-23-193453.png.webp",
-      "https://res.cloudinary.com/dmvxjjxwb/image/upload/v1767801474/portfolio_projects/1767801488876-screenshot-2025-12-23-193512.png.webp",
-    ],
-    gitLink: "https://github.com/shota-chikvaidze/Retro-zone",
-    webLink: "https://retro-zone.vercel.app/",
-  },
+  // {
+  //   id: "69d937618097eabf51bccf9f",
+  //   title: "RetroZone",
+  //   description:
+  //     "A furniture shop concept with a clean storefront, detailed product pages, and visual category filters, focused on layout, typography, and a polished browsing flow.",
+  //   tags: ["React", "Tailwind"],
+  //   images: [
+  //     "https://res.cloudinary.com/dmvxjjxwb/image/upload/v1767801476/portfolio_projects/1767801491022-screenshot-2025-12-23-193453.png.webp",
+  //     "https://res.cloudinary.com/dmvxjjxwb/image/upload/v1767801474/portfolio_projects/1767801488876-screenshot-2025-12-23-193512.png.webp",
+  //   ],
+  //   gitLink: "https://github.com/shota-chikvaidze/Retro-zone",
+  //   webLink: "https://retro-zone.vercel.app/",
+  // },
 
   
   // {
